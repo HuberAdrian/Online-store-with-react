@@ -3,7 +3,7 @@ import Button from "./Button.js";
 import { useDispatch } from "react-redux";
 import { addProduct } from "./store.js";
 
-export default function ProductDetailInfo({ product, onProductAdd }) {
+export default function ProductDetailInfo(props) {
   
   const {product} = props;
 
