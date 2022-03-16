@@ -22801,160 +22801,198 @@ var _productDetailsJs = require("./ProductDetails.js");
 var _productDetailsJsDefault = parcelHelpers.interopDefault(_productDetailsJs);
 var _cartJs = require("./Cart.js");
 var _cartJsDefault = parcelHelpers.interopDefault(_cartJs);
-var _s = $RefreshSig$();
+var _reactRedux = require("react-redux");
+var _storeJs = require("./store.js");
 function App() {
-    _s();
-    const [cart, setCart] = _react.useState(function() {
-        const savedString = localStorage.getItem("cart");
-        let savedCart = [];
-        try {
-            savedCart = JSON.parse(localStorage.getItem("cart")) || [];
-        } catch (error) {
-            savedCart = [];
-        }
-        return savedCart;
-    });
-    _react.useEffect(()=>{
-        if (cart) localStorage.setItem("cart", JSON.stringify(cart));
-    }, [
-        cart
-    ]);
-    function handleProductDelete(id) {
-        const updatedCart = cart.filter((product)=>product.id !== id
-        );
-        setCart(updatedCart);
-    }
-    function handleProductAdd(newProduct) {
-        // check if item exists
-        const existingProduct = cart.find((product)=>product.id === newProduct.id
-        );
-        if (existingProduct) {
-            // increase quantity
-            const updatedCart = cart.map((product)=>{
-                if (product.id === newProduct.id) return {
-                    ...product,
-                    quantity: product.quantity + 1
-                };
-                return product;
-            });
-            setCart(updatedCart);
-        } else // product is new to the cart
-        setCart([
-            ...cart,
-            {
-                ...newProduct,
-                quantity: 1
-            }, 
-        ]);
-    }
-    return(/*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.BrowserRouter, {
-        children: [
-            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_navbarJsDefault.default, {
-                cart: cart
-            }, void 0, false, {
-                fileName: "src/App.js",
-                lineNumber: 64,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
-                className: "container",
-                children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Switch, {
-                    children: [
-                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
-                            exact: true,
-                            path: "/",
-                            children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_homeJsDefault.default, {
-                            }, void 0, false, {
-                                fileName: "src/App.js",
-                                lineNumber: 68,
-                                columnNumber: 13
-                            }, this)
-                        }, void 0, false, {
-                            fileName: "src/App.js",
-                            lineNumber: 67,
-                            columnNumber: 11
-                        }, this),
-                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
-                            exact: true,
-                            path: "/about",
-                            children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_aboutJsDefault.default, {
-                            }, void 0, false, {
-                                fileName: "src/App.js",
-                                lineNumber: 71,
-                                columnNumber: 13
-                            }, this)
-                        }, void 0, false, {
-                            fileName: "src/App.js",
-                            lineNumber: 70,
-                            columnNumber: 11
-                        }, this),
-                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
-                            exact: true,
-                            path: "/products",
-                            children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_productsJsDefault.default, {
-                                cart: cart,
-                                onProductAdd: handleProductAdd,
-                                onProductDelete: handleProductDelete
-                            }, void 0, false, {
-                                fileName: "src/App.js",
-                                lineNumber: 74,
-                                columnNumber: 13
-                            }, this)
-                        }, void 0, false, {
-                            fileName: "src/App.js",
-                            lineNumber: 73,
-                            columnNumber: 11
-                        }, this),
-                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
-                            path: "/products/:id",
-                            children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_productDetailsJsDefault.default, {
-                                onProductAdd: handleProductAdd
-                            }, void 0, false, {
-                                fileName: "src/App.js",
-                                lineNumber: 81,
-                                columnNumber: 13
-                            }, this)
-                        }, void 0, false, {
-                            fileName: "src/App.js",
-                            lineNumber: 80,
-                            columnNumber: 11
-                        }, this),
-                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
-                            exact: true,
-                            path: "/cart",
-                            children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_cartJsDefault.default, {
-                                cart: cart
-                            }, void 0, false, {
-                                fileName: "src/App.js",
-                                lineNumber: 84,
-                                columnNumber: 13
-                            }, this)
-                        }, void 0, false, {
-                            fileName: "src/App.js",
-                            lineNumber: 83,
-                            columnNumber: 11
-                        }, this)
-                    ]
-                }, void 0, true, {
+    return(/*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRedux.Provider, {
+        store: _storeJs.store,
+        children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.BrowserRouter, {
+            children: [
+                /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_navbarJsDefault.default, {
+                }, void 0, false, {
                     fileName: "src/App.js",
-                    lineNumber: 66,
-                    columnNumber: 9
+                    lineNumber: 17,
+                    columnNumber: 7
+                }, this),
+                /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
+                    className: "container",
+                    children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Switch, {
+                        children: [
+                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
+                                exact: true,
+                                path: "/",
+                                children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_homeJsDefault.default, {
+                                }, void 0, false, {
+                                    fileName: "src/App.js",
+                                    lineNumber: 21,
+                                    columnNumber: 13
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "src/App.js",
+                                lineNumber: 20,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
+                                exact: true,
+                                path: "/about",
+                                children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_aboutJsDefault.default, {
+                                }, void 0, false, {
+                                    fileName: "src/App.js",
+                                    lineNumber: 24,
+                                    columnNumber: 13
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "src/App.js",
+                                lineNumber: 23,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
+                                exact: true,
+                                path: "/products",
+                                children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_productsJsDefault.default, {
+                                }, void 0, false, {
+                                    fileName: "src/App.js",
+                                    lineNumber: 27,
+                                    columnNumber: 13
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "src/App.js",
+                                lineNumber: 26,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
+                                path: "/products/:id",
+                                children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_productDetailsJsDefault.default, {
+                                }, void 0, false, {
+                                    fileName: "src/App.js",
+                                    lineNumber: 30,
+                                    columnNumber: 13
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "src/App.js",
+                                lineNumber: 29,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
+                                exact: true,
+                                path: "/cart",
+                                children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_cartJsDefault.default, {
+                                }, void 0, false, {
+                                    fileName: "src/App.js",
+                                    lineNumber: 33,
+                                    columnNumber: 13
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "src/App.js",
+                                lineNumber: 32,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/App.js",
+                        lineNumber: 19,
+                        columnNumber: 9
+                    }, this)
+                }, void 0, false, {
+                    fileName: "src/App.js",
+                    lineNumber: 18,
+                    columnNumber: 7
                 }, this)
-            }, void 0, false, {
-                fileName: "src/App.js",
-                lineNumber: 65,
-                columnNumber: 7
-            }, this)
-        ]
-    }, void 0, true, {
+            ]
+        }, void 0, true, {
+            fileName: "src/App.js",
+            lineNumber: 16,
+            columnNumber: 5
+        }, this)
+    }, void 0, false, {
         fileName: "src/App.js",
-        lineNumber: 63,
+        lineNumber: 15,
         columnNumber: 5
     }, this));
 }
-_s(App, "/XdYjLSKv9R5gQtYdRe0EG79o48=");
 _c = App;
-exports.default = App;
+exports.default = App; /* Code before Redux
+
+  const [cart, setCart] = useState(function () {
+    const savedString = localStorage.getItem("cart");
+    let savedCart = [];
+    try {
+      savedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    } catch (error) {
+      savedCart = [];
+    }
+    return savedCart;
+  });
+
+  useEffect(() => {
+    if (cart) {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+  }, [cart]);
+
+  function handleProductDelete(id) {
+    const updatedCart = cart.filter((product) => product.id !== id);
+    setCart(updatedCart);
+  }
+
+  function handleProductAdd(newProduct) {
+    // check if item exists
+    const existingProduct = cart.find(
+      (product) => product.id === newProduct.id
+    );
+    if (existingProduct) {
+      // increase quantity
+      const updatedCart = cart.map((product) => {
+        if (product.id === newProduct.id) {
+          return {
+            ...product,
+            quantity: product.quantity + 1,
+          };
+        }
+        return product;
+      });
+      setCart(updatedCart);
+    } else {
+      // product is new to the cart
+      setCart([
+        ...cart,
+        {
+          ...newProduct,
+          quantity: 1,
+        },
+      ]);
+    }
+  }
+
+  return (
+    <BrowserRouter>
+      <Navbar cart={cart} />
+      <div className="container">
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/about">
+            <About />
+          </Route>
+          <Route exact path="/products">
+            <Products
+              cart={cart}
+              onProductAdd={handleProductAdd}
+              onProductDelete={handleProductDelete}
+            />
+          </Route>
+          <Route path="/products/:id">
+            <ProductDetails onProductAdd={handleProductAdd} />
+          </Route>
+          <Route exact path="/cart">
+            <Cart cart={cart} />
+          </Route>
+        </Switch>
+      </div>
+    </BrowserRouter>
+  );
+  */ 
 var _c;
 $RefreshReg$(_c, "App");
 
@@ -22963,7 +23001,7 @@ $RefreshReg$(_c, "App");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"cHIiW","./Navbar.js":"c90cJ","./Home.js":"fGRvi","./About.js":"7xYvO","./Products.js":"8WRn5","./ProductDetails.js":"aAaLw","./Cart.js":"52OIH","@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Yg1A"}],"cHIiW":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"cHIiW","./Navbar.js":"c90cJ","./Home.js":"fGRvi","./About.js":"7xYvO","./Products.js":"8WRn5","./ProductDetails.js":"aAaLw","./Cart.js":"52OIH","@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Yg1A","react-redux":"bdVon","./store.js":"d8qyu"}],"cHIiW":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "MemoryRouter", ()=>_reactRouter.MemoryRouter
@@ -26026,9 +26064,19 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactRouterDom = require("react-router-dom");
+var _reactRedux = require("react-redux");
+var _storeJs = require("./store.js");
+var _s = $RefreshSig$();
 function Navbar(props) {
-    const cartCount = props.cart.reduce((total, product)=>total + product.quantity
-    , 0);
+    _s();
+    /* Code without Redux
+    
+    const cartCount = props.cart.reduce(
+    (total, product) => total + product.quantity,
+    0
+  );
+
+  */ const cartCount = _reactRedux.useSelector(_storeJs.cartCountSelector);
     return(/*#__PURE__*/ _jsxDevRuntime.jsxDEV("nav", {
         className: "navbar",
         children: [
@@ -26038,7 +26086,7 @@ function Navbar(props) {
                 children: "SuperM"
             }, void 0, false, {
                 fileName: "src/Navbar.js",
-                lineNumber: 12,
+                lineNumber: 21,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ _jsxDevRuntime.jsxDEV("ul", {
@@ -26052,12 +26100,12 @@ function Navbar(props) {
                             children: "Home"
                         }, void 0, false, {
                             fileName: "src/Navbar.js",
-                            lineNumber: 17,
+                            lineNumber: 26,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "src/Navbar.js",
-                        lineNumber: 16,
+                        lineNumber: 25,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV("li", {
@@ -26069,12 +26117,12 @@ function Navbar(props) {
                             children: "About us"
                         }, void 0, false, {
                             fileName: "src/Navbar.js",
-                            lineNumber: 22,
+                            lineNumber: 31,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "src/Navbar.js",
-                        lineNumber: 21,
+                        lineNumber: 30,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV("li", {
@@ -26085,12 +26133,12 @@ function Navbar(props) {
                             children: "Products"
                         }, void 0, false, {
                             fileName: "src/Navbar.js",
-                            lineNumber: 27,
+                            lineNumber: 36,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "src/Navbar.js",
-                        lineNumber: 26,
+                        lineNumber: 35,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV("li", {
@@ -26104,28 +26152,33 @@ function Navbar(props) {
                             ]
                         }, void 0, true, {
                             fileName: "src/Navbar.js",
-                            lineNumber: 32,
+                            lineNumber: 41,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "src/Navbar.js",
-                        lineNumber: 31,
+                        lineNumber: 40,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/Navbar.js",
-                lineNumber: 15,
+                lineNumber: 24,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/Navbar.js",
-        lineNumber: 11,
+        lineNumber: 20,
         columnNumber: 5
     }, this));
 }
 exports.default = Navbar;
+_s(Navbar, "Cr3KkZXyV7fmtyjd5FCtA7JNdFU=", false, function() {
+    return [
+        _reactRedux.useSelector
+    ];
+});
 _c = Navbar;
 var _c;
 $RefreshReg$(_c, "Navbar");
@@ -26135,7 +26188,7 @@ $RefreshReg$(_c, "Navbar");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"cHIiW","@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Yg1A"}],"4Yg1A":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"cHIiW","@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Yg1A","react-redux":"bdVon","./store.js":"d8qyu"}],"4Yg1A":[function(require,module,exports) {
 "use strict";
 var Refresh = require('react-refresh/runtime');
 function debounce(func, delay) {
@@ -26255,7 +26308,5205 @@ function registerExportsForReactRefresh(module) {
     }
 }
 
-},{"react-refresh/runtime":"3n5Or"}],"fGRvi":[function(require,module,exports) {
+},{"react-refresh/runtime":"3n5Or"}],"bdVon":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "batch", ()=>_reactBatchedUpdates.unstable_batchedUpdates
+);
+var _reactBatchedUpdates = require("./utils/reactBatchedUpdates");
+var _batch = require("./utils/batch"); // Enable batched updates in our subscriptions for use
+var _exports = require("./exports");
+parcelHelpers.exportAll(_exports, exports);
+// with standard React renderers (ReactDOM, React Native)
+_batch.setBatch(_reactBatchedUpdates.unstable_batchedUpdates);
+
+},{"./utils/reactBatchedUpdates":"5K86X","./utils/batch":"ikw0G","./exports":"iAa1P","@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA"}],"5K86X":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/* eslint-disable import/no-unresolved */ parcelHelpers.export(exports, "unstable_batchedUpdates", ()=>_reactDom.unstable_batchedUpdates
+);
+var _reactDom = require("react-dom");
+
+},{"react-dom":"j6uA9","@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA"}],"ikw0G":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "setBatch", ()=>setBatch
+);
+parcelHelpers.export(exports, "getBatch", ()=>getBatch
+);
+// Default to a dummy "batch" implementation that just runs the callback
+function defaultNoopBatch(callback) {
+    callback();
+}
+var batch = defaultNoopBatch; // Allow injecting another batching function later
+var setBatch = function setBatch(newBatch) {
+    return batch = newBatch;
+}; // Supply a getter just to skip dealing with ESM bindings
+var getBatch = function getBatch() {
+    return batch;
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA"}],"iAa1P":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Provider", ()=>_providerDefault.default
+);
+parcelHelpers.export(exports, "connectAdvanced", ()=>_connectAdvancedDefault.default
+);
+parcelHelpers.export(exports, "ReactReduxContext", ()=>_context.ReactReduxContext
+);
+parcelHelpers.export(exports, "connect", ()=>_connectDefault.default
+);
+parcelHelpers.export(exports, "useDispatch", ()=>_useDispatch.useDispatch
+);
+parcelHelpers.export(exports, "createDispatchHook", ()=>_useDispatch.createDispatchHook
+);
+parcelHelpers.export(exports, "useSelector", ()=>_useSelector.useSelector
+);
+parcelHelpers.export(exports, "createSelectorHook", ()=>_useSelector.createSelectorHook
+);
+parcelHelpers.export(exports, "useStore", ()=>_useStore.useStore
+);
+parcelHelpers.export(exports, "createStoreHook", ()=>_useStore.createStoreHook
+);
+parcelHelpers.export(exports, "shallowEqual", ()=>_shallowEqualDefault.default
+);
+var _provider = require("./components/Provider");
+var _providerDefault = parcelHelpers.interopDefault(_provider);
+var _connectAdvanced = require("./components/connectAdvanced");
+var _connectAdvancedDefault = parcelHelpers.interopDefault(_connectAdvanced);
+var _context = require("./components/Context");
+var _connect = require("./connect/connect");
+var _connectDefault = parcelHelpers.interopDefault(_connect);
+var _useDispatch = require("./hooks/useDispatch");
+var _useSelector = require("./hooks/useSelector");
+var _useStore = require("./hooks/useStore");
+var _shallowEqual = require("./utils/shallowEqual");
+var _shallowEqualDefault = parcelHelpers.interopDefault(_shallowEqual);
+
+},{"./components/Provider":"bdd6J","./components/connectAdvanced":"1EIOj","./components/Context":"ji81o","./connect/connect":"5Kgic","./hooks/useDispatch":"aOjNn","./hooks/useSelector":"l3rFI","./hooks/useStore":"39JZU","./utils/shallowEqual":"gV5L4","@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA"}],"bdd6J":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _context = require("./Context");
+var _subscription = require("../utils/Subscription");
+var _useIsomorphicLayoutEffect = require("../utils/useIsomorphicLayoutEffect");
+function Provider(_ref) {
+    var store = _ref.store, context = _ref.context, children = _ref.children;
+    var contextValue = _react.useMemo(function() {
+        var subscription = _subscription.createSubscription(store);
+        subscription.onStateChange = subscription.notifyNestedSubs;
+        return {
+            store: store,
+            subscription: subscription
+        };
+    }, [
+        store
+    ]);
+    var previousState = _react.useMemo(function() {
+        return store.getState();
+    }, [
+        store
+    ]);
+    _useIsomorphicLayoutEffect.useIsomorphicLayoutEffect(function() {
+        var subscription = contextValue.subscription;
+        subscription.trySubscribe();
+        if (previousState !== store.getState()) subscription.notifyNestedSubs();
+        return function() {
+            subscription.tryUnsubscribe();
+            subscription.onStateChange = null;
+        };
+    }, [
+        contextValue,
+        previousState
+    ]);
+    var Context = context || _context.ReactReduxContext;
+    return(/*#__PURE__*/ _reactDefault.default.createElement(Context.Provider, {
+        value: contextValue
+    }, children));
+}
+Provider.propTypes = {
+    store: _propTypesDefault.default.shape({
+        subscribe: _propTypesDefault.default.func.isRequired,
+        dispatch: _propTypesDefault.default.func.isRequired,
+        getState: _propTypesDefault.default.func.isRequired
+    }),
+    context: _propTypesDefault.default.object,
+    children: _propTypesDefault.default.any
+};
+exports.default = Provider;
+
+},{"react":"21dqq","prop-types":"7wKI2","./Context":"ji81o","../utils/Subscription":"ieuHT","../utils/useIsomorphicLayoutEffect":"kNbVc","@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA"}],"ji81o":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "ReactReduxContext", ()=>ReactReduxContext
+);
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var ReactReduxContext = /*#__PURE__*/ _reactDefault.default.createContext(null);
+ReactReduxContext.displayName = 'ReactRedux';
+exports.default = ReactReduxContext;
+
+},{"react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA"}],"ieuHT":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "createSubscription", ()=>createSubscription
+);
+var _batch = require("./batch"); // encapsulates the subscription logic for connecting a component to the redux store, as
+// well as nesting subscriptions of descendant components, so that we can ensure the
+// ancestor components re-render before descendants
+function createListenerCollection() {
+    var batch = _batch.getBatch();
+    var first = null;
+    var last = null;
+    return {
+        clear: function clear() {
+            first = null;
+            last = null;
+        },
+        notify: function notify() {
+            batch(function() {
+                var listener = first;
+                while(listener){
+                    listener.callback();
+                    listener = listener.next;
+                }
+            });
+        },
+        get: function get() {
+            var listeners = [];
+            var listener = first;
+            while(listener){
+                listeners.push(listener);
+                listener = listener.next;
+            }
+            return listeners;
+        },
+        subscribe: function subscribe(callback) {
+            var isSubscribed = true;
+            var listener = last = {
+                callback: callback,
+                next: null,
+                prev: last
+            };
+            if (listener.prev) listener.prev.next = listener;
+            else first = listener;
+            return function unsubscribe() {
+                if (!isSubscribed || first === null) return;
+                isSubscribed = false;
+                if (listener.next) listener.next.prev = listener.prev;
+                else last = listener.prev;
+                if (listener.prev) listener.prev.next = listener.next;
+                else first = listener.next;
+            };
+        }
+    };
+}
+var nullListeners = {
+    notify: function notify() {
+    },
+    get: function get() {
+        return [];
+    }
+};
+function createSubscription(store, parentSub) {
+    var unsubscribe;
+    var listeners = nullListeners;
+    function addNestedSub(listener) {
+        trySubscribe();
+        return listeners.subscribe(listener);
+    }
+    function notifyNestedSubs() {
+        listeners.notify();
+    }
+    function handleChangeWrapper() {
+        if (subscription.onStateChange) subscription.onStateChange();
+    }
+    function isSubscribed() {
+        return Boolean(unsubscribe);
+    }
+    function trySubscribe() {
+        if (!unsubscribe) {
+            unsubscribe = parentSub ? parentSub.addNestedSub(handleChangeWrapper) : store.subscribe(handleChangeWrapper);
+            listeners = createListenerCollection();
+        }
+    }
+    function tryUnsubscribe() {
+        if (unsubscribe) {
+            unsubscribe();
+            unsubscribe = undefined;
+            listeners.clear();
+            listeners = nullListeners;
+        }
+    }
+    var subscription = {
+        addNestedSub: addNestedSub,
+        notifyNestedSubs: notifyNestedSubs,
+        handleChangeWrapper: handleChangeWrapper,
+        isSubscribed: isSubscribed,
+        trySubscribe: trySubscribe,
+        tryUnsubscribe: tryUnsubscribe,
+        getListeners: function getListeners() {
+            return listeners;
+        }
+    };
+    return subscription;
+}
+
+},{"./batch":"ikw0G","@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA"}],"kNbVc":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "useIsomorphicLayoutEffect", ()=>useIsomorphicLayoutEffect
+);
+var _react = require("react"); // React currently throws a warning when using useLayoutEffect on the server.
+var useIsomorphicLayoutEffect = typeof window !== 'undefined' && typeof window.document !== 'undefined' && typeof window.document.createElement !== 'undefined' ? _react.useLayoutEffect : _react.useEffect;
+
+},{"react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA"}],"1EIOj":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _extends = require("@babel/runtime/helpers/esm/extends");
+var _extendsDefault = parcelHelpers.interopDefault(_extends);
+var _objectWithoutPropertiesLoose = require("@babel/runtime/helpers/esm/objectWithoutPropertiesLoose");
+var _objectWithoutPropertiesLooseDefault = parcelHelpers.interopDefault(_objectWithoutPropertiesLoose);
+var _hoistNonReactStatics = require("hoist-non-react-statics");
+var _hoistNonReactStaticsDefault = parcelHelpers.interopDefault(_hoistNonReactStatics);
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _reactIs = require("react-is");
+var _subscription = require("../utils/Subscription");
+var _useIsomorphicLayoutEffect = require("../utils/useIsomorphicLayoutEffect");
+var _context = require("./Context"); // Define some constant arrays just to avoid re-creating these
+var _excluded = [
+    "getDisplayName",
+    "methodName",
+    "renderCountProp",
+    "shouldHandleStateChanges",
+    "storeKey",
+    "withRef",
+    "forwardRef",
+    "context"
+], _excluded2 = [
+    "reactReduxForwardedRef"
+];
+var EMPTY_ARRAY = [];
+var NO_SUBSCRIPTION_ARRAY = [
+    null,
+    null
+];
+var stringifyComponent = function stringifyComponent(Comp) {
+    try {
+        return JSON.stringify(Comp);
+    } catch (err) {
+        return String(Comp);
+    }
+};
+function storeStateUpdatesReducer(state, action) {
+    var updateCount = state[1];
+    return [
+        action.payload,
+        updateCount + 1
+    ];
+}
+function useIsomorphicLayoutEffectWithArgs(effectFunc, effectArgs, dependencies) {
+    _useIsomorphicLayoutEffect.useIsomorphicLayoutEffect(function() {
+        return effectFunc.apply(void 0, effectArgs);
+    }, dependencies);
+}
+function captureWrapperProps(lastWrapperProps, lastChildProps, renderIsScheduled, wrapperProps, actualChildProps, childPropsFromStoreUpdate, notifyNestedSubs) {
+    // We want to capture the wrapper props and child props we used for later comparisons
+    lastWrapperProps.current = wrapperProps;
+    lastChildProps.current = actualChildProps;
+    renderIsScheduled.current = false; // If the render was from a store update, clear out that reference and cascade the subscriber update
+    if (childPropsFromStoreUpdate.current) {
+        childPropsFromStoreUpdate.current = null;
+        notifyNestedSubs();
+    }
+}
+function subscribeUpdates(shouldHandleStateChanges, store, subscription, childPropsSelector, lastWrapperProps, lastChildProps, renderIsScheduled, childPropsFromStoreUpdate, notifyNestedSubs, forceComponentUpdateDispatch) {
+    // If we're not subscribed to the store, nothing to do here
+    if (!shouldHandleStateChanges) return; // Capture values for checking if and when this component unmounts
+    var didUnsubscribe = false;
+    var lastThrownError = null; // We'll run this callback every time a store subscription update propagates to this component
+    var checkForUpdates = function checkForUpdates() {
+        if (didUnsubscribe) // Don't run stale listeners.
+        // Redux doesn't guarantee unsubscriptions happen until next dispatch.
+        return;
+        var latestStoreState = store.getState();
+        var newChildProps, error;
+        try {
+            // Actually run the selector with the most recent store state and wrapper props
+            // to determine what the child props should be
+            newChildProps = childPropsSelector(latestStoreState, lastWrapperProps.current);
+        } catch (e) {
+            error = e;
+            lastThrownError = e;
+        }
+        if (!error) lastThrownError = null;
+         // If the child props haven't changed, nothing to do here - cascade the subscription update
+        if (newChildProps === lastChildProps.current) {
+            if (!renderIsScheduled.current) notifyNestedSubs();
+        } else {
+            // Save references to the new child props.  Note that we track the "child props from store update"
+            // as a ref instead of a useState/useReducer because we need a way to determine if that value has
+            // been processed.  If this went into useState/useReducer, we couldn't clear out the value without
+            // forcing another re-render, which we don't want.
+            lastChildProps.current = newChildProps;
+            childPropsFromStoreUpdate.current = newChildProps;
+            renderIsScheduled.current = true; // If the child props _did_ change (or we caught an error), this wrapper component needs to re-render
+            forceComponentUpdateDispatch({
+                type: 'STORE_UPDATED',
+                payload: {
+                    error: error
+                }
+            });
+        }
+    }; // Actually subscribe to the nearest connected ancestor (or store)
+    subscription.onStateChange = checkForUpdates;
+    subscription.trySubscribe(); // Pull data from the store after first render in case the store has
+    // changed since we began.
+    checkForUpdates();
+    var unsubscribeWrapper = function unsubscribeWrapper() {
+        didUnsubscribe = true;
+        subscription.tryUnsubscribe();
+        subscription.onStateChange = null;
+        if (lastThrownError) // It's possible that we caught an error due to a bad mapState function, but the
+        // parent re-rendered without this component and we're about to unmount.
+        // This shouldn't happen as long as we do top-down subscriptions correctly, but
+        // if we ever do those wrong, this throw will surface the error in our tests.
+        // In that case, throw the error from here so it doesn't get lost.
+        throw lastThrownError;
+    };
+    return unsubscribeWrapper;
+}
+var initStateUpdates = function initStateUpdates() {
+    return [
+        null,
+        0
+    ];
+};
+function connectAdvanced(/*
+  selectorFactory is a func that is responsible for returning the selector function used to
+  compute new props from state, props, and dispatch. For example:
+     export default connectAdvanced((dispatch, options) => (state, props) => ({
+      thing: state.things[props.thingId],
+      saveThing: fields => dispatch(actionCreators.saveThing(props.thingId, fields)),
+    }))(YourComponent)
+   Access to dispatch is provided to the factory so selectorFactories can bind actionCreators
+  outside of their selector as an optimization. Options passed to connectAdvanced are passed to
+  the selectorFactory, along with displayName and WrappedComponent, as the second argument.
+   Note that selectorFactory is responsible for all caching/memoization of inbound and outbound
+  props. Do not use connectAdvanced directly without memoizing results between calls to your
+  selector, otherwise the Connect component will re-render on every state or props change.
+*/ selectorFactory, _ref) {
+    if (_ref === void 0) _ref = {
+    };
+    var _ref2 = _ref, _ref2$getDisplayName = _ref2.getDisplayName, getDisplayName = _ref2$getDisplayName === void 0 ? function(name) {
+        return "ConnectAdvanced(" + name + ")";
+    } : _ref2$getDisplayName, _ref2$methodName = _ref2.methodName, methodName = _ref2$methodName === void 0 ? 'connectAdvanced' : _ref2$methodName, _ref2$renderCountProp = _ref2.renderCountProp, renderCountProp = _ref2$renderCountProp === void 0 ? undefined : _ref2$renderCountProp, _ref2$shouldHandleSta = _ref2.shouldHandleStateChanges, shouldHandleStateChanges = _ref2$shouldHandleSta === void 0 ? true : _ref2$shouldHandleSta, _ref2$storeKey = _ref2.storeKey, storeKey = _ref2$storeKey === void 0 ? 'store' : _ref2$storeKey, _ref2$withRef = _ref2.withRef, withRef = _ref2$withRef === void 0 ? false : _ref2$withRef, _ref2$forwardRef = _ref2.forwardRef, forwardRef = _ref2$forwardRef === void 0 ? false : _ref2$forwardRef, _ref2$context = _ref2.context, context = _ref2$context === void 0 ? _context.ReactReduxContext : _ref2$context, connectOptions = _objectWithoutPropertiesLooseDefault.default(_ref2, _excluded);
+    if (renderCountProp !== undefined) throw new Error("renderCountProp is removed. render counting is built into the latest React Dev Tools profiling extension");
+    if (withRef) throw new Error('withRef is removed. To access the wrapped instance, use a ref on the connected component');
+    var customStoreWarningMessage = "To use a custom Redux store for specific components, create a custom React context with React.createContext(), and pass the context object to React Redux's Provider and specific components like: <Provider context={MyContext}><ConnectedComponent context={MyContext} /></Provider>. You may also pass a {context : MyContext} option to connect";
+    if (storeKey !== 'store') throw new Error('storeKey has been removed and does not do anything. ' + customStoreWarningMessage);
+    var Context = context;
+    return function wrapWithConnect(WrappedComponent) {
+        if (!_reactIs.isValidElementType(WrappedComponent)) throw new Error("You must pass a component to the function returned by " + (methodName + ". Instead received " + stringifyComponent(WrappedComponent)));
+        var wrappedComponentName = WrappedComponent.displayName || WrappedComponent.name || 'Component';
+        var displayName = getDisplayName(wrappedComponentName);
+        var selectorFactoryOptions = _extendsDefault.default({
+        }, connectOptions, {
+            getDisplayName: getDisplayName,
+            methodName: methodName,
+            renderCountProp: renderCountProp,
+            shouldHandleStateChanges: shouldHandleStateChanges,
+            storeKey: storeKey,
+            displayName: displayName,
+            wrappedComponentName: wrappedComponentName,
+            WrappedComponent: WrappedComponent
+        });
+        var pure = connectOptions.pure;
+        function createChildSelector(store) {
+            return selectorFactory(store.dispatch, selectorFactoryOptions);
+        } // If we aren't running in "pure" mode, we don't want to memoize values.
+        // To avoid conditionally calling hooks, we fall back to a tiny wrapper
+        // that just executes the given callback immediately.
+        var usePureOnlyMemo = pure ? _react.useMemo : function(callback) {
+            return callback();
+        };
+        function ConnectFunction(props) {
+            var _useMemo = _react.useMemo(function() {
+                // Distinguish between actual "data" props that were passed to the wrapper component,
+                // and values needed to control behavior (forwarded refs, alternate context instances).
+                // To maintain the wrapperProps object reference, memoize this destructuring.
+                var reactReduxForwardedRef = props.reactReduxForwardedRef, wrapperProps = _objectWithoutPropertiesLooseDefault.default(props, _excluded2);
+                return [
+                    props.context,
+                    reactReduxForwardedRef,
+                    wrapperProps
+                ];
+            }, [
+                props
+            ]), propsContext = _useMemo[0], reactReduxForwardedRef1 = _useMemo[1], wrapperProps1 = _useMemo[2];
+            var ContextToUse = _react.useMemo(function() {
+                // Users may optionally pass in a custom context instance to use instead of our ReactReduxContext.
+                // Memoize the check that determines which context instance we should use.
+                return propsContext && propsContext.Consumer && _reactIs.isContextConsumer(/*#__PURE__*/ _reactDefault.default.createElement(propsContext.Consumer, null)) ? propsContext : Context;
+            }, [
+                propsContext,
+                Context
+            ]); // Retrieve the store and ancestor subscription via context, if available
+            var contextValue = _react.useContext(ContextToUse); // The store _must_ exist as either a prop or in context.
+            // We'll check to see if it _looks_ like a Redux store first.
+            // This allows us to pass through a `store` prop that is just a plain value.
+            var didStoreComeFromProps = Boolean(props.store) && Boolean(props.store.getState) && Boolean(props.store.dispatch);
+            var didStoreComeFromContext = Boolean(contextValue) && Boolean(contextValue.store);
+            if (!didStoreComeFromProps && !didStoreComeFromContext) throw new Error("Could not find \"store\" in the context of " + ("\"" + displayName + "\". Either wrap the root component in a <Provider>, ") + "or pass a custom React context provider to <Provider> and the corresponding " + ("React context consumer to " + displayName + " in connect options."));
+             // Based on the previous check, one of these must be true
+            var store = didStoreComeFromProps ? props.store : contextValue.store;
+            var childPropsSelector = _react.useMemo(function() {
+                // The child props selector needs the store reference as an input.
+                // Re-create this selector whenever the store changes.
+                return createChildSelector(store);
+            }, [
+                store
+            ]);
+            var _useMemo2 = _react.useMemo(function() {
+                if (!shouldHandleStateChanges) return NO_SUBSCRIPTION_ARRAY; // This Subscription's source should match where store came from: props vs. context. A component
+                // connected to the store via props shouldn't use subscription from context, or vice versa.
+                // This Subscription's source should match where store came from: props vs. context. A component
+                // connected to the store via props shouldn't use subscription from context, or vice versa.
+                var subscription = _subscription.createSubscription(store, didStoreComeFromProps ? null : contextValue.subscription); // `notifyNestedSubs` is duplicated to handle the case where the component is unmounted in
+                // the middle of the notification loop, where `subscription` will then be null. This can
+                // probably be avoided if Subscription's listeners logic is changed to not call listeners
+                // that have been unsubscribed in the  middle of the notification loop.
+                // `notifyNestedSubs` is duplicated to handle the case where the component is unmounted in
+                // the middle of the notification loop, where `subscription` will then be null. This can
+                // probably be avoided if Subscription's listeners logic is changed to not call listeners
+                // that have been unsubscribed in the  middle of the notification loop.
+                var notifyNestedSubs = subscription.notifyNestedSubs.bind(subscription);
+                return [
+                    subscription,
+                    notifyNestedSubs
+                ];
+            }, [
+                store,
+                didStoreComeFromProps,
+                contextValue
+            ]), subscription1 = _useMemo2[0], notifyNestedSubs1 = _useMemo2[1]; // Determine what {store, subscription} value should be put into nested context, if necessary,
+            // and memoize that value to avoid unnecessary context updates.
+            var overriddenContextValue = _react.useMemo(function() {
+                if (didStoreComeFromProps) // This component is directly subscribed to a store from props.
+                // We don't want descendants reading from this store - pass down whatever
+                // the existing context value is from the nearest connected ancestor.
+                return contextValue;
+                 // Otherwise, put this component's subscription instance into context, so that
+                // connected descendants won't update until after this component is done
+                return _extendsDefault.default({
+                }, contextValue, {
+                    subscription: subscription1
+                });
+            }, [
+                didStoreComeFromProps,
+                contextValue,
+                subscription1
+            ]); // We need to force this wrapper component to re-render whenever a Redux store update
+            // causes a change to the calculated child component props (or we caught an error in mapState)
+            var _useReducer = _react.useReducer(storeStateUpdatesReducer, EMPTY_ARRAY, initStateUpdates), _useReducer$ = _useReducer[0], previousStateUpdateResult = _useReducer$[0], forceComponentUpdateDispatch = _useReducer[1]; // Propagate any mapState/mapDispatch errors upwards
+            if (previousStateUpdateResult && previousStateUpdateResult.error) throw previousStateUpdateResult.error;
+             // Set up refs to coordinate values between the subscription effect and the render logic
+            var lastChildProps = _react.useRef();
+            var lastWrapperProps = _react.useRef(wrapperProps1);
+            var childPropsFromStoreUpdate = _react.useRef();
+            var renderIsScheduled = _react.useRef(false);
+            var actualChildProps = usePureOnlyMemo(function() {
+                // Tricky logic here:
+                // - This render may have been triggered by a Redux store update that produced new child props
+                // - However, we may have gotten new wrapper props after that
+                // If we have new child props, and the same wrapper props, we know we should use the new child props as-is.
+                // But, if we have new wrapper props, those might change the child props, so we have to recalculate things.
+                // So, we'll use the child props from store update only if the wrapper props are the same as last time.
+                if (childPropsFromStoreUpdate.current && wrapperProps1 === lastWrapperProps.current) return childPropsFromStoreUpdate.current;
+                 // TODO We're reading the store directly in render() here. Bad idea?
+                // This will likely cause Bad Things (TM) to happen in Concurrent Mode.
+                // Note that we do this because on renders _not_ caused by store updates, we need the latest store state
+                // to determine what the child props should be.
+                return childPropsSelector(store.getState(), wrapperProps1);
+            }, [
+                store,
+                previousStateUpdateResult,
+                wrapperProps1
+            ]); // We need this to execute synchronously every time we re-render. However, React warns
+            // about useLayoutEffect in SSR, so we try to detect environment and fall back to
+            // just useEffect instead to avoid the warning, since neither will run anyway.
+            useIsomorphicLayoutEffectWithArgs(captureWrapperProps, [
+                lastWrapperProps,
+                lastChildProps,
+                renderIsScheduled,
+                wrapperProps1,
+                actualChildProps,
+                childPropsFromStoreUpdate,
+                notifyNestedSubs1
+            ]); // Our re-subscribe logic only runs when the store/subscription setup changes
+            useIsomorphicLayoutEffectWithArgs(subscribeUpdates, [
+                shouldHandleStateChanges,
+                store,
+                subscription1,
+                childPropsSelector,
+                lastWrapperProps,
+                lastChildProps,
+                renderIsScheduled,
+                childPropsFromStoreUpdate,
+                notifyNestedSubs1,
+                forceComponentUpdateDispatch
+            ], [
+                store,
+                subscription1,
+                childPropsSelector
+            ]); // Now that all that's done, we can finally try to actually render the child component.
+            // We memoize the elements for the rendered child component as an optimization.
+            var renderedWrappedComponent = _react.useMemo(function() {
+                return(/*#__PURE__*/ _reactDefault.default.createElement(WrappedComponent, _extendsDefault.default({
+                }, actualChildProps, {
+                    ref: reactReduxForwardedRef1
+                })));
+            }, [
+                reactReduxForwardedRef1,
+                WrappedComponent,
+                actualChildProps
+            ]); // If React sees the exact same element reference as last time, it bails out of re-rendering
+            // that child, same as if it was wrapped in React.memo() or returned false from shouldComponentUpdate.
+            var renderedChild = _react.useMemo(function() {
+                if (shouldHandleStateChanges) // If this component is subscribed to store updates, we need to pass its own
+                // subscription instance down to our descendants. That means rendering the same
+                // Context instance, and putting a different value into the context.
+                return(/*#__PURE__*/ _reactDefault.default.createElement(ContextToUse.Provider, {
+                    value: overriddenContextValue
+                }, renderedWrappedComponent));
+                return renderedWrappedComponent;
+            }, [
+                ContextToUse,
+                renderedWrappedComponent,
+                overriddenContextValue
+            ]);
+            return renderedChild;
+        } // If we're in "pure" mode, ensure our wrapper component only re-renders when incoming props have changed.
+        var Connect = pure ? _reactDefault.default.memo(ConnectFunction) : ConnectFunction;
+        Connect.WrappedComponent = WrappedComponent;
+        Connect.displayName = ConnectFunction.displayName = displayName;
+        if (forwardRef) {
+            var forwarded = _reactDefault.default.forwardRef(function forwardConnectRef(props, ref) {
+                return(/*#__PURE__*/ _reactDefault.default.createElement(Connect, _extendsDefault.default({
+                }, props, {
+                    reactReduxForwardedRef: ref
+                })));
+            });
+            forwarded.displayName = displayName;
+            forwarded.WrappedComponent = WrappedComponent;
+            return _hoistNonReactStaticsDefault.default(forwarded, WrappedComponent);
+        }
+        return _hoistNonReactStaticsDefault.default(Connect, WrappedComponent);
+    };
+}
+exports.default = connectAdvanced;
+
+},{"@babel/runtime/helpers/esm/extends":"fTBFS","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"adHgr","hoist-non-react-statics":"1GfsB","react":"21dqq","react-is":"lb6Ui","../utils/Subscription":"ieuHT","../utils/useIsomorphicLayoutEffect":"kNbVc","./Context":"ji81o","@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA"}],"lb6Ui":[function(require,module,exports) {
+'use strict';
+module.exports = require('./cjs/react-is.development.js');
+
+},{"./cjs/react-is.development.js":"idDA8"}],"idDA8":[function(require,module,exports) {
+/** @license React v17.0.2
+ * react-is.development.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */ 'use strict';
+(function() {
+    // ATTENTION
+    // When adding new symbols to this file,
+    // Please consider also adding to 'react-devtools-shared/src/backend/ReactSymbols'
+    // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
+    // nor polyfill, then a plain number is used for performance.
+    var REACT_ELEMENT_TYPE = 60103;
+    var REACT_PORTAL_TYPE = 60106;
+    var REACT_FRAGMENT_TYPE = 60107;
+    var REACT_STRICT_MODE_TYPE = 60108;
+    var REACT_PROFILER_TYPE = 60114;
+    var REACT_PROVIDER_TYPE = 60109;
+    var REACT_CONTEXT_TYPE = 60110;
+    var REACT_FORWARD_REF_TYPE = 60112;
+    var REACT_SUSPENSE_TYPE = 60113;
+    var REACT_SUSPENSE_LIST_TYPE = 60120;
+    var REACT_MEMO_TYPE = 60115;
+    var REACT_LAZY_TYPE = 60116;
+    var REACT_BLOCK_TYPE = 60121;
+    var REACT_SERVER_BLOCK_TYPE = 60122;
+    var REACT_FUNDAMENTAL_TYPE = 60117;
+    var REACT_SCOPE_TYPE = 60119;
+    var REACT_OPAQUE_ID_TYPE = 60128;
+    var REACT_DEBUG_TRACING_MODE_TYPE = 60129;
+    var REACT_OFFSCREEN_TYPE = 60130;
+    var REACT_LEGACY_HIDDEN_TYPE = 60131;
+    if (typeof Symbol === 'function' && Symbol.for) {
+        var symbolFor = Symbol.for;
+        REACT_ELEMENT_TYPE = symbolFor('react.element');
+        REACT_PORTAL_TYPE = symbolFor('react.portal');
+        REACT_FRAGMENT_TYPE = symbolFor('react.fragment');
+        REACT_STRICT_MODE_TYPE = symbolFor('react.strict_mode');
+        REACT_PROFILER_TYPE = symbolFor('react.profiler');
+        REACT_PROVIDER_TYPE = symbolFor('react.provider');
+        REACT_CONTEXT_TYPE = symbolFor('react.context');
+        REACT_FORWARD_REF_TYPE = symbolFor('react.forward_ref');
+        REACT_SUSPENSE_TYPE = symbolFor('react.suspense');
+        REACT_SUSPENSE_LIST_TYPE = symbolFor('react.suspense_list');
+        REACT_MEMO_TYPE = symbolFor('react.memo');
+        REACT_LAZY_TYPE = symbolFor('react.lazy');
+        REACT_BLOCK_TYPE = symbolFor('react.block');
+        REACT_SERVER_BLOCK_TYPE = symbolFor('react.server.block');
+        REACT_FUNDAMENTAL_TYPE = symbolFor('react.fundamental');
+        REACT_SCOPE_TYPE = symbolFor('react.scope');
+        REACT_OPAQUE_ID_TYPE = symbolFor('react.opaque.id');
+        REACT_DEBUG_TRACING_MODE_TYPE = symbolFor('react.debug_trace_mode');
+        REACT_OFFSCREEN_TYPE = symbolFor('react.offscreen');
+        REACT_LEGACY_HIDDEN_TYPE = symbolFor('react.legacy_hidden');
+    }
+    // Filter certain DOM attributes (e.g. src, href) if their values are empty strings.
+    var enableScopeAPI = false; // Experimental Create Event Handle API.
+    function isValidElementType(type) {
+        if (typeof type === 'string' || typeof type === 'function') return true;
+         // Note: typeof might be other than 'symbol' or 'number' (e.g. if it's a polyfill).
+        if (type === REACT_FRAGMENT_TYPE || type === REACT_PROFILER_TYPE || type === REACT_DEBUG_TRACING_MODE_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || type === REACT_LEGACY_HIDDEN_TYPE || enableScopeAPI) return true;
+        if (typeof type === 'object' && type !== null) {
+            if (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_BLOCK_TYPE || type[0] === REACT_SERVER_BLOCK_TYPE) return true;
+        }
+        return false;
+    }
+    function typeOf(object) {
+        if (typeof object === 'object' && object !== null) {
+            var $$typeof = object.$$typeof;
+            switch($$typeof){
+                case REACT_ELEMENT_TYPE:
+                    var type = object.type;
+                    switch(type){
+                        case REACT_FRAGMENT_TYPE:
+                        case REACT_PROFILER_TYPE:
+                        case REACT_STRICT_MODE_TYPE:
+                        case REACT_SUSPENSE_TYPE:
+                        case REACT_SUSPENSE_LIST_TYPE:
+                            return type;
+                        default:
+                            var $$typeofType = type && type.$$typeof;
+                            switch($$typeofType){
+                                case REACT_CONTEXT_TYPE:
+                                case REACT_FORWARD_REF_TYPE:
+                                case REACT_LAZY_TYPE:
+                                case REACT_MEMO_TYPE:
+                                case REACT_PROVIDER_TYPE:
+                                    return $$typeofType;
+                                default:
+                                    return $$typeof;
+                            }
+                    }
+                case REACT_PORTAL_TYPE:
+                    return $$typeof;
+            }
+        }
+        return undefined;
+    }
+    var ContextConsumer = REACT_CONTEXT_TYPE;
+    var ContextProvider = REACT_PROVIDER_TYPE;
+    var Element = REACT_ELEMENT_TYPE;
+    var ForwardRef = REACT_FORWARD_REF_TYPE;
+    var Fragment = REACT_FRAGMENT_TYPE;
+    var Lazy = REACT_LAZY_TYPE;
+    var Memo = REACT_MEMO_TYPE;
+    var Portal = REACT_PORTAL_TYPE;
+    var Profiler = REACT_PROFILER_TYPE;
+    var StrictMode = REACT_STRICT_MODE_TYPE;
+    var Suspense = REACT_SUSPENSE_TYPE;
+    var hasWarnedAboutDeprecatedIsAsyncMode = false;
+    var hasWarnedAboutDeprecatedIsConcurrentMode = false; // AsyncMode should be deprecated
+    function isAsyncMode(object) {
+        if (!hasWarnedAboutDeprecatedIsAsyncMode) {
+            hasWarnedAboutDeprecatedIsAsyncMode = true; // Using console['warn'] to evade Babel and ESLint
+            console['warn']("The ReactIs.isAsyncMode() alias has been deprecated, and will be removed in React 18+.");
+        }
+        return false;
+    }
+    function isConcurrentMode(object) {
+        if (!hasWarnedAboutDeprecatedIsConcurrentMode) {
+            hasWarnedAboutDeprecatedIsConcurrentMode = true; // Using console['warn'] to evade Babel and ESLint
+            console['warn']("The ReactIs.isConcurrentMode() alias has been deprecated, and will be removed in React 18+.");
+        }
+        return false;
+    }
+    function isContextConsumer(object) {
+        return typeOf(object) === REACT_CONTEXT_TYPE;
+    }
+    function isContextProvider(object) {
+        return typeOf(object) === REACT_PROVIDER_TYPE;
+    }
+    function isElement(object) {
+        return typeof object === 'object' && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
+    }
+    function isForwardRef(object) {
+        return typeOf(object) === REACT_FORWARD_REF_TYPE;
+    }
+    function isFragment(object) {
+        return typeOf(object) === REACT_FRAGMENT_TYPE;
+    }
+    function isLazy(object) {
+        return typeOf(object) === REACT_LAZY_TYPE;
+    }
+    function isMemo(object) {
+        return typeOf(object) === REACT_MEMO_TYPE;
+    }
+    function isPortal(object) {
+        return typeOf(object) === REACT_PORTAL_TYPE;
+    }
+    function isProfiler(object) {
+        return typeOf(object) === REACT_PROFILER_TYPE;
+    }
+    function isStrictMode(object) {
+        return typeOf(object) === REACT_STRICT_MODE_TYPE;
+    }
+    function isSuspense(object) {
+        return typeOf(object) === REACT_SUSPENSE_TYPE;
+    }
+    exports.ContextConsumer = ContextConsumer;
+    exports.ContextProvider = ContextProvider;
+    exports.Element = Element;
+    exports.ForwardRef = ForwardRef;
+    exports.Fragment = Fragment;
+    exports.Lazy = Lazy;
+    exports.Memo = Memo;
+    exports.Portal = Portal;
+    exports.Profiler = Profiler;
+    exports.StrictMode = StrictMode;
+    exports.Suspense = Suspense;
+    exports.isAsyncMode = isAsyncMode;
+    exports.isConcurrentMode = isConcurrentMode;
+    exports.isContextConsumer = isContextConsumer;
+    exports.isContextProvider = isContextProvider;
+    exports.isElement = isElement;
+    exports.isForwardRef = isForwardRef;
+    exports.isFragment = isFragment;
+    exports.isLazy = isLazy;
+    exports.isMemo = isMemo;
+    exports.isPortal = isPortal;
+    exports.isProfiler = isProfiler;
+    exports.isStrictMode = isStrictMode;
+    exports.isSuspense = isSuspense;
+    exports.isValidElementType = isValidElementType;
+    exports.typeOf = typeOf;
+})();
+
+},{}],"5Kgic":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+// different options opens up some testing and extensibility scenarios
+parcelHelpers.export(exports, "createConnect", ()=>createConnect
+);
+var _extends = require("@babel/runtime/helpers/esm/extends");
+var _extendsDefault = parcelHelpers.interopDefault(_extends);
+var _objectWithoutPropertiesLoose = require("@babel/runtime/helpers/esm/objectWithoutPropertiesLoose");
+var _objectWithoutPropertiesLooseDefault = parcelHelpers.interopDefault(_objectWithoutPropertiesLoose);
+var _connectAdvanced = require("../components/connectAdvanced");
+var _connectAdvancedDefault = parcelHelpers.interopDefault(_connectAdvanced);
+var _shallowEqual = require("../utils/shallowEqual");
+var _shallowEqualDefault = parcelHelpers.interopDefault(_shallowEqual);
+var _mapDispatchToProps = require("./mapDispatchToProps");
+var _mapDispatchToPropsDefault = parcelHelpers.interopDefault(_mapDispatchToProps);
+var _mapStateToProps = require("./mapStateToProps");
+var _mapStateToPropsDefault = parcelHelpers.interopDefault(_mapStateToProps);
+var _mergeProps = require("./mergeProps");
+var _mergePropsDefault = parcelHelpers.interopDefault(_mergeProps);
+var _selectorFactory = require("./selectorFactory");
+var _selectorFactoryDefault = parcelHelpers.interopDefault(_selectorFactory);
+var _excluded = [
+    "pure",
+    "areStatesEqual",
+    "areOwnPropsEqual",
+    "areStatePropsEqual",
+    "areMergedPropsEqual"
+];
+/*
+  connect is a facade over connectAdvanced. It turns its args into a compatible
+  selectorFactory, which has the signature:
+
+    (dispatch, options) => (nextState, nextOwnProps) => nextFinalProps
+  
+  connect passes its args to connectAdvanced as options, which will in turn pass them to
+  selectorFactory each time a Connect component instance is instantiated or hot reloaded.
+
+  selectorFactory returns a final props selector from its mapStateToProps,
+  mapStateToPropsFactories, mapDispatchToProps, mapDispatchToPropsFactories, mergeProps,
+  mergePropsFactories, and pure args.
+
+  The resulting final props selector is called by the Connect component instance whenever
+  it receives new props or store state.
+ */ function match(arg, factories, name) {
+    for(var i = factories.length - 1; i >= 0; i--){
+        var result = factories[i](arg);
+        if (result) return result;
+    }
+    return function(dispatch, options) {
+        throw new Error("Invalid value of type " + typeof arg + " for " + name + " argument when connecting component " + options.wrappedComponentName + ".");
+    };
+}
+function strictEqual(a, b) {
+    return a === b;
+} // createConnect with default args builds the 'official' connect behavior. Calling it with
+function createConnect(_temp) {
+    var _ref = _temp === void 0 ? {
+    } : _temp, _ref$connectHOC = _ref.connectHOC, connectHOC = _ref$connectHOC === void 0 ? _connectAdvancedDefault.default : _ref$connectHOC, _ref$mapStateToPropsF = _ref.mapStateToPropsFactories, mapStateToPropsFactories = _ref$mapStateToPropsF === void 0 ? _mapStateToPropsDefault.default : _ref$mapStateToPropsF, _ref$mapDispatchToPro = _ref.mapDispatchToPropsFactories, mapDispatchToPropsFactories = _ref$mapDispatchToPro === void 0 ? _mapDispatchToPropsDefault.default : _ref$mapDispatchToPro, _ref$mergePropsFactor = _ref.mergePropsFactories, mergePropsFactories = _ref$mergePropsFactor === void 0 ? _mergePropsDefault.default : _ref$mergePropsFactor, _ref$selectorFactory = _ref.selectorFactory, selectorFactory = _ref$selectorFactory === void 0 ? _selectorFactoryDefault.default : _ref$selectorFactory;
+    return function connect(mapStateToProps, mapDispatchToProps, mergeProps, _ref2) {
+        if (_ref2 === void 0) _ref2 = {
+        };
+        var _ref3 = _ref2, _ref3$pure = _ref3.pure, pure = _ref3$pure === void 0 ? true : _ref3$pure, _ref3$areStatesEqual = _ref3.areStatesEqual, areStatesEqual = _ref3$areStatesEqual === void 0 ? strictEqual : _ref3$areStatesEqual, _ref3$areOwnPropsEqua = _ref3.areOwnPropsEqual, areOwnPropsEqual = _ref3$areOwnPropsEqua === void 0 ? _shallowEqualDefault.default : _ref3$areOwnPropsEqua, _ref3$areStatePropsEq = _ref3.areStatePropsEqual, areStatePropsEqual = _ref3$areStatePropsEq === void 0 ? _shallowEqualDefault.default : _ref3$areStatePropsEq, _ref3$areMergedPropsE = _ref3.areMergedPropsEqual, areMergedPropsEqual = _ref3$areMergedPropsE === void 0 ? _shallowEqualDefault.default : _ref3$areMergedPropsE, extraOptions = _objectWithoutPropertiesLooseDefault.default(_ref3, _excluded);
+        var initMapStateToProps = match(mapStateToProps, mapStateToPropsFactories, 'mapStateToProps');
+        var initMapDispatchToProps = match(mapDispatchToProps, mapDispatchToPropsFactories, 'mapDispatchToProps');
+        var initMergeProps = match(mergeProps, mergePropsFactories, 'mergeProps');
+        return connectHOC(selectorFactory, _extendsDefault.default({
+            // used in error messages
+            methodName: 'connect',
+            // used to compute Connect's displayName from the wrapped component's displayName.
+            getDisplayName: function getDisplayName(name) {
+                return "Connect(" + name + ")";
+            },
+            // if mapStateToProps is falsy, the Connect component doesn't subscribe to store state changes
+            shouldHandleStateChanges: Boolean(mapStateToProps),
+            // passed through to selectorFactory
+            initMapStateToProps: initMapStateToProps,
+            initMapDispatchToProps: initMapDispatchToProps,
+            initMergeProps: initMergeProps,
+            pure: pure,
+            areStatesEqual: areStatesEqual,
+            areOwnPropsEqual: areOwnPropsEqual,
+            areStatePropsEqual: areStatePropsEqual,
+            areMergedPropsEqual: areMergedPropsEqual
+        }, extraOptions));
+    };
+}
+exports.default = /*#__PURE__*/ createConnect();
+
+},{"@babel/runtime/helpers/esm/extends":"fTBFS","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"adHgr","../components/connectAdvanced":"1EIOj","../utils/shallowEqual":"gV5L4","./mapDispatchToProps":"5QhPl","./mapStateToProps":"4Hl4c","./mergeProps":"hQpBj","./selectorFactory":"e9uH3","@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA"}],"gV5L4":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function is(x, y) {
+    if (x === y) return x !== 0 || y !== 0 || 1 / x === 1 / y;
+    else return x !== x && y !== y;
+}
+function shallowEqual(objA, objB) {
+    if (is(objA, objB)) return true;
+    if (typeof objA !== 'object' || objA === null || typeof objB !== 'object' || objB === null) return false;
+    var keysA = Object.keys(objA);
+    var keysB = Object.keys(objB);
+    if (keysA.length !== keysB.length) return false;
+    for(var i = 0; i < keysA.length; i++){
+        if (!Object.prototype.hasOwnProperty.call(objB, keysA[i]) || !is(objA[keysA[i]], objB[keysA[i]])) return false;
+    }
+    return true;
+}
+exports.default = shallowEqual;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA"}],"5QhPl":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "whenMapDispatchToPropsIsFunction", ()=>whenMapDispatchToPropsIsFunction
+);
+parcelHelpers.export(exports, "whenMapDispatchToPropsIsMissing", ()=>whenMapDispatchToPropsIsMissing
+);
+parcelHelpers.export(exports, "whenMapDispatchToPropsIsObject", ()=>whenMapDispatchToPropsIsObject
+);
+var _bindActionCreators = require("../utils/bindActionCreators");
+var _bindActionCreatorsDefault = parcelHelpers.interopDefault(_bindActionCreators);
+var _wrapMapToProps = require("./wrapMapToProps");
+function whenMapDispatchToPropsIsFunction(mapDispatchToProps) {
+    return typeof mapDispatchToProps === 'function' ? _wrapMapToProps.wrapMapToPropsFunc(mapDispatchToProps, 'mapDispatchToProps') : undefined;
+}
+function whenMapDispatchToPropsIsMissing(mapDispatchToProps) {
+    return !mapDispatchToProps ? _wrapMapToProps.wrapMapToPropsConstant(function(dispatch) {
+        return {
+            dispatch: dispatch
+        };
+    }) : undefined;
+}
+function whenMapDispatchToPropsIsObject(mapDispatchToProps) {
+    return mapDispatchToProps && typeof mapDispatchToProps === 'object' ? _wrapMapToProps.wrapMapToPropsConstant(function(dispatch) {
+        return _bindActionCreatorsDefault.default(mapDispatchToProps, dispatch);
+    }) : undefined;
+}
+exports.default = [
+    whenMapDispatchToPropsIsFunction,
+    whenMapDispatchToPropsIsMissing,
+    whenMapDispatchToPropsIsObject
+];
+
+},{"../utils/bindActionCreators":"afPZO","./wrapMapToProps":"bSgjL","@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA"}],"afPZO":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function bindActionCreators(actionCreators, dispatch) {
+    var boundActionCreators = {
+    };
+    var _loop = function _loop(key) {
+        var actionCreator = actionCreators[key];
+        if (typeof actionCreator === 'function') boundActionCreators[key] = function() {
+            return dispatch(actionCreator.apply(void 0, arguments));
+        };
+    };
+    for(var key in actionCreators)_loop(key);
+    return boundActionCreators;
+}
+exports.default = bindActionCreators;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA"}],"bSgjL":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "wrapMapToPropsConstant", ()=>wrapMapToPropsConstant
+) // dependsOnOwnProps is used by createMapToPropsProxy to determine whether to pass props as args
+;
+// to the mapToProps function being wrapped. It is also used by makePurePropsSelector to determine
+// whether mapToProps needs to be invoked when props have changed.
+//
+// A length of one signals that mapToProps does not depend on props from the parent component.
+// A length of zero is assumed to mean mapToProps is getting args via arguments or ...args and
+// therefore not reporting its length accurately..
+parcelHelpers.export(exports, "getDependsOnOwnProps", ()=>getDependsOnOwnProps
+) // Used by whenMapStateToPropsIsFunction and whenMapDispatchToPropsIsFunction,
+;
+// this function wraps mapToProps in a proxy function which does several things:
+//
+//  * Detects whether the mapToProps function being called depends on props, which
+//    is used by selectorFactory to decide if it should reinvoke on props changes.
+//
+//  * On first call, handles mapToProps if returns another function, and treats that
+//    new function as the true mapToProps for subsequent calls.
+//
+//  * On first call, verifies the first result is a plain object, in order to warn
+//    the developer that their mapToProps function is not returning a valid result.
+//
+parcelHelpers.export(exports, "wrapMapToPropsFunc", ()=>wrapMapToPropsFunc
+);
+var _verifyPlainObject = require("../utils/verifyPlainObject");
+var _verifyPlainObjectDefault = parcelHelpers.interopDefault(_verifyPlainObject);
+function wrapMapToPropsConstant(getConstant) {
+    return function initConstantSelector(dispatch, options) {
+        var constant = getConstant(dispatch, options);
+        function constantSelector() {
+            return constant;
+        }
+        constantSelector.dependsOnOwnProps = false;
+        return constantSelector;
+    };
+}
+function getDependsOnOwnProps(mapToProps) {
+    return mapToProps.dependsOnOwnProps !== null && mapToProps.dependsOnOwnProps !== undefined ? Boolean(mapToProps.dependsOnOwnProps) : mapToProps.length !== 1;
+}
+function wrapMapToPropsFunc(mapToProps, methodName) {
+    return function initProxySelector(dispatch, _ref) {
+        var displayName = _ref.displayName;
+        var proxy = function mapToPropsProxy(stateOrDispatch, ownProps) {
+            return proxy.dependsOnOwnProps ? proxy.mapToProps(stateOrDispatch, ownProps) : proxy.mapToProps(stateOrDispatch);
+        }; // allow detectFactoryAndVerify to get ownProps
+        proxy.dependsOnOwnProps = true;
+        proxy.mapToProps = function detectFactoryAndVerify(stateOrDispatch, ownProps) {
+            proxy.mapToProps = mapToProps;
+            proxy.dependsOnOwnProps = getDependsOnOwnProps(mapToProps);
+            var props = proxy(stateOrDispatch, ownProps);
+            if (typeof props === 'function') {
+                proxy.mapToProps = props;
+                proxy.dependsOnOwnProps = getDependsOnOwnProps(props);
+                props = proxy(stateOrDispatch, ownProps);
+            }
+            _verifyPlainObjectDefault.default(props, displayName, methodName);
+            return props;
+        };
+        return proxy;
+    };
+}
+
+},{"../utils/verifyPlainObject":"f6LbZ","@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA"}],"f6LbZ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _isPlainObject = require("./isPlainObject");
+var _isPlainObjectDefault = parcelHelpers.interopDefault(_isPlainObject);
+var _warning = require("./warning");
+var _warningDefault = parcelHelpers.interopDefault(_warning);
+function verifyPlainObject(value, displayName, methodName) {
+    if (!_isPlainObjectDefault.default(value)) _warningDefault.default(methodName + "() in " + displayName + " must return a plain object. Instead received " + value + ".");
+}
+exports.default = verifyPlainObject;
+
+},{"./isPlainObject":"lM8m6","./warning":"cUQUw","@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA"}],"lM8m6":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function isPlainObject(obj) {
+    if (typeof obj !== 'object' || obj === null) return false;
+    var proto = Object.getPrototypeOf(obj);
+    if (proto === null) return true;
+    var baseProto = proto;
+    while(Object.getPrototypeOf(baseProto) !== null)baseProto = Object.getPrototypeOf(baseProto);
+    return proto === baseProto;
+}
+exports.default = isPlainObject;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA"}],"cUQUw":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function warning(message) {
+    /* eslint-disable no-console */ if (typeof console !== 'undefined' && typeof console.error === 'function') console.error(message);
+    /* eslint-enable no-console */ try {
+        // This error was thrown as a convenience so that if you enable
+        // "break on all exceptions" in your console,
+        // it would pause the execution at this line.
+        throw new Error(message);
+    /* eslint-disable no-empty */ } catch (e) {
+    }
+/* eslint-enable no-empty */ }
+exports.default = warning;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA"}],"4Hl4c":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "whenMapStateToPropsIsFunction", ()=>whenMapStateToPropsIsFunction
+);
+parcelHelpers.export(exports, "whenMapStateToPropsIsMissing", ()=>whenMapStateToPropsIsMissing
+);
+var _wrapMapToProps = require("./wrapMapToProps");
+function whenMapStateToPropsIsFunction(mapStateToProps) {
+    return typeof mapStateToProps === 'function' ? _wrapMapToProps.wrapMapToPropsFunc(mapStateToProps, 'mapStateToProps') : undefined;
+}
+function whenMapStateToPropsIsMissing(mapStateToProps) {
+    return !mapStateToProps ? _wrapMapToProps.wrapMapToPropsConstant(function() {
+        return {
+        };
+    }) : undefined;
+}
+exports.default = [
+    whenMapStateToPropsIsFunction,
+    whenMapStateToPropsIsMissing
+];
+
+},{"./wrapMapToProps":"bSgjL","@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA"}],"hQpBj":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "defaultMergeProps", ()=>defaultMergeProps
+);
+parcelHelpers.export(exports, "wrapMergePropsFunc", ()=>wrapMergePropsFunc
+);
+parcelHelpers.export(exports, "whenMergePropsIsFunction", ()=>whenMergePropsIsFunction
+);
+parcelHelpers.export(exports, "whenMergePropsIsOmitted", ()=>whenMergePropsIsOmitted
+);
+var _extends = require("@babel/runtime/helpers/esm/extends");
+var _extendsDefault = parcelHelpers.interopDefault(_extends);
+var _verifyPlainObject = require("../utils/verifyPlainObject");
+var _verifyPlainObjectDefault = parcelHelpers.interopDefault(_verifyPlainObject);
+function defaultMergeProps(stateProps, dispatchProps, ownProps) {
+    return _extendsDefault.default({
+    }, ownProps, stateProps, dispatchProps);
+}
+function wrapMergePropsFunc(mergeProps) {
+    return function initMergePropsProxy(dispatch, _ref) {
+        var displayName = _ref.displayName, pure = _ref.pure, areMergedPropsEqual = _ref.areMergedPropsEqual;
+        var hasRunOnce = false;
+        var mergedProps;
+        return function mergePropsProxy(stateProps, dispatchProps, ownProps) {
+            var nextMergedProps = mergeProps(stateProps, dispatchProps, ownProps);
+            if (hasRunOnce) {
+                if (!pure || !areMergedPropsEqual(nextMergedProps, mergedProps)) mergedProps = nextMergedProps;
+            } else {
+                hasRunOnce = true;
+                mergedProps = nextMergedProps;
+                _verifyPlainObjectDefault.default(mergedProps, displayName, 'mergeProps');
+            }
+            return mergedProps;
+        };
+    };
+}
+function whenMergePropsIsFunction(mergeProps) {
+    return typeof mergeProps === 'function' ? wrapMergePropsFunc(mergeProps) : undefined;
+}
+function whenMergePropsIsOmitted(mergeProps) {
+    return !mergeProps ? function() {
+        return defaultMergeProps;
+    } : undefined;
+}
+exports.default = [
+    whenMergePropsIsFunction,
+    whenMergePropsIsOmitted
+];
+
+},{"@babel/runtime/helpers/esm/extends":"fTBFS","../utils/verifyPlainObject":"f6LbZ","@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA"}],"e9uH3":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "impureFinalPropsSelectorFactory", ()=>impureFinalPropsSelectorFactory
+);
+parcelHelpers.export(exports, "pureFinalPropsSelectorFactory", ()=>pureFinalPropsSelectorFactory
+) // TODO: Add more comments
+;
+var _objectWithoutPropertiesLoose = require("@babel/runtime/helpers/esm/objectWithoutPropertiesLoose");
+var _objectWithoutPropertiesLooseDefault = parcelHelpers.interopDefault(_objectWithoutPropertiesLoose);
+var _verifySubselectors = require("./verifySubselectors");
+var _verifySubselectorsDefault = parcelHelpers.interopDefault(_verifySubselectors);
+var _excluded = [
+    "initMapStateToProps",
+    "initMapDispatchToProps",
+    "initMergeProps"
+];
+function impureFinalPropsSelectorFactory(mapStateToProps, mapDispatchToProps, mergeProps, dispatch) {
+    return function impureFinalPropsSelector(state, ownProps) {
+        return mergeProps(mapStateToProps(state, ownProps), mapDispatchToProps(dispatch, ownProps), ownProps);
+    };
+}
+function pureFinalPropsSelectorFactory(mapStateToProps, mapDispatchToProps, mergeProps, dispatch, _ref) {
+    var areStatesEqual = _ref.areStatesEqual, areOwnPropsEqual = _ref.areOwnPropsEqual, areStatePropsEqual = _ref.areStatePropsEqual;
+    var hasRunAtLeastOnce = false;
+    var state;
+    var ownProps;
+    var stateProps;
+    var dispatchProps;
+    var mergedProps;
+    function handleFirstCall(firstState, firstOwnProps) {
+        state = firstState;
+        ownProps = firstOwnProps;
+        stateProps = mapStateToProps(state, ownProps);
+        dispatchProps = mapDispatchToProps(dispatch, ownProps);
+        mergedProps = mergeProps(stateProps, dispatchProps, ownProps);
+        hasRunAtLeastOnce = true;
+        return mergedProps;
+    }
+    function handleNewPropsAndNewState() {
+        stateProps = mapStateToProps(state, ownProps);
+        if (mapDispatchToProps.dependsOnOwnProps) dispatchProps = mapDispatchToProps(dispatch, ownProps);
+        mergedProps = mergeProps(stateProps, dispatchProps, ownProps);
+        return mergedProps;
+    }
+    function handleNewProps() {
+        if (mapStateToProps.dependsOnOwnProps) stateProps = mapStateToProps(state, ownProps);
+        if (mapDispatchToProps.dependsOnOwnProps) dispatchProps = mapDispatchToProps(dispatch, ownProps);
+        mergedProps = mergeProps(stateProps, dispatchProps, ownProps);
+        return mergedProps;
+    }
+    function handleNewState() {
+        var nextStateProps = mapStateToProps(state, ownProps);
+        var statePropsChanged = !areStatePropsEqual(nextStateProps, stateProps);
+        stateProps = nextStateProps;
+        if (statePropsChanged) mergedProps = mergeProps(stateProps, dispatchProps, ownProps);
+        return mergedProps;
+    }
+    function handleSubsequentCalls(nextState, nextOwnProps) {
+        var propsChanged = !areOwnPropsEqual(nextOwnProps, ownProps);
+        var stateChanged = !areStatesEqual(nextState, state);
+        state = nextState;
+        ownProps = nextOwnProps;
+        if (propsChanged && stateChanged) return handleNewPropsAndNewState();
+        if (propsChanged) return handleNewProps();
+        if (stateChanged) return handleNewState();
+        return mergedProps;
+    }
+    return function pureFinalPropsSelector(nextState, nextOwnProps) {
+        return hasRunAtLeastOnce ? handleSubsequentCalls(nextState, nextOwnProps) : handleFirstCall(nextState, nextOwnProps);
+    };
+}
+function finalPropsSelectorFactory(dispatch, _ref2) {
+    var initMapStateToProps = _ref2.initMapStateToProps, initMapDispatchToProps = _ref2.initMapDispatchToProps, initMergeProps = _ref2.initMergeProps, options = _objectWithoutPropertiesLooseDefault.default(_ref2, _excluded);
+    var mapStateToProps = initMapStateToProps(dispatch, options);
+    var mapDispatchToProps = initMapDispatchToProps(dispatch, options);
+    var mergeProps = initMergeProps(dispatch, options);
+    _verifySubselectorsDefault.default(mapStateToProps, mapDispatchToProps, mergeProps, options.displayName);
+    var selectorFactory = options.pure ? pureFinalPropsSelectorFactory : impureFinalPropsSelectorFactory;
+    return selectorFactory(mapStateToProps, mapDispatchToProps, mergeProps, dispatch, options);
+}
+exports.default = finalPropsSelectorFactory;
+
+},{"@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"adHgr","./verifySubselectors":"10wWL","@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA"}],"10wWL":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _warning = require("../utils/warning");
+var _warningDefault = parcelHelpers.interopDefault(_warning);
+function verify(selector, methodName, displayName) {
+    if (!selector) throw new Error("Unexpected value for " + methodName + " in " + displayName + ".");
+    else if (methodName === 'mapStateToProps' || methodName === 'mapDispatchToProps') {
+        if (!Object.prototype.hasOwnProperty.call(selector, 'dependsOnOwnProps')) _warningDefault.default("The selector for " + methodName + " of " + displayName + " did not specify a value for dependsOnOwnProps.");
+    }
+}
+function verifySubselectors(mapStateToProps, mapDispatchToProps, mergeProps, displayName) {
+    verify(mapStateToProps, 'mapStateToProps', displayName);
+    verify(mapDispatchToProps, 'mapDispatchToProps', displayName);
+    verify(mergeProps, 'mergeProps', displayName);
+}
+exports.default = verifySubselectors;
+
+},{"../utils/warning":"cUQUw","@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA"}],"aOjNn":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * Hook factory, which creates a `useDispatch` hook bound to a given context.
+ *
+ * @param {React.Context} [context=ReactReduxContext] Context passed to your `<Provider>`.
+ * @returns {Function} A `useDispatch` hook bound to the specified context.
+ */ parcelHelpers.export(exports, "createDispatchHook", ()=>createDispatchHook
+);
+parcelHelpers.export(exports, "useDispatch", ()=>useDispatch
+);
+var _context = require("../components/Context");
+var _useStore = require("./useStore");
+function createDispatchHook(context) {
+    if (context === void 0) context = _context.ReactReduxContext;
+    var useStore = context === _context.ReactReduxContext ? _useStore.useStore : _useStore.createStoreHook(context);
+    return function useDispatch() {
+        var store = useStore();
+        return store.dispatch;
+    };
+}
+var useDispatch = /*#__PURE__*/ createDispatchHook();
+
+},{"../components/Context":"ji81o","./useStore":"39JZU","@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA"}],"39JZU":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * Hook factory, which creates a `useStore` hook bound to a given context.
+ *
+ * @param {React.Context} [context=ReactReduxContext] Context passed to your `<Provider>`.
+ * @returns {Function} A `useStore` hook bound to the specified context.
+ */ parcelHelpers.export(exports, "createStoreHook", ()=>createStoreHook
+);
+parcelHelpers.export(exports, "useStore", ()=>useStore
+);
+var _react = require("react");
+var _context = require("../components/Context");
+var _useReduxContext = require("./useReduxContext");
+function createStoreHook(context) {
+    if (context === void 0) context = _context.ReactReduxContext;
+    var useReduxContext = context === _context.ReactReduxContext ? _useReduxContext.useReduxContext : function() {
+        return _react.useContext(context);
+    };
+    return function useStore() {
+        var _useReduxContext1 = useReduxContext(), store = _useReduxContext1.store;
+        return store;
+    };
+}
+var useStore = /*#__PURE__*/ createStoreHook();
+
+},{"react":"21dqq","../components/Context":"ji81o","./useReduxContext":"3828k","@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA"}],"3828k":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * A hook to access the value of the `ReactReduxContext`. This is a low-level
+ * hook that you should usually not need to call directly.
+ *
+ * @returns {any} the value of the `ReactReduxContext`
+ *
+ * @example
+ *
+ * import React from 'react'
+ * import { useReduxContext } from 'react-redux'
+ *
+ * export const CounterComponent = ({ value }) => {
+ *   const { store } = useReduxContext()
+ *   return <div>{store.getState()}</div>
+ * }
+ */ parcelHelpers.export(exports, "useReduxContext", ()=>useReduxContext
+);
+var _react = require("react");
+var _context = require("../components/Context");
+function useReduxContext() {
+    var contextValue = _react.useContext(_context.ReactReduxContext);
+    if (!contextValue) throw new Error('could not find react-redux context value; please ensure the component is wrapped in a <Provider>');
+    return contextValue;
+}
+
+},{"react":"21dqq","../components/Context":"ji81o","@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA"}],"l3rFI":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * Hook factory, which creates a `useSelector` hook bound to a given context.
+ *
+ * @param {React.Context} [context=ReactReduxContext] Context passed to your `<Provider>`.
+ * @returns {Function} A `useSelector` hook bound to the specified context.
+ */ parcelHelpers.export(exports, "createSelectorHook", ()=>createSelectorHook
+);
+parcelHelpers.export(exports, "useSelector", ()=>useSelector
+);
+var _react = require("react");
+var _useReduxContext = require("./useReduxContext");
+var _subscription = require("../utils/Subscription");
+var _useIsomorphicLayoutEffect = require("../utils/useIsomorphicLayoutEffect");
+var _context = require("../components/Context");
+var refEquality = function refEquality(a, b) {
+    return a === b;
+};
+function useSelectorWithStoreAndSubscription(selector, equalityFn, store, contextSub) {
+    var _useReducer = _react.useReducer(function(s) {
+        return s + 1;
+    }, 0), forceRender = _useReducer[1];
+    var subscription = _react.useMemo(function() {
+        return _subscription.createSubscription(store, contextSub);
+    }, [
+        store,
+        contextSub
+    ]);
+    var latestSubscriptionCallbackError = _react.useRef();
+    var latestSelector = _react.useRef();
+    var latestStoreState = _react.useRef();
+    var latestSelectedState = _react.useRef();
+    var storeState = store.getState();
+    var selectedState;
+    try {
+        if (selector !== latestSelector.current || storeState !== latestStoreState.current || latestSubscriptionCallbackError.current) {
+            var newSelectedState = selector(storeState); // ensure latest selected state is reused so that a custom equality function can result in identical references
+            if (latestSelectedState.current === undefined || !equalityFn(newSelectedState, latestSelectedState.current)) selectedState = newSelectedState;
+            else selectedState = latestSelectedState.current;
+        } else selectedState = latestSelectedState.current;
+    } catch (err1) {
+        if (latestSubscriptionCallbackError.current) err1.message += "\nThe error may be correlated with this previous error:\n" + latestSubscriptionCallbackError.current.stack + "\n\n";
+        throw err1;
+    }
+    _useIsomorphicLayoutEffect.useIsomorphicLayoutEffect(function() {
+        latestSelector.current = selector;
+        latestStoreState.current = storeState;
+        latestSelectedState.current = selectedState;
+        latestSubscriptionCallbackError.current = undefined;
+    });
+    _useIsomorphicLayoutEffect.useIsomorphicLayoutEffect(function() {
+        function checkForUpdates() {
+            try {
+                var newStoreState = store.getState(); // Avoid calling selector multiple times if the store's state has not changed
+                if (newStoreState === latestStoreState.current) return;
+                var _newSelectedState = latestSelector.current(newStoreState);
+                if (equalityFn(_newSelectedState, latestSelectedState.current)) return;
+                latestSelectedState.current = _newSelectedState;
+                latestStoreState.current = newStoreState;
+            } catch (err) {
+                // we ignore all errors here, since when the component
+                // is re-rendered, the selectors are called again, and
+                // will throw again, if neither props nor store state
+                // changed
+                latestSubscriptionCallbackError.current = err;
+            }
+            forceRender();
+        }
+        subscription.onStateChange = checkForUpdates;
+        subscription.trySubscribe();
+        checkForUpdates();
+        return function() {
+            return subscription.tryUnsubscribe();
+        };
+    }, [
+        store,
+        subscription
+    ]);
+    return selectedState;
+}
+function createSelectorHook(context) {
+    if (context === void 0) context = _context.ReactReduxContext;
+    var useReduxContext = context === _context.ReactReduxContext ? _useReduxContext.useReduxContext : function() {
+        return _react.useContext(context);
+    };
+    return function useSelector(selector, equalityFn) {
+        if (equalityFn === void 0) equalityFn = refEquality;
+        if (!selector) throw new Error("You must pass a selector to useSelector");
+        if (typeof selector !== 'function') throw new Error("You must pass a function as a selector to useSelector");
+        if (typeof equalityFn !== 'function') throw new Error("You must pass a function as an equality function to useSelector");
+        var _useReduxContext1 = useReduxContext(), store = _useReduxContext1.store, contextSub = _useReduxContext1.subscription;
+        var selectedState = useSelectorWithStoreAndSubscription(selector, equalityFn, store, contextSub);
+        _react.useDebugValue(selectedState);
+        return selectedState;
+    };
+}
+var useSelector = /*#__PURE__*/ createSelectorHook();
+
+},{"react":"21dqq","./useReduxContext":"3828k","../utils/Subscription":"ieuHT","../utils/useIsomorphicLayoutEffect":"kNbVc","../components/Context":"ji81o","@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA"}],"d8qyu":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "store", ()=>store
+);
+parcelHelpers.export(exports, "addProduct", ()=>addProduct
+);
+parcelHelpers.export(exports, "removeProduct", ()=>removeProduct
+);
+parcelHelpers.export(exports, "cartCountSelector", ()=>cartCountSelector
+);
+parcelHelpers.export(exports, "cartValueSelector", ()=>cartValueSelector
+);
+var _toolkit = require("@reduxjs/toolkit");
+const initialState = {
+    cart: []
+};
+const cartSlice = _toolkit.createSlice({
+    name: "cart",
+    initialState,
+    reducers: {
+        addProduct: (state, action)=>{
+            const existingProduct = state.cart.find((product)=>product.id === action.payload.id
+            );
+            if (existingProduct) // immer makes this immutable
+            existingProduct.quantity++;
+            else // immer makes this immutable
+            state.cart.push({
+                ...action.payload,
+                quantity: 1
+            });
+        },
+        removeProduct: (state, action)=>{
+            const index = state.cart.findIndex((product)=>product.id === action.payload.id
+            );
+            // immer makes this immutable
+            state.cart.splice(index, 1);
+        }
+    }
+});
+const store = _toolkit.configureStore({
+    reducer: cartSlice.reducer
+});
+const { addProduct , removeProduct  } = cartSlice.actions;
+const cartCountSelector = (state)=>{
+    return state.cart.reduce((total, product)=>total + product.quantity
+    , 0);
+};
+const cartValueSelector = (state)=>{
+    return state.cart.reduce((total, product)=>total + product.price * product.quantity
+    , 0);
+};
+
+},{"@reduxjs/toolkit":"lL1Ef","@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA"}],"lL1Ef":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "MiddlewareArray", ()=>MiddlewareArray
+);
+parcelHelpers.export(exports, "TaskAbortError", ()=>TaskAbortError
+);
+parcelHelpers.export(exports, "addListener", ()=>addListener
+);
+parcelHelpers.export(exports, "clearAllListeners", ()=>clearAllListeners
+);
+parcelHelpers.export(exports, "configureStore", ()=>configureStore
+);
+parcelHelpers.export(exports, "createAction", ()=>createAction
+);
+parcelHelpers.export(exports, "createAsyncThunk", ()=>createAsyncThunk
+);
+parcelHelpers.export(exports, "createDraftSafeSelector", ()=>createDraftSafeSelector
+);
+parcelHelpers.export(exports, "createEntityAdapter", ()=>createEntityAdapter
+);
+parcelHelpers.export(exports, "createImmutableStateInvariantMiddleware", ()=>createImmutableStateInvariantMiddleware
+);
+parcelHelpers.export(exports, "createListenerMiddleware", ()=>createListenerMiddleware
+);
+parcelHelpers.export(exports, "createNextState", ()=>_immerDefault.default
+);
+parcelHelpers.export(exports, "createReducer", ()=>createReducer
+);
+parcelHelpers.export(exports, "createSelector", ()=>_reselect.createSelector
+);
+parcelHelpers.export(exports, "createSerializableStateInvariantMiddleware", ()=>createSerializableStateInvariantMiddleware
+);
+parcelHelpers.export(exports, "createSlice", ()=>createSlice
+);
+parcelHelpers.export(exports, "current", ()=>_immer.current
+);
+parcelHelpers.export(exports, "findNonSerializableValue", ()=>findNonSerializableValue
+);
+parcelHelpers.export(exports, "freeze", ()=>_immer.freeze
+);
+parcelHelpers.export(exports, "getDefaultMiddleware", ()=>getDefaultMiddleware
+);
+parcelHelpers.export(exports, "getType", ()=>getType
+);
+parcelHelpers.export(exports, "isAllOf", ()=>isAllOf
+);
+parcelHelpers.export(exports, "isAnyOf", ()=>isAnyOf
+);
+parcelHelpers.export(exports, "isAsyncThunkAction", ()=>isAsyncThunkAction
+);
+parcelHelpers.export(exports, "isDraft", ()=>_immer.isDraft
+);
+parcelHelpers.export(exports, "isFulfilled", ()=>isFulfilled
+);
+parcelHelpers.export(exports, "isImmutableDefault", ()=>isImmutableDefault
+);
+parcelHelpers.export(exports, "isPending", ()=>isPending
+);
+parcelHelpers.export(exports, "isPlain", ()=>isPlain
+);
+parcelHelpers.export(exports, "isPlainObject", ()=>isPlainObject
+);
+parcelHelpers.export(exports, "isRejected", ()=>isRejected
+);
+parcelHelpers.export(exports, "isRejectedWithValue", ()=>isRejectedWithValue
+);
+parcelHelpers.export(exports, "miniSerializeError", ()=>miniSerializeError
+);
+parcelHelpers.export(exports, "nanoid", ()=>nanoid
+);
+parcelHelpers.export(exports, "original", ()=>_immer.original
+);
+parcelHelpers.export(exports, "removeListener", ()=>removeListener
+);
+parcelHelpers.export(exports, "unwrapResult", ()=>unwrapResult
+);
+// src/index.ts
+var _immer = require("immer");
+var _immerDefault = parcelHelpers.interopDefault(_immer);
+var _reselect = require("reselect");
+// src/configureStore.ts
+var _redux = require("redux");
+// src/getDefaultMiddleware.ts
+var _reduxThunk = require("redux-thunk");
+var _reduxThunkDefault = parcelHelpers.interopDefault(_reduxThunk);
+parcelHelpers.exportAll(_redux, exports);
+var __extends = undefined && undefined.__extends || function() {
+    var extendStatics = function(d1, b1) {
+        extendStatics = Object.setPrototypeOf || ({
+            __proto__: []
+        }) instanceof Array && function(d, b) {
+            d.__proto__ = b;
+        } || function(d, b) {
+            for(var p in b)if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p];
+        };
+        return extendStatics(d1, b1);
+    };
+    return function(d, b) {
+        if (typeof b !== "function" && b !== null) throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() {
+            this.constructor = d;
+        }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+}();
+var __generator = undefined && undefined.__generator || function(thisArg, body) {
+    var _ = {
+        label: 0,
+        sent: function() {
+            if (t[0] & 1) throw t[1];
+            return t[1];
+        },
+        trys: [],
+        ops: []
+    }, f, y, t, g;
+    function verb(n) {
+        return function(v) {
+            return step([
+                n,
+                v
+            ]);
+        };
+    }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while(_)try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [
+                op[0] & 2,
+                t.value
+            ];
+            switch(op[0]){
+                case 0:
+                case 1:
+                    t = op;
+                    break;
+                case 4:
+                    _.label++;
+                    return {
+                        value: op[1],
+                        done: false
+                    };
+                case 5:
+                    _.label++;
+                    y = op[1];
+                    op = [
+                        0
+                    ];
+                    continue;
+                case 7:
+                    op = _.ops.pop();
+                    _.trys.pop();
+                    continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
+                        _ = 0;
+                        continue;
+                    }
+                    if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
+                        _.label = op[1];
+                        break;
+                    }
+                    if (op[0] === 6 && _.label < t[1]) {
+                        _.label = t[1];
+                        t = op;
+                        break;
+                    }
+                    if (t && _.label < t[2]) {
+                        _.label = t[2];
+                        _.ops.push(op);
+                        break;
+                    }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop();
+                    continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) {
+            op = [
+                6,
+                e
+            ];
+            y = 0;
+        } finally{
+            f = t = 0;
+        }
+        if (op[0] & 5) throw op[1];
+        return {
+            value: op[0] ? op[1] : void 0,
+            done: true
+        };
+    }
+    return g = {
+        next: verb(0),
+        "throw": verb(1),
+        "return": verb(2)
+    }, typeof Symbol === "function" && (g[Symbol.iterator] = function() {
+        return this;
+    }), g;
+};
+var __spreadArray = undefined && undefined.__spreadArray || function(to, from) {
+    for(var i = 0, il = from.length, j = to.length; i < il; i++, j++)to[j] = from[i];
+    return to;
+};
+var __defProp = Object.defineProperty;
+var __defProps = Object.defineProperties;
+var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
+var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __defNormalProp = function(obj, key, value) {
+    return key in obj ? __defProp(obj, key, {
+        enumerable: true,
+        configurable: true,
+        writable: true,
+        value: value
+    }) : obj[key] = value;
+};
+var __spreadValues = function(a, b) {
+    for(var prop in b || (b = {
+    }))if (__hasOwnProp.call(b, prop)) __defNormalProp(a, prop, b[prop]);
+    if (__getOwnPropSymbols) for(var _i = 0, _c = __getOwnPropSymbols(b); _i < _c.length; _i++){
+        var prop = _c[_i];
+        if (__propIsEnum.call(b, prop)) __defNormalProp(a, prop, b[prop]);
+    }
+    return a;
+};
+var __spreadProps = function(a, b) {
+    return __defProps(a, __getOwnPropDescs(b));
+};
+var __async = function(__this, __arguments, generator) {
+    return new Promise(function(resolve, reject) {
+        var fulfilled = function(value) {
+            try {
+                step(generator.next(value));
+            } catch (e) {
+                reject(e);
+            }
+        };
+        var rejected = function(value) {
+            try {
+                step(generator.throw(value));
+            } catch (e) {
+                reject(e);
+            }
+        };
+        var step = function(x) {
+            return x.done ? resolve(x.value) : Promise.resolve(x.value).then(fulfilled, rejected);
+        };
+        step((generator = generator.apply(__this, __arguments)).next());
+    });
+};
+var createDraftSafeSelector = function() {
+    var args = [];
+    for(var _i1 = 0; _i1 < arguments.length; _i1++)args[_i1] = arguments[_i1];
+    var selector = _reselect.createSelector.apply(void 0, args);
+    var wrappedSelector = function(value) {
+        var rest = [];
+        for(var _i = 1; _i < arguments.length; _i++)rest[_i - 1] = arguments[_i];
+        return selector.apply(void 0, __spreadArray([
+            _immer.isDraft(value) ? _immer.current(value) : value
+        ], rest));
+    };
+    return wrappedSelector;
+};
+var composeWithDevTools = typeof window !== "undefined" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : function() {
+    if (arguments.length === 0) return void 0;
+    if (typeof arguments[0] === "object") return _redux.compose;
+    return _redux.compose.apply(null, arguments);
+};
+var devToolsEnhancer = typeof window !== "undefined" && window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__ : function() {
+    return function(noop2) {
+        return noop2;
+    };
+};
+// src/isPlainObject.ts
+function isPlainObject(value) {
+    if (typeof value !== "object" || value === null) return false;
+    var proto = Object.getPrototypeOf(value);
+    if (proto === null) return true;
+    var baseProto = proto;
+    while(Object.getPrototypeOf(baseProto) !== null)baseProto = Object.getPrototypeOf(baseProto);
+    return proto === baseProto;
+}
+// src/utils.ts
+function getTimeMeasureUtils(maxDelay, fnName) {
+    var elapsed = 0;
+    return {
+        measureTime: function(fn) {
+            var started = Date.now();
+            try {
+                return fn();
+            } finally{
+                var finished = Date.now();
+                elapsed += finished - started;
+            }
+        },
+        warnIfExceeded: function() {
+            if (elapsed > maxDelay) console.warn(fnName + " took " + elapsed + "ms, which is more than the warning threshold of " + maxDelay + "ms. \nIf your state or actions are very large, you may want to disable the middleware as it might cause too much of a slowdown in development mode. See https://redux-toolkit.js.org/api/getDefaultMiddleware for instructions.\nIt is disabled in production builds, so you don't need to worry about that.");
+        }
+    };
+}
+var MiddlewareArray = function(_super) {
+    __extends(MiddlewareArray1, _super);
+    function MiddlewareArray1() {
+        var args = [];
+        for(var _i = 0; _i < arguments.length; _i++)args[_i] = arguments[_i];
+        var _this = _super.apply(this, args) || this;
+        Object.setPrototypeOf(_this, MiddlewareArray1.prototype);
+        return _this;
+    }
+    Object.defineProperty(MiddlewareArray1, Symbol.species, {
+        get: function() {
+            return MiddlewareArray1;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    MiddlewareArray1.prototype.concat = function() {
+        var arr = [];
+        for(var _i = 0; _i < arguments.length; _i++)arr[_i] = arguments[_i];
+        return _super.prototype.concat.apply(this, arr);
+    };
+    MiddlewareArray1.prototype.prepend = function() {
+        var arr = [];
+        for(var _i = 0; _i < arguments.length; _i++)arr[_i] = arguments[_i];
+        if (arr.length === 1 && Array.isArray(arr[0])) return new (MiddlewareArray1.bind.apply(MiddlewareArray1, __spreadArray([
+            void 0
+        ], arr[0].concat(this))))();
+        return new (MiddlewareArray1.bind.apply(MiddlewareArray1, __spreadArray([
+            void 0
+        ], arr.concat(this))))();
+    };
+    return MiddlewareArray1;
+}(Array);
+// src/immutableStateInvariantMiddleware.ts
+var isProduction = false;
+var prefix = "Invariant failed";
+function invariant(condition, message) {
+    if (condition) return;
+    if (isProduction) throw new Error(prefix);
+    throw new Error(prefix + ": " + (message || ""));
+}
+function stringify(obj, serializer, indent, decycler) {
+    return JSON.stringify(obj, getSerialize(serializer, decycler), indent);
+}
+function getSerialize(serializer, decycler) {
+    var stack = [], keys = [];
+    if (!decycler) decycler = function(_, value) {
+        if (stack[0] === value) return "[Circular ~]";
+        return "[Circular ~." + keys.slice(0, stack.indexOf(value)).join(".") + "]";
+    };
+    return function(key, value) {
+        if (stack.length > 0) {
+            var thisPos = stack.indexOf(this);
+            ~thisPos ? stack.splice(thisPos + 1) : stack.push(this);
+            ~thisPos ? keys.splice(thisPos, Infinity, key) : keys.push(key);
+            if (~stack.indexOf(value)) value = decycler.call(this, key, value);
+        } else stack.push(value);
+        return serializer == null ? value : serializer.call(this, key, value);
+    };
+}
+function isImmutableDefault(value) {
+    return typeof value !== "object" || value === null || typeof value === "undefined" || Object.isFrozen(value);
+}
+function trackForMutations(isImmutable, ignorePaths, obj) {
+    var trackedProperties = trackProperties(isImmutable, ignorePaths, obj);
+    return {
+        detectMutations: function() {
+            return detectMutations(isImmutable, ignorePaths, trackedProperties, obj);
+        }
+    };
+}
+function trackProperties(isImmutable, ignorePaths, obj, path) {
+    if (ignorePaths === void 0) ignorePaths = [];
+    if (path === void 0) path = "";
+    var tracked = {
+        value: obj
+    };
+    if (!isImmutable(obj)) {
+        tracked.children = {
+        };
+        for(var key in obj){
+            var childPath = path ? path + "." + key : key;
+            if (ignorePaths.length && ignorePaths.indexOf(childPath) !== -1) continue;
+            tracked.children[key] = trackProperties(isImmutable, ignorePaths, obj[key], childPath);
+        }
+    }
+    return tracked;
+}
+function detectMutations(isImmutable, ignorePaths, trackedProperty, obj, sameParentRef, path) {
+    if (ignorePaths === void 0) ignorePaths = [];
+    if (sameParentRef === void 0) sameParentRef = false;
+    if (path === void 0) path = "";
+    var prevObj = trackedProperty ? trackedProperty.value : void 0;
+    var sameRef = prevObj === obj;
+    if (sameParentRef && !sameRef && !Number.isNaN(obj)) return {
+        wasMutated: true,
+        path: path
+    };
+    if (isImmutable(prevObj) || isImmutable(obj)) return {
+        wasMutated: false
+    };
+    var keysToDetect = {
+    };
+    for(var key in trackedProperty.children)keysToDetect[key] = true;
+    for(var key in obj)keysToDetect[key] = true;
+    for(var key in keysToDetect){
+        var childPath = path ? path + "." + key : key;
+        if (ignorePaths.length && ignorePaths.indexOf(childPath) !== -1) continue;
+        var result = detectMutations(isImmutable, ignorePaths, trackedProperty.children[key], obj[key], sameRef, childPath);
+        if (result.wasMutated) return result;
+    }
+    return {
+        wasMutated: false
+    };
+}
+function createImmutableStateInvariantMiddleware(options) {
+    if (options === void 0) options = {
+    };
+    var next1, action1;
+    var _c1 = options.isImmutable, isImmutable = _c1 === void 0 ? isImmutableDefault : _c1, ignoredPaths = options.ignoredPaths, _d = options.warnAfter, warnAfter = _d === void 0 ? 32 : _d, ignore = options.ignore;
+    ignoredPaths = ignoredPaths || ignore;
+    var track = trackForMutations.bind(null, isImmutable, ignoredPaths);
+    return function(_c) {
+        var getState = _c.getState;
+        var state = getState();
+        var tracker = track(state);
+        var result;
+        return function(next) {
+            return function(action) {
+                var measureUtils = getTimeMeasureUtils(warnAfter, "ImmutableStateInvariantMiddleware");
+                measureUtils.measureTime(function() {
+                    state = getState();
+                    result = tracker.detectMutations();
+                    tracker = track(state);
+                    invariant(!result.wasMutated, "A state mutation was detected between dispatches, in the path '" + (result.path || "") + "'.  This may cause incorrect behavior. (https://redux.js.org/style-guide/style-guide#do-not-mutate-state)");
+                });
+                var dispatchedAction = next(action);
+                measureUtils.measureTime(function() {
+                    state = getState();
+                    result = tracker.detectMutations();
+                    tracker = track(state);
+                    result.wasMutated && invariant(!result.wasMutated, "A state mutation was detected inside a dispatch, in the path: " + (result.path || "") + ". Take a look at the reducer(s) handling the action " + stringify(action) + ". (https://redux.js.org/style-guide/style-guide#do-not-mutate-state)");
+                });
+                measureUtils.warnIfExceeded();
+                return dispatchedAction;
+            };
+        };
+    };
+}
+// src/serializableStateInvariantMiddleware.ts
+function isPlain(val) {
+    var type = typeof val;
+    return type === "undefined" || val === null || type === "string" || type === "boolean" || type === "number" || Array.isArray(val) || isPlainObject(val);
+}
+function findNonSerializableValue(value, path, isSerializable, getEntries, ignoredPaths) {
+    if (path === void 0) path = "";
+    if (isSerializable === void 0) isSerializable = isPlain;
+    if (ignoredPaths === void 0) ignoredPaths = [];
+    var foundNestedSerializable;
+    if (!isSerializable(value)) return {
+        keyPath: path || "<root>",
+        value: value
+    };
+    if (typeof value !== "object" || value === null) return false;
+    var entries = getEntries != null ? getEntries(value) : Object.entries(value);
+    var hasIgnoredPaths = ignoredPaths.length > 0;
+    for(var _i = 0, entries_1 = entries; _i < entries_1.length; _i++){
+        var _c = entries_1[_i], key = _c[0], nestedValue = _c[1];
+        var nestedPath = path ? path + "." + key : key;
+        if (hasIgnoredPaths && ignoredPaths.indexOf(nestedPath) >= 0) continue;
+        if (!isSerializable(nestedValue)) return {
+            keyPath: nestedPath,
+            value: nestedValue
+        };
+        if (typeof nestedValue === "object") {
+            foundNestedSerializable = findNonSerializableValue(nestedValue, nestedPath, isSerializable, getEntries, ignoredPaths);
+            if (foundNestedSerializable) return foundNestedSerializable;
+        }
+    }
+    return false;
+}
+function createSerializableStateInvariantMiddleware(options) {
+    if (options === void 0) options = {
+    };
+    var next2, action2;
+    var _c = options.isSerializable, isSerializable = _c === void 0 ? isPlain : _c, getEntries = options.getEntries, _d = options.ignoredActions, ignoredActions = _d === void 0 ? [] : _d, _e = options.ignoredActionPaths, ignoredActionPaths = _e === void 0 ? [
+        "meta.arg",
+        "meta.baseQueryMeta"
+    ] : _e, _f = options.ignoredPaths, ignoredPaths = _f === void 0 ? [] : _f, _g = options.warnAfter, warnAfter = _g === void 0 ? 32 : _g, _h = options.ignoreState, ignoreState = _h === void 0 ? false : _h, _j = options.ignoreActions, ignoreActions = _j === void 0 ? false : _j;
+    return function(storeAPI) {
+        return function(next) {
+            return function(action) {
+                var result = next(action);
+                var measureUtils = getTimeMeasureUtils(warnAfter, "SerializableStateInvariantMiddleware");
+                if (!ignoreActions && !(ignoredActions.length && ignoredActions.indexOf(action.type) !== -1)) measureUtils.measureTime(function() {
+                    var foundActionNonSerializableValue = findNonSerializableValue(action, "", isSerializable, getEntries, ignoredActionPaths);
+                    if (foundActionNonSerializableValue) {
+                        var keyPath = foundActionNonSerializableValue.keyPath, value = foundActionNonSerializableValue.value;
+                        console.error("A non-serializable value was detected in an action, in the path: `" + keyPath + "`. Value:", value, "\nTake a look at the logic that dispatched this action: ", action, "\n(See https://redux.js.org/faq/actions#why-should-type-be-a-string-or-at-least-serializable-why-should-my-action-types-be-constants)", "\n(To allow non-serializable values see: https://redux-toolkit.js.org/usage/usage-guide#working-with-non-serializable-data)");
+                    }
+                });
+                if (!ignoreState) {
+                    measureUtils.measureTime(function() {
+                        var state = storeAPI.getState();
+                        var foundStateNonSerializableValue = findNonSerializableValue(state, "", isSerializable, getEntries, ignoredPaths);
+                        if (foundStateNonSerializableValue) {
+                            var keyPath = foundStateNonSerializableValue.keyPath, value = foundStateNonSerializableValue.value;
+                            console.error("A non-serializable value was detected in the state, in the path: `" + keyPath + "`. Value:", value, "\nTake a look at the reducer(s) handling this action type: " + action.type + ".\n(See https://redux.js.org/faq/organizing-state#can-i-put-functions-promises-or-other-non-serializable-items-in-my-store-state)");
+                        }
+                    });
+                    measureUtils.warnIfExceeded();
+                }
+                return result;
+            };
+        };
+    };
+}
+// src/getDefaultMiddleware.ts
+function isBoolean(x) {
+    return typeof x === "boolean";
+}
+function curryGetDefaultMiddleware() {
+    return function curriedGetDefaultMiddleware(options) {
+        return getDefaultMiddleware(options);
+    };
+}
+function getDefaultMiddleware(options) {
+    if (options === void 0) options = {
+    };
+    var _c = options.thunk, thunk = _c === void 0 ? true : _c, _d = options.immutableCheck, immutableCheck = _d === void 0 ? true : _d, _e = options.serializableCheck, serializableCheck = _e === void 0 ? true : _e;
+    var middlewareArray = new MiddlewareArray();
+    if (thunk) {
+        if (isBoolean(thunk)) middlewareArray.push(_reduxThunkDefault.default);
+        else middlewareArray.push(_reduxThunkDefault.default.withExtraArgument(thunk.extraArgument));
+    }
+    if (immutableCheck) {
+        var immutableOptions = {
+        };
+        if (!isBoolean(immutableCheck)) immutableOptions = immutableCheck;
+        middlewareArray.unshift(createImmutableStateInvariantMiddleware(immutableOptions));
+    }
+    if (serializableCheck) {
+        var serializableOptions = {
+        };
+        if (!isBoolean(serializableCheck)) serializableOptions = serializableCheck;
+        middlewareArray.push(createSerializableStateInvariantMiddleware(serializableOptions));
+    }
+    return middlewareArray;
+}
+// src/configureStore.ts
+var IS_PRODUCTION = false;
+function configureStore(options) {
+    var curriedGetDefaultMiddleware = curryGetDefaultMiddleware();
+    var _c = options || {
+    }, _d = _c.reducer, reducer = _d === void 0 ? void 0 : _d, _e = _c.middleware, middleware = _e === void 0 ? curriedGetDefaultMiddleware() : _e, _f = _c.devTools, devTools = _f === void 0 ? true : _f, _g = _c.preloadedState, preloadedState = _g === void 0 ? void 0 : _g, _h = _c.enhancers, enhancers = _h === void 0 ? void 0 : _h;
+    var rootReducer;
+    if (typeof reducer === "function") rootReducer = reducer;
+    else if (isPlainObject(reducer)) rootReducer = _redux.combineReducers(reducer);
+    else throw new Error('"reducer" is a required argument, and must be a function or an object of functions that can be passed to combineReducers');
+    var finalMiddleware = middleware;
+    if (typeof finalMiddleware === "function") {
+        finalMiddleware = finalMiddleware(curriedGetDefaultMiddleware);
+        if (!IS_PRODUCTION && !Array.isArray(finalMiddleware)) throw new Error("when using a middleware builder function, an array of middleware must be returned");
+    }
+    if (!IS_PRODUCTION && finalMiddleware.some(function(item) {
+        return typeof item !== "function";
+    })) throw new Error("each middleware provided to configureStore must be a function");
+    var middlewareEnhancer = _redux.applyMiddleware.apply(void 0, finalMiddleware);
+    var finalCompose = _redux.compose;
+    if (devTools) finalCompose = composeWithDevTools(__spreadValues({
+        trace: !IS_PRODUCTION
+    }, typeof devTools === "object" && devTools));
+    var storeEnhancers = [
+        middlewareEnhancer
+    ];
+    if (Array.isArray(enhancers)) storeEnhancers = __spreadArray([
+        middlewareEnhancer
+    ], enhancers);
+    else if (typeof enhancers === "function") storeEnhancers = enhancers(storeEnhancers);
+    var composedEnhancer = finalCompose.apply(void 0, storeEnhancers);
+    return _redux.createStore(rootReducer, preloadedState, composedEnhancer);
+}
+// src/createAction.ts
+function createAction(type, prepareAction) {
+    function actionCreator() {
+        var args = [];
+        for(var _i = 0; _i < arguments.length; _i++)args[_i] = arguments[_i];
+        if (prepareAction) {
+            var prepared = prepareAction.apply(void 0, args);
+            if (!prepared) throw new Error("prepareAction did not return an object");
+            return __spreadValues(__spreadValues({
+                type: type,
+                payload: prepared.payload
+            }, "meta" in prepared && {
+                meta: prepared.meta
+            }), "error" in prepared && {
+                error: prepared.error
+            });
+        }
+        return {
+            type: type,
+            payload: args[0]
+        };
+    }
+    actionCreator.toString = function() {
+        return "" + type;
+    };
+    actionCreator.type = type;
+    actionCreator.match = function(action) {
+        return action.type === type;
+    };
+    return actionCreator;
+}
+function isFSA(action) {
+    return isPlainObject(action) && typeof action.type === "string" && Object.keys(action).every(isValidKey);
+}
+function isValidKey(key) {
+    return [
+        "type",
+        "payload",
+        "error",
+        "meta"
+    ].indexOf(key) > -1;
+}
+function getType(actionCreator) {
+    return "" + actionCreator;
+}
+// src/mapBuilders.ts
+function executeReducerBuilderCallback(builderCallback) {
+    var actionsMap = {
+    };
+    var actionMatchers = [];
+    var defaultCaseReducer;
+    var builder = {
+        addCase: function(typeOrActionCreator, reducer) {
+            if (actionMatchers.length > 0) throw new Error("`builder.addCase` should only be called before calling `builder.addMatcher`");
+            if (defaultCaseReducer) throw new Error("`builder.addCase` should only be called before calling `builder.addDefaultCase`");
+            var type = typeof typeOrActionCreator === "string" ? typeOrActionCreator : typeOrActionCreator.type;
+            if (type in actionsMap) throw new Error("addCase cannot be called with two reducers for the same action type");
+            actionsMap[type] = reducer;
+            return builder;
+        },
+        addMatcher: function(matcher, reducer) {
+            if (defaultCaseReducer) throw new Error("`builder.addMatcher` should only be called before calling `builder.addDefaultCase`");
+            actionMatchers.push({
+                matcher: matcher,
+                reducer: reducer
+            });
+            return builder;
+        },
+        addDefaultCase: function(reducer) {
+            if (defaultCaseReducer) throw new Error("`builder.addDefaultCase` can only be called once");
+            defaultCaseReducer = reducer;
+            return builder;
+        }
+    };
+    builderCallback(builder);
+    return [
+        actionsMap,
+        actionMatchers,
+        defaultCaseReducer
+    ];
+}
+// src/createReducer.ts
+function isStateFunction(x) {
+    return typeof x === "function";
+}
+function createReducer(initialState, mapOrBuilderCallback, actionMatchers, defaultCaseReducer) {
+    if (actionMatchers === void 0) actionMatchers = [];
+    var _c2 = typeof mapOrBuilderCallback === "function" ? executeReducerBuilderCallback(mapOrBuilderCallback) : [
+        mapOrBuilderCallback,
+        actionMatchers,
+        defaultCaseReducer
+    ], actionsMap = _c2[0], finalActionMatchers = _c2[1], finalDefaultCaseReducer = _c2[2];
+    var getInitialState;
+    if (isStateFunction(initialState)) getInitialState = function() {
+        return _immerDefault.default(initialState(), function() {
+        });
+    };
+    else {
+        var frozenInitialState_1 = _immerDefault.default(initialState, function() {
+        });
+        getInitialState = function() {
+            return frozenInitialState_1;
+        };
+    }
+    function reducer(state, action) {
+        if (state === void 0) state = getInitialState();
+        var caseReducers = __spreadArray([
+            actionsMap[action.type]
+        ], finalActionMatchers.filter(function(_c) {
+            var matcher = _c.matcher;
+            return matcher(action);
+        }).map(function(_c) {
+            var reducer2 = _c.reducer;
+            return reducer2;
+        }));
+        if (caseReducers.filter(function(cr) {
+            return !!cr;
+        }).length === 0) caseReducers = [
+            finalDefaultCaseReducer
+        ];
+        return caseReducers.reduce(function(previousState, caseReducer) {
+            if (caseReducer) {
+                if (_immer.isDraft(previousState)) {
+                    var draft = previousState;
+                    var result = caseReducer(draft, action);
+                    if (typeof result === "undefined") return previousState;
+                    return result;
+                } else if (!_immer.isDraftable(previousState)) {
+                    var result = caseReducer(previousState, action);
+                    if (typeof result === "undefined") {
+                        if (previousState === null) return previousState;
+                        throw Error("A case reducer on a non-draftable value must not return undefined");
+                    }
+                    return result;
+                } else return _immerDefault.default(previousState, function(draft) {
+                    return caseReducer(draft, action);
+                });
+            }
+            return previousState;
+        }, state);
+    }
+    reducer.getInitialState = getInitialState;
+    return reducer;
+}
+// src/createSlice.ts
+function getType2(slice, actionKey) {
+    return slice + "/" + actionKey;
+}
+function createSlice(options) {
+    var name = options.name;
+    if (!name) throw new Error("`name` is a required option for createSlice");
+    var initialState = typeof options.initialState == "function" ? options.initialState : _immerDefault.default(options.initialState, function() {
+    });
+    var reducers = options.reducers || {
+    };
+    var reducerNames = Object.keys(reducers);
+    var sliceCaseReducersByName = {
+    };
+    var sliceCaseReducersByType = {
+    };
+    var actionCreators = {
+    };
+    reducerNames.forEach(function(reducerName) {
+        var maybeReducerWithPrepare = reducers[reducerName];
+        var type = getType2(name, reducerName);
+        var caseReducer;
+        var prepareCallback;
+        if ("reducer" in maybeReducerWithPrepare) {
+            caseReducer = maybeReducerWithPrepare.reducer;
+            prepareCallback = maybeReducerWithPrepare.prepare;
+        } else caseReducer = maybeReducerWithPrepare;
+        sliceCaseReducersByName[reducerName] = caseReducer;
+        sliceCaseReducersByType[type] = caseReducer;
+        actionCreators[reducerName] = prepareCallback ? createAction(type, prepareCallback) : createAction(type);
+    });
+    function buildReducer() {
+        var _c = typeof options.extraReducers === "function" ? executeReducerBuilderCallback(options.extraReducers) : [
+            options.extraReducers
+        ], _d = _c[0], extraReducers = _d === void 0 ? {
+        } : _d, _e = _c[1], actionMatchers = _e === void 0 ? [] : _e, _f = _c[2], defaultCaseReducer = _f === void 0 ? void 0 : _f;
+        var finalCaseReducers = __spreadValues(__spreadValues({
+        }, extraReducers), sliceCaseReducersByType);
+        return createReducer(initialState, finalCaseReducers, actionMatchers, defaultCaseReducer);
+    }
+    var _reducer;
+    return {
+        name: name,
+        reducer: function(state, action) {
+            if (!_reducer) _reducer = buildReducer();
+            return _reducer(state, action);
+        },
+        actions: actionCreators,
+        caseReducers: sliceCaseReducersByName,
+        getInitialState: function() {
+            if (!_reducer) _reducer = buildReducer();
+            return _reducer.getInitialState();
+        }
+    };
+}
+// src/entities/entity_state.ts
+function getInitialEntityState() {
+    return {
+        ids: [],
+        entities: {
+        }
+    };
+}
+function createInitialStateFactory() {
+    function getInitialState(additionalState) {
+        if (additionalState === void 0) additionalState = {
+        };
+        return Object.assign(getInitialEntityState(), additionalState);
+    }
+    return {
+        getInitialState: getInitialState
+    };
+}
+// src/entities/state_selectors.ts
+function createSelectorsFactory() {
+    function getSelectors(selectState) {
+        var selectIds = function(state) {
+            return state.ids;
+        };
+        var selectEntities = function(state) {
+            return state.entities;
+        };
+        var selectAll = createDraftSafeSelector(selectIds, selectEntities, function(ids, entities) {
+            return ids.map(function(id) {
+                return entities[id];
+            });
+        });
+        var selectId = function(_, id) {
+            return id;
+        };
+        var selectById = function(entities, id) {
+            return entities[id];
+        };
+        var selectTotal = createDraftSafeSelector(selectIds, function(ids) {
+            return ids.length;
+        });
+        if (!selectState) return {
+            selectIds: selectIds,
+            selectEntities: selectEntities,
+            selectAll: selectAll,
+            selectTotal: selectTotal,
+            selectById: createDraftSafeSelector(selectEntities, selectId, selectById)
+        };
+        var selectGlobalizedEntities = createDraftSafeSelector(selectState, selectEntities);
+        return {
+            selectIds: createDraftSafeSelector(selectState, selectIds),
+            selectEntities: selectGlobalizedEntities,
+            selectAll: createDraftSafeSelector(selectState, selectAll),
+            selectTotal: createDraftSafeSelector(selectState, selectTotal),
+            selectById: createDraftSafeSelector(selectGlobalizedEntities, selectId, selectById)
+        };
+    }
+    return {
+        getSelectors: getSelectors
+    };
+}
+function createSingleArgumentStateOperator(mutator) {
+    var operator = createStateOperator(function(_, state) {
+        return mutator(state);
+    });
+    return function operation(state) {
+        return operator(state, void 0);
+    };
+}
+function createStateOperator(mutator) {
+    return function operation(state, arg) {
+        function isPayloadActionArgument(arg2) {
+            return isFSA(arg2);
+        }
+        var runMutator = function(draft) {
+            if (isPayloadActionArgument(arg)) mutator(arg.payload, draft);
+            else mutator(arg, draft);
+        };
+        if (_immer.isDraft(state)) {
+            runMutator(state);
+            return state;
+        } else return _immerDefault.default(state, runMutator);
+    };
+}
+// src/entities/utils.ts
+function selectIdValue(entity, selectId) {
+    var key = selectId(entity);
+    if (key === void 0) console.warn("The entity passed to the `selectId` implementation returned undefined.", "You should probably provide your own `selectId` implementation.", "The entity that was passed:", entity, "The `selectId` implementation:", selectId.toString());
+    return key;
+}
+function ensureEntitiesArray(entities) {
+    if (!Array.isArray(entities)) entities = Object.values(entities);
+    return entities;
+}
+function splitAddedUpdatedEntities(newEntities, selectId, state) {
+    newEntities = ensureEntitiesArray(newEntities);
+    var added = [];
+    var updated = [];
+    for(var _i = 0, newEntities_1 = newEntities; _i < newEntities_1.length; _i++){
+        var entity = newEntities_1[_i];
+        var id = selectIdValue(entity, selectId);
+        if (id in state.entities) updated.push({
+            id: id,
+            changes: entity
+        });
+        else added.push(entity);
+    }
+    return [
+        added,
+        updated
+    ];
+}
+// src/entities/unsorted_state_adapter.ts
+function createUnsortedStateAdapter(selectId) {
+    function addOneMutably(entity, state) {
+        var key = selectIdValue(entity, selectId);
+        if (key in state.entities) return;
+        state.ids.push(key);
+        state.entities[key] = entity;
+    }
+    function addManyMutably(newEntities, state) {
+        newEntities = ensureEntitiesArray(newEntities);
+        for(var _i = 0, newEntities_2 = newEntities; _i < newEntities_2.length; _i++){
+            var entity = newEntities_2[_i];
+            addOneMutably(entity, state);
+        }
+    }
+    function setOneMutably(entity, state) {
+        var key = selectIdValue(entity, selectId);
+        if (!(key in state.entities)) state.ids.push(key);
+        state.entities[key] = entity;
+    }
+    function setManyMutably(newEntities, state) {
+        newEntities = ensureEntitiesArray(newEntities);
+        for(var _i = 0, newEntities_3 = newEntities; _i < newEntities_3.length; _i++){
+            var entity = newEntities_3[_i];
+            setOneMutably(entity, state);
+        }
+    }
+    function setAllMutably(newEntities, state) {
+        newEntities = ensureEntitiesArray(newEntities);
+        state.ids = [];
+        state.entities = {
+        };
+        addManyMutably(newEntities, state);
+    }
+    function removeOneMutably(key, state) {
+        return removeManyMutably([
+            key
+        ], state);
+    }
+    function removeManyMutably(keys, state) {
+        var didMutate = false;
+        keys.forEach(function(key) {
+            if (key in state.entities) {
+                delete state.entities[key];
+                didMutate = true;
+            }
+        });
+        if (didMutate) state.ids = state.ids.filter(function(id) {
+            return id in state.entities;
+        });
+    }
+    function removeAllMutably(state) {
+        Object.assign(state, {
+            ids: [],
+            entities: {
+            }
+        });
+    }
+    function takeNewKey(keys, update, state) {
+        var original2 = state.entities[update.id];
+        var updated = Object.assign({
+        }, original2, update.changes);
+        var newKey = selectIdValue(updated, selectId);
+        var hasNewKey = newKey !== update.id;
+        if (hasNewKey) {
+            keys[update.id] = newKey;
+            delete state.entities[update.id];
+        }
+        state.entities[newKey] = updated;
+        return hasNewKey;
+    }
+    function updateOneMutably(update, state) {
+        return updateManyMutably([
+            update
+        ], state);
+    }
+    function updateManyMutably(updates, state) {
+        var newKeys = {
+        };
+        var updatesPerEntity = {
+        };
+        updates.forEach(function(update) {
+            if (update.id in state.entities) updatesPerEntity[update.id] = {
+                id: update.id,
+                changes: __spreadValues(__spreadValues({
+                }, updatesPerEntity[update.id] ? updatesPerEntity[update.id].changes : null), update.changes)
+            };
+        });
+        updates = Object.values(updatesPerEntity);
+        var didMutateEntities = updates.length > 0;
+        if (didMutateEntities) {
+            var didMutateIds = updates.filter(function(update) {
+                return takeNewKey(newKeys, update, state);
+            }).length > 0;
+            if (didMutateIds) state.ids = state.ids.map(function(id) {
+                return newKeys[id] || id;
+            });
+        }
+    }
+    function upsertOneMutably(entity, state) {
+        return upsertManyMutably([
+            entity
+        ], state);
+    }
+    function upsertManyMutably(newEntities, state) {
+        var _c = splitAddedUpdatedEntities(newEntities, selectId, state), added = _c[0], updated = _c[1];
+        updateManyMutably(updated, state);
+        addManyMutably(added, state);
+    }
+    return {
+        removeAll: createSingleArgumentStateOperator(removeAllMutably),
+        addOne: createStateOperator(addOneMutably),
+        addMany: createStateOperator(addManyMutably),
+        setOne: createStateOperator(setOneMutably),
+        setMany: createStateOperator(setManyMutably),
+        setAll: createStateOperator(setAllMutably),
+        updateOne: createStateOperator(updateOneMutably),
+        updateMany: createStateOperator(updateManyMutably),
+        upsertOne: createStateOperator(upsertOneMutably),
+        upsertMany: createStateOperator(upsertManyMutably),
+        removeOne: createStateOperator(removeOneMutably),
+        removeMany: createStateOperator(removeManyMutably)
+    };
+}
+// src/entities/sorted_state_adapter.ts
+function createSortedStateAdapter(selectId, sort) {
+    var _c3 = createUnsortedStateAdapter(selectId), removeOne = _c3.removeOne, removeMany = _c3.removeMany, removeAll = _c3.removeAll;
+    function addOneMutably(entity, state) {
+        return addManyMutably([
+            entity
+        ], state);
+    }
+    function addManyMutably(newEntities, state) {
+        newEntities = ensureEntitiesArray(newEntities);
+        var models = newEntities.filter(function(model) {
+            return !(selectIdValue(model, selectId) in state.entities);
+        });
+        if (models.length !== 0) merge(models, state);
+    }
+    function setOneMutably(entity, state) {
+        return setManyMutably([
+            entity
+        ], state);
+    }
+    function setManyMutably(newEntities, state) {
+        newEntities = ensureEntitiesArray(newEntities);
+        if (newEntities.length !== 0) merge(newEntities, state);
+    }
+    function setAllMutably(newEntities, state) {
+        newEntities = ensureEntitiesArray(newEntities);
+        state.entities = {
+        };
+        state.ids = [];
+        addManyMutably(newEntities, state);
+    }
+    function updateOneMutably(update, state) {
+        return updateManyMutably([
+            update
+        ], state);
+    }
+    function takeUpdatedModel(models, update, state) {
+        if (!(update.id in state.entities)) return false;
+        var original2 = state.entities[update.id];
+        var updated = Object.assign({
+        }, original2, update.changes);
+        var newKey = selectIdValue(updated, selectId);
+        delete state.entities[update.id];
+        models.push(updated);
+        return newKey !== update.id;
+    }
+    function updateManyMutably(updates, state) {
+        var models = [];
+        updates.forEach(function(update) {
+            return takeUpdatedModel(models, update, state);
+        });
+        if (models.length !== 0) merge(models, state);
+    }
+    function upsertOneMutably(entity, state) {
+        return upsertManyMutably([
+            entity
+        ], state);
+    }
+    function upsertManyMutably(newEntities, state) {
+        var _c = splitAddedUpdatedEntities(newEntities, selectId, state), added = _c[0], updated = _c[1];
+        updateManyMutably(updated, state);
+        addManyMutably(added, state);
+    }
+    function areArraysEqual(a, b) {
+        if (a.length !== b.length) return false;
+        for(var i = 0; i < a.length && i < b.length; i++){
+            if (a[i] === b[i]) continue;
+            return false;
+        }
+        return true;
+    }
+    function merge(models, state) {
+        models.forEach(function(model) {
+            state.entities[selectId(model)] = model;
+        });
+        var allEntities = Object.values(state.entities);
+        allEntities.sort(sort);
+        var newSortedIds = allEntities.map(selectId);
+        var ids = state.ids;
+        if (!areArraysEqual(ids, newSortedIds)) state.ids = newSortedIds;
+    }
+    return {
+        removeOne: removeOne,
+        removeMany: removeMany,
+        removeAll: removeAll,
+        addOne: createStateOperator(addOneMutably),
+        updateOne: createStateOperator(updateOneMutably),
+        upsertOne: createStateOperator(upsertOneMutably),
+        setOne: createStateOperator(setOneMutably),
+        setMany: createStateOperator(setManyMutably),
+        setAll: createStateOperator(setAllMutably),
+        addMany: createStateOperator(addManyMutably),
+        updateMany: createStateOperator(updateManyMutably),
+        upsertMany: createStateOperator(upsertManyMutably)
+    };
+}
+// src/entities/create_adapter.ts
+function createEntityAdapter(options) {
+    if (options === void 0) options = {
+    };
+    var _c = __spreadValues({
+        sortComparer: false,
+        selectId: function(instance) {
+            return instance.id;
+        }
+    }, options), selectId = _c.selectId, sortComparer = _c.sortComparer;
+    var stateFactory = createInitialStateFactory();
+    var selectorsFactory = createSelectorsFactory();
+    var stateAdapter = sortComparer ? createSortedStateAdapter(selectId, sortComparer) : createUnsortedStateAdapter(selectId);
+    return __spreadValues(__spreadValues(__spreadValues({
+        selectId: selectId,
+        sortComparer: sortComparer
+    }, stateFactory), selectorsFactory), stateAdapter);
+}
+// src/nanoid.ts
+var urlAlphabet = "ModuleSymbhasOwnPr-0123456789ABCDEFGHNRVfgctiUvz_KqYTJkLxpZXIjQW";
+var nanoid = function(size) {
+    if (size === void 0) size = 21;
+    var id = "";
+    var i = size;
+    while(i--)id += urlAlphabet[Math.random() * 64 | 0];
+    return id;
+};
+// src/createAsyncThunk.ts
+var commonProperties = [
+    "name",
+    "message",
+    "stack",
+    "code"
+];
+var RejectWithValue = function() {
+    function RejectWithValue1(payload, meta) {
+        this.payload = payload;
+        this.meta = meta;
+    }
+    return RejectWithValue1;
+}();
+var FulfillWithMeta = function() {
+    function FulfillWithMeta1(payload, meta) {
+        this.payload = payload;
+        this.meta = meta;
+    }
+    return FulfillWithMeta1;
+}();
+var miniSerializeError = function(value) {
+    if (typeof value === "object" && value !== null) {
+        var simpleError = {
+        };
+        for(var _i = 0, commonProperties_1 = commonProperties; _i < commonProperties_1.length; _i++){
+            var property = commonProperties_1[_i];
+            if (typeof value[property] === "string") simpleError[property] = value[property];
+        }
+        return simpleError;
+    }
+    return {
+        message: String(value)
+    };
+};
+function createAsyncThunk(typePrefix, payloadCreator, options) {
+    var fulfilled = createAction(typePrefix + "/fulfilled", function(payload, requestId, arg, meta) {
+        return {
+            payload: payload,
+            meta: __spreadProps(__spreadValues({
+            }, meta || {
+            }), {
+                arg: arg,
+                requestId: requestId,
+                requestStatus: "fulfilled"
+            })
+        };
+    });
+    var pending = createAction(typePrefix + "/pending", function(requestId, arg, meta) {
+        return {
+            payload: void 0,
+            meta: __spreadProps(__spreadValues({
+            }, meta || {
+            }), {
+                arg: arg,
+                requestId: requestId,
+                requestStatus: "pending"
+            })
+        };
+    });
+    var rejected = createAction(typePrefix + "/rejected", function(error, requestId, arg, payload, meta) {
+        return {
+            payload: payload,
+            error: (options && options.serializeError || miniSerializeError)(error || "Rejected"),
+            meta: __spreadProps(__spreadValues({
+            }, meta || {
+            }), {
+                arg: arg,
+                requestId: requestId,
+                rejectedWithValue: !!payload,
+                requestStatus: "rejected",
+                aborted: (error == null ? void 0 : error.name) === "AbortError",
+                condition: (error == null ? void 0 : error.name) === "ConditionError"
+            })
+        };
+    });
+    var displayedWarning = false;
+    var AC = typeof AbortController !== "undefined" ? AbortController : function() {
+        function class_1() {
+            this.signal = {
+                aborted: false,
+                addEventListener: function() {
+                },
+                dispatchEvent: function() {
+                    return false;
+                },
+                onabort: function() {
+                },
+                removeEventListener: function() {
+                }
+            };
+        }
+        class_1.prototype.abort = function() {
+            if (!displayedWarning) {
+                displayedWarning = true;
+                console.info("This platform does not implement AbortController. \nIf you want to use the AbortController to react to `abort` events, please consider importing a polyfill like 'abortcontroller-polyfill/dist/abortcontroller-polyfill-only'.");
+            }
+        };
+        return class_1;
+    }();
+    function actionCreator(arg) {
+        return function(dispatch, getState, extra) {
+            var requestId = (options == null ? void 0 : options.idGenerator) ? options.idGenerator(arg) : nanoid();
+            var abortController = new AC();
+            var abortReason;
+            var abortedPromise = new Promise(function(_, reject) {
+                return abortController.signal.addEventListener("abort", function() {
+                    return reject({
+                        name: "AbortError",
+                        message: abortReason || "Aborted"
+                    });
+                });
+            });
+            var started = false;
+            function abort(reason) {
+                if (started) {
+                    abortReason = reason;
+                    abortController.abort();
+                }
+            }
+            var promise = function() {
+                return __async(this, null, function() {
+                    var _a, _b, finalAction, conditionResult, err_1, skipDispatch;
+                    return __generator(this, function(_c) {
+                        switch(_c.label){
+                            case 0:
+                                _c.trys.push([
+                                    0,
+                                    4,
+                                    ,
+                                    5
+                                ]);
+                                conditionResult = (_a = options == null ? void 0 : options.condition) == null ? void 0 : _a.call(options, arg, {
+                                    getState: getState,
+                                    extra: extra
+                                });
+                                if (!isThenable(conditionResult)) return [
+                                    3 /*break*/ ,
+                                    2
+                                ];
+                                return [
+                                    4 /*yield*/ ,
+                                    conditionResult
+                                ];
+                            case 1:
+                                conditionResult = _c.sent();
+                                _c.label = 2;
+                            case 2:
+                                if (conditionResult === false) throw {
+                                    name: "ConditionError",
+                                    message: "Aborted due to condition callback returning false."
+                                };
+                                started = true;
+                                dispatch(pending(requestId, arg, (_b = options == null ? void 0 : options.getPendingMeta) == null ? void 0 : _b.call(options, {
+                                    requestId: requestId,
+                                    arg: arg
+                                }, {
+                                    getState: getState,
+                                    extra: extra
+                                })));
+                                return [
+                                    4 /*yield*/ ,
+                                    Promise.race([
+                                        abortedPromise,
+                                        Promise.resolve(payloadCreator(arg, {
+                                            dispatch: dispatch,
+                                            getState: getState,
+                                            extra: extra,
+                                            requestId: requestId,
+                                            signal: abortController.signal,
+                                            rejectWithValue: function(value, meta) {
+                                                return new RejectWithValue(value, meta);
+                                            },
+                                            fulfillWithValue: function(value, meta) {
+                                                return new FulfillWithMeta(value, meta);
+                                            }
+                                        })).then(function(result) {
+                                            if (result instanceof RejectWithValue) throw result;
+                                            if (result instanceof FulfillWithMeta) return fulfilled(result.payload, requestId, arg, result.meta);
+                                            return fulfilled(result, requestId, arg);
+                                        })
+                                    ])
+                                ];
+                            case 3:
+                                finalAction = _c.sent();
+                                return [
+                                    3 /*break*/ ,
+                                    5
+                                ];
+                            case 4:
+                                err_1 = _c.sent();
+                                finalAction = err_1 instanceof RejectWithValue ? rejected(null, requestId, arg, err_1.payload, err_1.meta) : rejected(err_1, requestId, arg);
+                                return [
+                                    3 /*break*/ ,
+                                    5
+                                ];
+                            case 5:
+                                skipDispatch = options && !options.dispatchConditionRejection && rejected.match(finalAction) && finalAction.meta.condition;
+                                if (!skipDispatch) dispatch(finalAction);
+                                return [
+                                    2 /*return*/ ,
+                                    finalAction
+                                ];
+                        }
+                    });
+                });
+            }();
+            return Object.assign(promise, {
+                abort: abort,
+                requestId: requestId,
+                arg: arg,
+                unwrap: function() {
+                    return promise.then(unwrapResult);
+                }
+            });
+        };
+    }
+    return Object.assign(actionCreator, {
+        pending: pending,
+        rejected: rejected,
+        fulfilled: fulfilled,
+        typePrefix: typePrefix
+    });
+}
+function unwrapResult(action) {
+    if (action.meta && action.meta.rejectedWithValue) throw action.payload;
+    if (action.error) throw action.error;
+    return action.payload;
+}
+function isThenable(value) {
+    return value !== null && typeof value === "object" && typeof value.then === "function";
+}
+// src/tsHelpers.ts
+var hasMatchFunction = function(v) {
+    return v && typeof v.match === "function";
+};
+// src/matchers.ts
+var matches = function(matcher, action) {
+    if (hasMatchFunction(matcher)) return matcher.match(action);
+    else return matcher(action);
+};
+function isAnyOf() {
+    var matchers = [];
+    for(var _i = 0; _i < arguments.length; _i++)matchers[_i] = arguments[_i];
+    return function(action) {
+        return matchers.some(function(matcher) {
+            return matches(matcher, action);
+        });
+    };
+}
+function isAllOf() {
+    var matchers = [];
+    for(var _i = 0; _i < arguments.length; _i++)matchers[_i] = arguments[_i];
+    return function(action) {
+        return matchers.every(function(matcher) {
+            return matches(matcher, action);
+        });
+    };
+}
+function hasExpectedRequestMetadata(action, validStatus) {
+    if (!action || !action.meta) return false;
+    var hasValidRequestId = typeof action.meta.requestId === "string";
+    var hasValidRequestStatus = validStatus.indexOf(action.meta.requestStatus) > -1;
+    return hasValidRequestId && hasValidRequestStatus;
+}
+function isAsyncThunkArray(a) {
+    return typeof a[0] === "function" && "pending" in a[0] && "fulfilled" in a[0] && "rejected" in a[0];
+}
+function isPending() {
+    var asyncThunks = [];
+    for(var _i = 0; _i < arguments.length; _i++)asyncThunks[_i] = arguments[_i];
+    if (asyncThunks.length === 0) return function(action) {
+        return hasExpectedRequestMetadata(action, [
+            "pending"
+        ]);
+    };
+    if (!isAsyncThunkArray(asyncThunks)) return isPending()(asyncThunks[0]);
+    return function(action) {
+        var matchers = asyncThunks.map(function(asyncThunk) {
+            return asyncThunk.pending;
+        });
+        var combinedMatcher = isAnyOf.apply(void 0, matchers);
+        return combinedMatcher(action);
+    };
+}
+function isRejected() {
+    var asyncThunks = [];
+    for(var _i = 0; _i < arguments.length; _i++)asyncThunks[_i] = arguments[_i];
+    if (asyncThunks.length === 0) return function(action) {
+        return hasExpectedRequestMetadata(action, [
+            "rejected"
+        ]);
+    };
+    if (!isAsyncThunkArray(asyncThunks)) return isRejected()(asyncThunks[0]);
+    return function(action) {
+        var matchers = asyncThunks.map(function(asyncThunk) {
+            return asyncThunk.rejected;
+        });
+        var combinedMatcher = isAnyOf.apply(void 0, matchers);
+        return combinedMatcher(action);
+    };
+}
+function isRejectedWithValue() {
+    var asyncThunks = [];
+    for(var _i = 0; _i < arguments.length; _i++)asyncThunks[_i] = arguments[_i];
+    var hasFlag = function(action) {
+        return action && action.meta && action.meta.rejectedWithValue;
+    };
+    if (asyncThunks.length === 0) return function(action) {
+        var combinedMatcher = isAllOf(isRejected.apply(void 0, asyncThunks), hasFlag);
+        return combinedMatcher(action);
+    };
+    if (!isAsyncThunkArray(asyncThunks)) return isRejectedWithValue()(asyncThunks[0]);
+    return function(action) {
+        var combinedMatcher = isAllOf(isRejected.apply(void 0, asyncThunks), hasFlag);
+        return combinedMatcher(action);
+    };
+}
+function isFulfilled() {
+    var asyncThunks = [];
+    for(var _i = 0; _i < arguments.length; _i++)asyncThunks[_i] = arguments[_i];
+    if (asyncThunks.length === 0) return function(action) {
+        return hasExpectedRequestMetadata(action, [
+            "fulfilled"
+        ]);
+    };
+    if (!isAsyncThunkArray(asyncThunks)) return isFulfilled()(asyncThunks[0]);
+    return function(action) {
+        var matchers = asyncThunks.map(function(asyncThunk) {
+            return asyncThunk.fulfilled;
+        });
+        var combinedMatcher = isAnyOf.apply(void 0, matchers);
+        return combinedMatcher(action);
+    };
+}
+function isAsyncThunkAction() {
+    var asyncThunks = [];
+    for(var _i2 = 0; _i2 < arguments.length; _i2++)asyncThunks[_i2] = arguments[_i2];
+    if (asyncThunks.length === 0) return function(action) {
+        return hasExpectedRequestMetadata(action, [
+            "pending",
+            "fulfilled",
+            "rejected"
+        ]);
+    };
+    if (!isAsyncThunkArray(asyncThunks)) return isAsyncThunkAction()(asyncThunks[0]);
+    return function(action) {
+        var matchers = [];
+        for(var _i = 0, asyncThunks_1 = asyncThunks; _i < asyncThunks_1.length; _i++){
+            var asyncThunk = asyncThunks_1[_i];
+            matchers.push(asyncThunk.pending, asyncThunk.rejected, asyncThunk.fulfilled);
+        }
+        var combinedMatcher = isAnyOf.apply(void 0, matchers);
+        return combinedMatcher(action);
+    };
+}
+// src/listenerMiddleware/utils.ts
+var assertFunction = function(func, expected) {
+    if (typeof func !== "function") throw new TypeError(expected + " is not a function");
+};
+var noop = function() {
+};
+var catchRejection = function(promise, onError) {
+    if (onError === void 0) onError = noop;
+    promise.catch(onError);
+    return promise;
+};
+var addAbortSignalListener = function(abortSignal, callback) {
+    abortSignal.addEventListener("abort", callback, {
+        once: true
+    });
+};
+var abortControllerWithReason = function(abortController, reason) {
+    var signal = abortController.signal;
+    if (signal.aborted) return;
+    if (!("reason" in signal)) Object.defineProperty(signal, "reason", {
+        enumerable: true,
+        value: reason,
+        configurable: true,
+        writable: true
+    });
+    abortController.abort(reason);
+};
+// src/listenerMiddleware/exceptions.ts
+var task = "task";
+var listener = "listener";
+var completed = "completed";
+var cancelled = "cancelled";
+var taskCancelled = "task-" + cancelled;
+var taskCompleted = "task-" + completed;
+var listenerCancelled = listener + "-" + cancelled;
+var listenerCompleted = listener + "-" + completed;
+var TaskAbortError = function() {
+    function TaskAbortError1(code) {
+        this.code = code;
+        this.name = "TaskAbortError";
+        this.message = task + " " + cancelled + " (reason: " + code + ")";
+    }
+    return TaskAbortError1;
+}();
+// src/listenerMiddleware/task.ts
+var validateActive = function(signal) {
+    if (signal.aborted) throw new TaskAbortError(signal.reason);
+};
+var promisifyAbortSignal = function(signal) {
+    return catchRejection(new Promise(function(_, reject) {
+        var notifyRejection = function() {
+            return reject(new TaskAbortError(signal.reason));
+        };
+        if (signal.aborted) notifyRejection();
+        else addAbortSignalListener(signal, notifyRejection);
+    }));
+};
+var runTask = function(task2, cleanUp) {
+    return __async(void 0, null, function() {
+        var value, error_1;
+        return __generator(this, function(_c) {
+            switch(_c.label){
+                case 0:
+                    _c.trys.push([
+                        0,
+                        3,
+                        4,
+                        5
+                    ]);
+                    return [
+                        4 /*yield*/ ,
+                        Promise.resolve()
+                    ];
+                case 1:
+                    _c.sent();
+                    return [
+                        4 /*yield*/ ,
+                        task2()
+                    ];
+                case 2:
+                    value = _c.sent();
+                    return [
+                        2 /*return*/ ,
+                        {
+                            status: "ok",
+                            value: value
+                        }
+                    ];
+                case 3:
+                    error_1 = _c.sent();
+                    return [
+                        2 /*return*/ ,
+                        {
+                            status: error_1 instanceof TaskAbortError ? "cancelled" : "rejected",
+                            error: error_1
+                        }
+                    ];
+                case 4:
+                    cleanUp == null || cleanUp();
+                    return [
+                        7 /*endfinally*/ 
+                    ];
+                case 5:
+                    return [
+                        2 /*return*/ 
+                    ];
+            }
+        });
+    });
+};
+var createPause = function(signal) {
+    return function(promise) {
+        return catchRejection(Promise.race([
+            promisifyAbortSignal(signal),
+            promise
+        ]).then(function(output) {
+            validateActive(signal);
+            return output;
+        }));
+    };
+};
+var createDelay = function(signal) {
+    var pause = createPause(signal);
+    return function(timeoutMs) {
+        return pause(new Promise(function(resolve) {
+            return setTimeout(resolve, timeoutMs);
+        }));
+    };
+};
+// src/listenerMiddleware/index.ts
+var assign = Object.assign;
+var INTERNAL_NIL_TOKEN = {
+};
+var alm = "listenerMiddleware";
+var createFork = function(parentAbortSignal) {
+    var linkControllers = function(controller) {
+        return addAbortSignalListener(parentAbortSignal, function() {
+            return abortControllerWithReason(controller, parentAbortSignal.reason);
+        });
+    };
+    return function(taskExecutor) {
+        assertFunction(taskExecutor, "taskExecutor");
+        var childAbortController = new AbortController();
+        linkControllers(childAbortController);
+        var result = runTask(function() {
+            return __async(void 0, null, function() {
+                var result2;
+                return __generator(this, function(_c) {
+                    switch(_c.label){
+                        case 0:
+                            validateActive(parentAbortSignal);
+                            validateActive(childAbortController.signal);
+                            return [
+                                4 /*yield*/ ,
+                                taskExecutor({
+                                    pause: createPause(childAbortController.signal),
+                                    delay: createDelay(childAbortController.signal),
+                                    signal: childAbortController.signal
+                                })
+                            ];
+                        case 1:
+                            result2 = _c.sent();
+                            validateActive(childAbortController.signal);
+                            return [
+                                2 /*return*/ ,
+                                result2
+                            ];
+                    }
+                });
+            });
+        }, function() {
+            return abortControllerWithReason(childAbortController, taskCompleted);
+        });
+        return {
+            result: createPause(parentAbortSignal)(result),
+            cancel: function() {
+                abortControllerWithReason(childAbortController, taskCancelled);
+            }
+        };
+    };
+};
+var createTakePattern = function(startListening, signal) {
+    var take = function(predicate, timeout) {
+        return __async(void 0, null, function() {
+            var unsubscribe, tuplePromise, promises, output;
+            return __generator(this, function(_c) {
+                switch(_c.label){
+                    case 0:
+                        validateActive(signal);
+                        unsubscribe = function() {
+                        };
+                        tuplePromise = new Promise(function(resolve) {
+                            unsubscribe = startListening({
+                                predicate: predicate,
+                                effect: function(action, listenerApi) {
+                                    listenerApi.unsubscribe();
+                                    resolve([
+                                        action,
+                                        listenerApi.getState(),
+                                        listenerApi.getOriginalState()
+                                    ]);
+                                }
+                            });
+                        });
+                        promises = [
+                            promisifyAbortSignal(signal),
+                            tuplePromise
+                        ];
+                        if (timeout != null) promises.push(new Promise(function(resolve) {
+                            return setTimeout(resolve, timeout, null);
+                        }));
+                        _c.label = 1;
+                    case 1:
+                        _c.trys.push([
+                            1,
+                            ,
+                            3,
+                            4
+                        ]);
+                        return [
+                            4 /*yield*/ ,
+                            Promise.race(promises)
+                        ];
+                    case 2:
+                        output = _c.sent();
+                        validateActive(signal);
+                        return [
+                            2 /*return*/ ,
+                            output
+                        ];
+                    case 3:
+                        unsubscribe();
+                        return [
+                            7 /*endfinally*/ 
+                        ];
+                    case 4:
+                        return [
+                            2 /*return*/ 
+                        ];
+                }
+            });
+        });
+    };
+    return function(predicate, timeout) {
+        return catchRejection(take(predicate, timeout));
+    };
+};
+var getListenerEntryPropsFrom = function(options) {
+    var type = options.type, actionCreator = options.actionCreator, matcher = options.matcher, predicate = options.predicate, effect = options.effect;
+    if (type) predicate = createAction(type).match;
+    else if (actionCreator) {
+        type = actionCreator.type;
+        predicate = actionCreator.match;
+    } else if (matcher) predicate = matcher;
+    else if (predicate) ;
+    else throw new Error("Creating or removing a listener requires one of the known fields for matching an action");
+    assertFunction(effect, "options.listener");
+    return {
+        predicate: predicate,
+        type: type,
+        effect: effect
+    };
+};
+var createListenerEntry = function(options) {
+    var _c = getListenerEntryPropsFrom(options), type = _c.type, predicate = _c.predicate, effect = _c.effect;
+    var id = nanoid();
+    var entry = {
+        id: id,
+        effect: effect,
+        type: type,
+        predicate: predicate,
+        pending: new Set(),
+        unsubscribe: function() {
+            throw new Error("Unsubscribe not initialized");
+        }
+    };
+    return entry;
+};
+var createClearListenerMiddleware = function(listenerMap) {
+    return function() {
+        listenerMap.forEach(cancelActiveListeners);
+        listenerMap.clear();
+    };
+};
+var safelyNotifyError = function(errorHandler, errorToNotify, errorInfo) {
+    try {
+        errorHandler(errorToNotify, errorInfo);
+    } catch (errorHandlerError) {
+        setTimeout(function() {
+            throw errorHandlerError;
+        }, 0);
+    }
+};
+var addListener = createAction(alm + "/add");
+var clearAllListeners = createAction(alm + "/removeAll");
+var removeListener = createAction(alm + "/remove");
+var defaultErrorHandler = function() {
+    var args = [];
+    for(var _i = 0; _i < arguments.length; _i++)args[_i] = arguments[_i];
+    console.error.apply(console, __spreadArray([
+        alm + "/error"
+    ], args));
+};
+var cancelActiveListeners = function(entry) {
+    entry.pending.forEach(function(controller) {
+        abortControllerWithReason(controller, listenerCancelled);
+    });
+};
+function createListenerMiddleware(middlewareOptions) {
+    var _this = this;
+    if (middlewareOptions === void 0) middlewareOptions = {
+    };
+    var listenerMap = new Map();
+    var extra = middlewareOptions.extra, _c4 = middlewareOptions.onError, onError = _c4 === void 0 ? defaultErrorHandler : _c4;
+    assertFunction(onError, "onError");
+    var insertEntry = function(entry) {
+        entry.unsubscribe = function() {
+            return listenerMap.delete(entry.id);
+        };
+        listenerMap.set(entry.id, entry);
+        return function(cancelOptions) {
+            entry.unsubscribe();
+            if (cancelOptions == null ? void 0 : cancelOptions.cancelActive) cancelActiveListeners(entry);
+        };
+    };
+    var findListenerEntry = function(comparator) {
+        for(var _i = 0, _c = listenerMap.values(); _i < _c.length; _i++){
+            var entry = _c[_i];
+            if (comparator(entry)) return entry;
+        }
+        return void 0;
+    };
+    var startListening = function(options) {
+        var entry = findListenerEntry(function(existingEntry) {
+            return existingEntry.effect === options.effect;
+        });
+        if (!entry) entry = createListenerEntry(options);
+        return insertEntry(entry);
+    };
+    var stopListening = function(options) {
+        var _c = getListenerEntryPropsFrom(options), type = _c.type, effect = _c.effect, predicate = _c.predicate;
+        var entry = findListenerEntry(function(entry2) {
+            var matchPredicateOrType = typeof type === "string" ? entry2.type === type : entry2.predicate === predicate;
+            return matchPredicateOrType && entry2.effect === effect;
+        });
+        if (entry) {
+            entry.unsubscribe();
+            if (options.cancelActive) cancelActiveListeners(entry);
+        }
+        return !!entry;
+    };
+    var notifyListener = function(entry, action, api, getOriginalState) {
+        return __async(_this, null, function() {
+            var internalTaskController, take, listenerError_1;
+            return __generator(this, function(_c) {
+                switch(_c.label){
+                    case 0:
+                        internalTaskController = new AbortController();
+                        take = createTakePattern(startListening, internalTaskController.signal);
+                        _c.label = 1;
+                    case 1:
+                        _c.trys.push([
+                            1,
+                            3,
+                            4,
+                            5
+                        ]);
+                        entry.pending.add(internalTaskController);
+                        return [
+                            4 /*yield*/ ,
+                            Promise.resolve(entry.effect(action, assign({
+                            }, api, {
+                                getOriginalState: getOriginalState,
+                                condition: function(predicate, timeout) {
+                                    return take(predicate, timeout).then(Boolean);
+                                },
+                                take: take,
+                                delay: createDelay(internalTaskController.signal),
+                                pause: createPause(internalTaskController.signal),
+                                extra: extra,
+                                signal: internalTaskController.signal,
+                                fork: createFork(internalTaskController.signal),
+                                unsubscribe: entry.unsubscribe,
+                                subscribe: function() {
+                                    listenerMap.set(entry.id, entry);
+                                },
+                                cancelActiveListeners: function() {
+                                    entry.pending.forEach(function(controller, _, set) {
+                                        if (controller !== internalTaskController) {
+                                            abortControllerWithReason(controller, listenerCancelled);
+                                            set.delete(controller);
+                                        }
+                                    });
+                                }
+                            })))
+                        ];
+                    case 2:
+                        _c.sent();
+                        return [
+                            3 /*break*/ ,
+                            5
+                        ];
+                    case 3:
+                        listenerError_1 = _c.sent();
+                        if (!(listenerError_1 instanceof TaskAbortError)) safelyNotifyError(onError, listenerError_1, {
+                            raisedBy: "effect"
+                        });
+                        return [
+                            3 /*break*/ ,
+                            5
+                        ];
+                    case 4:
+                        abortControllerWithReason(internalTaskController, listenerCompleted);
+                        entry.pending.delete(internalTaskController);
+                        return [
+                            7 /*endfinally*/ 
+                        ];
+                    case 5:
+                        return [
+                            2 /*return*/ 
+                        ];
+                }
+            });
+        });
+    };
+    var clearListenerMiddleware = createClearListenerMiddleware(listenerMap);
+    var middleware = function(api) {
+        return function(next) {
+            return function(action) {
+                if (addListener.match(action)) return startListening(action.payload);
+                if (clearAllListeners.match(action)) {
+                    clearListenerMiddleware();
+                    return;
+                }
+                if (removeListener.match(action)) return stopListening(action.payload);
+                var originalState = api.getState();
+                var getOriginalState = function() {
+                    if (originalState === INTERNAL_NIL_TOKEN) throw new Error(alm + ": getOriginalState can only be called synchronously");
+                    return originalState;
+                };
+                var result;
+                try {
+                    result = next(action);
+                    if (listenerMap.size > 0) {
+                        var currentState = api.getState();
+                        var listenerEntries = Array.from(listenerMap.values());
+                        for(var _i = 0, listenerEntries_1 = listenerEntries; _i < listenerEntries_1.length; _i++){
+                            var entry = listenerEntries_1[_i];
+                            var runListener = false;
+                            try {
+                                runListener = entry.predicate(action, currentState, originalState);
+                            } catch (predicateError) {
+                                runListener = false;
+                                safelyNotifyError(onError, predicateError, {
+                                    raisedBy: "predicate"
+                                });
+                            }
+                            if (!runListener) continue;
+                            notifyListener(entry, action, api, getOriginalState);
+                        }
+                    }
+                } finally{
+                    originalState = INTERNAL_NIL_TOKEN;
+                }
+                return result;
+            };
+        };
+    };
+    return {
+        middleware: middleware,
+        startListening: startListening,
+        stopListening: stopListening,
+        clearListeners: clearListenerMiddleware
+    };
+}
+// src/index.ts
+_immer.enableES5();
+
+},{"immer":"2AR8T","reselect":"isIsC","redux":"cDNB3","redux-thunk":"iFVTZ","@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA"}],"2AR8T":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Immer", ()=>un
+);
+parcelHelpers.export(exports, "applyPatches", ()=>pn
+);
+parcelHelpers.export(exports, "castDraft", ()=>K
+);
+parcelHelpers.export(exports, "castImmutable", ()=>$
+);
+parcelHelpers.export(exports, "createDraft", ()=>ln
+);
+parcelHelpers.export(exports, "current", ()=>D
+);
+parcelHelpers.export(exports, "enableAllPlugins", ()=>J
+);
+parcelHelpers.export(exports, "enableES5", ()=>N
+);
+parcelHelpers.export(exports, "enableMapSet", ()=>C
+);
+parcelHelpers.export(exports, "enablePatches", ()=>T
+);
+parcelHelpers.export(exports, "finishDraft", ()=>dn
+);
+parcelHelpers.export(exports, "freeze", ()=>d
+);
+parcelHelpers.export(exports, "immerable", ()=>L
+);
+parcelHelpers.export(exports, "isDraft", ()=>r
+);
+parcelHelpers.export(exports, "isDraftable", ()=>t
+);
+parcelHelpers.export(exports, "nothing", ()=>H
+);
+parcelHelpers.export(exports, "original", ()=>e
+);
+parcelHelpers.export(exports, "produce", ()=>fn
+);
+parcelHelpers.export(exports, "produceWithPatches", ()=>cn
+);
+parcelHelpers.export(exports, "setAutoFreeze", ()=>sn
+);
+parcelHelpers.export(exports, "setUseProxies", ()=>vn
+);
+function n(n1) {
+    for(var r1 = arguments.length, t1 = Array(r1 > 1 ? r1 - 1 : 0), e1 = 1; e1 < r1; e1++)t1[e1 - 1] = arguments[e1];
+    var i1 = Y[n1], o1 = i1 ? "function" == typeof i1 ? i1.apply(null, t1) : i1 : "unknown error nr: " + n1;
+    throw Error("[Immer] " + o1);
+    throw Error("[Immer] minified error nr: " + n1 + (t1.length ? " " + t1.map(function(n2) {
+        return "'" + n2 + "'";
+    }).join(",") : "") + ". Find the full error at: https://bit.ly/3cXEKWf");
+}
+function r(n3) {
+    return !!n3 && !!n3[Q];
+}
+function t(n4) {
+    return !!n4 && ((function(n5) {
+        if (!n5 || "object" != typeof n5) return !1;
+        var r2 = Object.getPrototypeOf(n5);
+        if (null === r2) return !0;
+        var t2 = Object.hasOwnProperty.call(r2, "constructor") && r2.constructor;
+        return t2 === Object || "function" == typeof t2 && Function.toString.call(t2) === Z;
+    })(n4) || Array.isArray(n4) || !!n4[L] || !!n4.constructor[L] || s(n4) || v(n4));
+}
+function e(t3) {
+    return r(t3) || n(23, t3), t3[Q].t;
+}
+function i(n6, r3, t4) {
+    void 0 === t4 && (t4 = !1), 0 === o(n6) ? (t4 ? Object.keys : nn)(n6).forEach(function(e2) {
+        t4 && "symbol" == typeof e2 || r3(e2, n6[e2], n6);
+    }) : n6.forEach(function(t5, e3) {
+        return r3(e3, t5, n6);
+    });
+}
+function o(n7) {
+    var r4 = n7[Q];
+    return r4 ? r4.i > 3 ? r4.i - 4 : r4.i : Array.isArray(n7) ? 1 : s(n7) ? 2 : v(n7) ? 3 : 0;
+}
+function u(n8, r5) {
+    return 2 === o(n8) ? n8.has(r5) : Object.prototype.hasOwnProperty.call(n8, r5);
+}
+function a(n9, r6) {
+    return 2 === o(n9) ? n9.get(r6) : n9[r6];
+}
+function f(n10, r7, t6) {
+    var e4 = o(n10);
+    2 === e4 ? n10.set(r7, t6) : 3 === e4 ? (n10.delete(r7), n10.add(t6)) : n10[r7] = t6;
+}
+function c(n11, r8) {
+    return n11 === r8 ? 0 !== n11 || 1 / n11 == 1 / r8 : n11 != n11 && r8 != r8;
+}
+function s(n12) {
+    return X && n12 instanceof Map;
+}
+function v(n13) {
+    return q && n13 instanceof Set;
+}
+function p(n14) {
+    return n14.o || n14.t;
+}
+function l(n15) {
+    if (Array.isArray(n15)) return Array.prototype.slice.call(n15);
+    var r9 = rn(n15);
+    delete r9[Q];
+    for(var t7 = nn(r9), e5 = 0; e5 < t7.length; e5++){
+        var i = t7[e5], o2 = r9[i];
+        !1 === o2.writable && (o2.writable = !0, o2.configurable = !0), (o2.get || o2.set) && (r9[i] = {
+            configurable: !0,
+            writable: !0,
+            enumerable: o2.enumerable,
+            value: n15[i]
+        });
+    }
+    return Object.create(Object.getPrototypeOf(n15), r9);
+}
+function d(n16, e6) {
+    return void 0 === e6 && (e6 = !1), y(n16) || r(n16) || !t(n16) ? n16 : (o(n16) > 1 && (n16.set = n16.add = n16.clear = n16.delete = h), Object.freeze(n16), e6 && i(n16, function(n, r10) {
+        return d(r10, !0);
+    }, !0), n16);
+}
+function h() {
+    n(2);
+}
+function y(n17) {
+    return null == n17 || "object" != typeof n17 || Object.isFrozen(n17);
+}
+function b(r11) {
+    var t8 = tn[r11];
+    return t8 || n(18, r11), t8;
+}
+function m(n, r12) {
+    tn[n] || (tn[n] = r12);
+}
+function _() {
+    return U || n(0), U;
+}
+function j(n18, r13) {
+    r13 && (b("Patches"), n18.u = [], n18.s = [], n18.v = r13);
+}
+function O(n19) {
+    g(n19), n19.p.forEach(S), n19.p = null;
+}
+function g(n20) {
+    n20 === U && (U = n20.l);
+}
+function w(n21) {
+    return U = {
+        p: [],
+        l: U,
+        h: n21,
+        m: !0,
+        _: 0
+    };
+}
+function S(n22) {
+    var r14 = n22[Q];
+    0 === r14.i || 1 === r14.i ? r14.j() : r14.O = !0;
+}
+function P(r15, e7) {
+    e7._ = e7.p.length;
+    var i2 = e7.p[0], o3 = void 0 !== r15 && r15 !== i2;
+    return e7.h.g || b("ES5").S(e7, r15, o3), o3 ? (i2[Q].P && (O(e7), n(4)), t(r15) && (r15 = M(e7, r15), e7.l || x(e7, r15)), e7.u && b("Patches").M(i2[Q].t, r15, e7.u, e7.s)) : r15 = M(e7, i2, []), O(e7), e7.u && e7.v(e7.u, e7.s), r15 !== H ? r15 : void 0;
+}
+function M(n23, r16, t9) {
+    if (y(r16)) return r16;
+    var e8 = r16[Q];
+    if (!e8) return i(r16, function(i3, o5) {
+        return A(n23, e8, r16, i3, o5, t9);
+    }, !0), r16;
+    if (e8.A !== n23) return r16;
+    if (!e8.P) return x(n23, e8.t, !0), e8.t;
+    if (!e8.I) {
+        e8.I = !0, e8.A._--;
+        var o4 = 4 === e8.i || 5 === e8.i ? e8.o = l(e8.k) : e8.o;
+        i(3 === e8.i ? new Set(o4) : o4, function(r17, i4) {
+            return A(n23, e8, o4, r17, i4, t9);
+        }), x(n23, o4, !1), t9 && n23.u && b("Patches").R(e8, t9, n23.u, n23.s);
+    }
+    return e8.o;
+}
+function A(e9, i5, o6, a1, c1, s1) {
+    if (c1 === o6 && n(5), r(c1)) {
+        var v1 = M(e9, c1, s1 && i5 && 3 !== i5.i && !u(i5.D, a1) ? s1.concat(a1) : void 0);
+        if (f(o6, a1, v1), !r(v1)) return;
+        e9.m = !1;
+    }
+    if (t(c1) && !y(c1)) {
+        if (!e9.h.F && e9._ < 1) return;
+        M(e9, c1), i5 && i5.A.l || x(e9, c1);
+    }
+}
+function x(n24, r18, t10) {
+    void 0 === t10 && (t10 = !1), n24.h.F && n24.m && d(r18, t10);
+}
+function z(n25, r) {
+    var t11 = n25[Q];
+    return (t11 ? p(t11) : n25)[r];
+}
+function I(n26, r19) {
+    if (r19 in n26) for(var t12 = Object.getPrototypeOf(n26); t12;){
+        var e10 = Object.getOwnPropertyDescriptor(t12, r19);
+        if (e10) return e10;
+        t12 = Object.getPrototypeOf(t12);
+    }
+}
+function k(n27) {
+    n27.P || (n27.P = !0, n27.l && k(n27.l));
+}
+function E(n28) {
+    n28.o || (n28.o = l(n28.t));
+}
+function R(n29, r20, t13) {
+    var e11 = s(r20) ? b("MapSet").N(r20, t13) : v(r20) ? b("MapSet").T(r20, t13) : n29.g ? function(n30, r21) {
+        var t14 = Array.isArray(n30), e12 = {
+            i: t14 ? 1 : 0,
+            A: r21 ? r21.A : _(),
+            P: !1,
+            I: !1,
+            D: {
+            },
+            l: r21,
+            t: n30,
+            k: null,
+            o: null,
+            j: null,
+            C: !1
+        }, i6 = e12, o7 = en;
+        t14 && (i6 = [
+            e12
+        ], o7 = on);
+        var u1 = Proxy.revocable(i6, o7), a2 = u1.revoke, f1 = u1.proxy;
+        return e12.k = f1, e12.j = a2, f1;
+    }(r20, t13) : b("ES5").J(r20, t13);
+    return (t13 ? t13.A : _()).p.push(e11), e11;
+}
+function D(e13) {
+    return r(e13) || n(22, e13), (function n31(r22) {
+        if (!t(r22)) return r22;
+        var e14, u2 = r22[Q], c2 = o(r22);
+        if (u2) {
+            if (!u2.P && (u2.i < 4 || !b("ES5").K(u2))) return u2.t;
+            u2.I = !0, e14 = F(r22, c2), u2.I = !1;
+        } else e14 = F(r22, c2);
+        return i(e14, function(r23, t15) {
+            u2 && a(u2.t, r23) === t15 || f(e14, r23, n31(t15));
+        }), 3 === c2 ? new Set(e14) : e14;
+    })(e13);
+}
+function F(n32, r24) {
+    switch(r24){
+        case 2:
+            return new Map(n32);
+        case 3:
+            return Array.from(n32);
+    }
+    return l(n32);
+}
+function N() {
+    function t16(n33, r25) {
+        var t17 = s2[n33];
+        return t17 ? t17.enumerable = r25 : s2[n33] = t17 = {
+            configurable: !0,
+            enumerable: r25,
+            get: function() {
+                var r26 = this[Q];
+                return f2(r26), en.get(r26, n33);
+            },
+            set: function(r27) {
+                var t18 = this[Q];
+                f2(t18), en.set(t18, n33, r27);
+            }
+        }, t17;
+    }
+    function e15(n34) {
+        for(var r28 = n34.length - 1; r28 >= 0; r28--){
+            var t19 = n34[r28][Q];
+            if (!t19.P) switch(t19.i){
+                case 5:
+                    a3(t19) && k(t19);
+                    break;
+                case 4:
+                    o8(t19) && k(t19);
+            }
+        }
+    }
+    function o8(n35) {
+        for(var r29 = n35.t, t20 = n35.k, e16 = nn(t20), i7 = e16.length - 1; i7 >= 0; i7--){
+            var o9 = e16[i7];
+            if (o9 !== Q) {
+                var a4 = r29[o9];
+                if (void 0 === a4 && !u(r29, o9)) return !0;
+                var f3 = t20[o9], s3 = f3 && f3[Q];
+                if (s3 ? s3.t !== a4 : !c(f3, a4)) return !0;
+            }
+        }
+        var v2 = !!r29[Q];
+        return e16.length !== nn(r29).length + (v2 ? 0 : 1);
+    }
+    function a3(n36) {
+        var r30 = n36.k;
+        if (r30.length !== n36.t.length) return !0;
+        var t21 = Object.getOwnPropertyDescriptor(r30, r30.length - 1);
+        if (t21 && !t21.get) return !0;
+        for(var e17 = 0; e17 < r30.length; e17++)if (!r30.hasOwnProperty(e17)) return !0;
+        return !1;
+    }
+    function f2(r31) {
+        r31.O && n(3, JSON.stringify(p(r31)));
+    }
+    var s2 = {
+    };
+    m("ES5", {
+        J: function(n37, r32) {
+            var e18 = Array.isArray(n37), i8 = function(n38, r33) {
+                if (n38) {
+                    for(var e19 = Array(r33.length), i9 = 0; i9 < r33.length; i9++)Object.defineProperty(e19, "" + i9, t16(i9, !0));
+                    return e19;
+                }
+                var o11 = rn(r33);
+                delete o11[Q];
+                for(var u3 = nn(o11), a5 = 0; a5 < u3.length; a5++){
+                    var f4 = u3[a5];
+                    o11[f4] = t16(f4, n38 || !!o11[f4].enumerable);
+                }
+                return Object.create(Object.getPrototypeOf(r33), o11);
+            }(e18, n37), o10 = {
+                i: e18 ? 5 : 4,
+                A: r32 ? r32.A : _(),
+                P: !1,
+                I: !1,
+                D: {
+                },
+                l: r32,
+                t: n37,
+                k: i8,
+                o: null,
+                O: !1,
+                C: !1
+            };
+            return Object.defineProperty(i8, Q, {
+                value: o10,
+                writable: !0
+            }), i8;
+        },
+        S: function(n39, t22, o12) {
+            o12 ? r(t22) && t22[Q].A === n39 && e15(n39.p) : (n39.u && (function n40(r34) {
+                if (r34 && "object" == typeof r34) {
+                    var t23 = r34[Q];
+                    if (t23) {
+                        var e20 = t23.t, o13 = t23.k, f5 = t23.D, c3 = t23.i;
+                        if (4 === c3) i(o13, function(r35) {
+                            r35 !== Q && (void 0 !== e20[r35] || u(e20, r35) ? f5[r35] || n40(o13[r35]) : (f5[r35] = !0, k(t23)));
+                        }), i(e20, function(n41) {
+                            void 0 !== o13[n41] || u(o13, n41) || (f5[n41] = !1, k(t23));
+                        });
+                        else if (5 === c3) {
+                            if (a3(t23) && (k(t23), f5.length = !0), o13.length < e20.length) for(var s4 = o13.length; s4 < e20.length; s4++)f5[s4] = !1;
+                            else for(var v3 = e20.length; v3 < o13.length; v3++)f5[v3] = !0;
+                            for(var p1 = Math.min(o13.length, e20.length), l1 = 0; l1 < p1; l1++)o13.hasOwnProperty(l1) || (f5[l1] = !0), void 0 === f5[l1] && n40(o13[l1]);
+                        }
+                    }
+                }
+            })(n39.p[0]), e15(n39.p));
+        },
+        K: function(n42) {
+            return 4 === n42.i ? o8(n42) : a3(n42);
+        }
+    });
+}
+function T() {
+    function e21(n43) {
+        if (!t(n43)) return n43;
+        if (Array.isArray(n43)) return n43.map(e21);
+        if (s(n43)) return new Map(Array.from(n43.entries()).map(function(n44) {
+            return [
+                n44[0],
+                e21(n44[1])
+            ];
+        }));
+        if (v(n43)) return new Set(Array.from(n43).map(e21));
+        var r36 = Object.create(Object.getPrototypeOf(n43));
+        for(var i in n43)r36[i] = e21(n43[i]);
+        return u(n43, L) && (r36[L] = n43[L]), r36;
+    }
+    function f6(n45) {
+        return r(n45) ? e21(n45) : n45;
+    }
+    var c4 = "add";
+    m("Patches", {
+        $: function(r37, t24) {
+            return t24.forEach(function(t25) {
+                for(var i10 = t25.path, u4 = t25.op, f7 = r37, s5 = 0; s5 < i10.length - 1; s5++){
+                    var v4 = o(f7), p2 = "" + i10[s5];
+                    0 !== v4 && 1 !== v4 || "__proto__" !== p2 && "constructor" !== p2 || n(24), "function" == typeof f7 && "prototype" === p2 && n(24), "object" != typeof (f7 = a(f7, p2)) && n(15, i10.join("/"));
+                }
+                var l2 = o(f7), d1 = e21(t25.value), h1 = i10[i10.length - 1];
+                switch(u4){
+                    case "replace":
+                        switch(l2){
+                            case 2:
+                                return f7.set(h1, d1);
+                            case 3:
+                                n(16);
+                            default:
+                                return f7[h1] = d1;
+                        }
+                    case c4:
+                        switch(l2){
+                            case 1:
+                                return "-" === h1 ? f7.push(d1) : f7.splice(h1, 0, d1);
+                            case 2:
+                                return f7.set(h1, d1);
+                            case 3:
+                                return f7.add(d1);
+                            default:
+                                return f7[h1] = d1;
+                        }
+                    case "remove":
+                        switch(l2){
+                            case 1:
+                                return f7.splice(h1, 1);
+                            case 2:
+                                return f7.delete(h1);
+                            case 3:
+                                return f7.delete(t25.value);
+                            default:
+                                return delete f7[h1];
+                        }
+                    default:
+                        n(17, u4);
+                }
+            }), r37;
+        },
+        R: function(n46, r38, t26, e22) {
+            switch(n46.i){
+                case 0:
+                case 4:
+                case 2:
+                    return (function(n47, r39, t27, e23) {
+                        var o14 = n47.t, s6 = n47.o;
+                        i(n47.D, function(n48, i11) {
+                            var v5 = a(o14, n48), p3 = a(s6, n48), l3 = i11 ? u(o14, n48) ? "replace" : c4 : "remove";
+                            if (v5 !== p3 || "replace" !== l3) {
+                                var d2 = r39.concat(n48);
+                                t27.push("remove" === l3 ? {
+                                    op: l3,
+                                    path: d2
+                                } : {
+                                    op: l3,
+                                    path: d2,
+                                    value: p3
+                                }), e23.push(l3 === c4 ? {
+                                    op: "remove",
+                                    path: d2
+                                } : "remove" === l3 ? {
+                                    op: c4,
+                                    path: d2,
+                                    value: f6(v5)
+                                } : {
+                                    op: "replace",
+                                    path: d2,
+                                    value: f6(v5)
+                                });
+                            }
+                        });
+                    })(n46, r38, t26, e22);
+                case 5:
+                case 1:
+                    return (function(n49, r40, t28, e24) {
+                        var i12 = n49.t, o15 = n49.D, u5 = n49.o;
+                        if (u5.length < i12.length) {
+                            var a6 = [
+                                u5,
+                                i12
+                            ];
+                            i12 = a6[0], u5 = a6[1];
+                            var s7 = [
+                                e24,
+                                t28
+                            ];
+                            t28 = s7[0], e24 = s7[1];
+                        }
+                        for(var v6 = 0; v6 < i12.length; v6++)if (o15[v6] && u5[v6] !== i12[v6]) {
+                            var p4 = r40.concat([
+                                v6
+                            ]);
+                            t28.push({
+                                op: "replace",
+                                path: p4,
+                                value: f6(u5[v6])
+                            }), e24.push({
+                                op: "replace",
+                                path: p4,
+                                value: f6(i12[v6])
+                            });
+                        }
+                        for(var l4 = i12.length; l4 < u5.length; l4++){
+                            var d3 = r40.concat([
+                                l4
+                            ]);
+                            t28.push({
+                                op: c4,
+                                path: d3,
+                                value: f6(u5[l4])
+                            });
+                        }
+                        i12.length < u5.length && e24.push({
+                            op: "replace",
+                            path: r40.concat([
+                                "length"
+                            ]),
+                            value: i12.length
+                        });
+                    })(n46, r38, t26, e22);
+                case 3:
+                    return (function(n50, r41, t29, e25) {
+                        var i13 = n50.t, o16 = n50.o, u6 = 0;
+                        i13.forEach(function(n51) {
+                            if (!o16.has(n51)) {
+                                var i14 = r41.concat([
+                                    u6
+                                ]);
+                                t29.push({
+                                    op: "remove",
+                                    path: i14,
+                                    value: n51
+                                }), e25.unshift({
+                                    op: c4,
+                                    path: i14,
+                                    value: n51
+                                });
+                            }
+                            u6++;
+                        }), u6 = 0, o16.forEach(function(n52) {
+                            if (!i13.has(n52)) {
+                                var o17 = r41.concat([
+                                    u6
+                                ]);
+                                t29.push({
+                                    op: c4,
+                                    path: o17,
+                                    value: n52
+                                }), e25.unshift({
+                                    op: "remove",
+                                    path: o17,
+                                    value: n52
+                                });
+                            }
+                            u6++;
+                        });
+                    })(n46, r38, t26, e22);
+            }
+        },
+        M: function(n53, r42, t30, e26) {
+            t30.push({
+                op: "replace",
+                path: [],
+                value: r42 === H ? void 0 : r42
+            }), e26.push({
+                op: "replace",
+                path: [],
+                value: n53
+            });
+        }
+    });
+}
+function C() {
+    function r43(n54, r44) {
+        function t31() {
+            this.constructor = n54;
+        }
+        a7(n54, r44), n54.prototype = (t31.prototype = r44.prototype, new t31);
+    }
+    function e27(n55) {
+        n55.o || (n55.D = new Map, n55.o = new Map(n55.t));
+    }
+    function o18(n56) {
+        n56.o || (n56.o = new Set, n56.t.forEach(function(r45) {
+            if (t(r45)) {
+                var e28 = R(n56.A.h, r45, n56);
+                n56.p.set(r45, e28), n56.o.add(e28);
+            } else n56.o.add(r45);
+        }));
+    }
+    function u7(r46) {
+        r46.O && n(3, JSON.stringify(p(r46)));
+    }
+    var a7 = function(n57, r47) {
+        return (a7 = Object.setPrototypeOf || ({
+            __proto__: []
+        }) instanceof Array && function(n58, r48) {
+            n58.__proto__ = r48;
+        } || function(n59, r49) {
+            for(var t32 in r49)r49.hasOwnProperty(t32) && (n59[t32] = r49[t32]);
+        })(n57, r47);
+    }, f8 = function() {
+        function n60(n61, r50) {
+            return this[Q] = {
+                i: 2,
+                l: r50,
+                A: r50 ? r50.A : _(),
+                P: !1,
+                I: !1,
+                o: void 0,
+                D: void 0,
+                t: n61,
+                k: this,
+                C: !1,
+                O: !1
+            }, this;
+        }
+        r43(n60, Map);
+        var o19 = n60.prototype;
+        return Object.defineProperty(o19, "size", {
+            get: function() {
+                return p(this[Q]).size;
+            }
+        }), o19.has = function(n62) {
+            return p(this[Q]).has(n62);
+        }, o19.set = function(n63, r51) {
+            var t33 = this[Q];
+            return u7(t33), p(t33).has(n63) && p(t33).get(n63) === r51 || (e27(t33), k(t33), t33.D.set(n63, !0), t33.o.set(n63, r51), t33.D.set(n63, !0)), this;
+        }, o19.delete = function(n64) {
+            if (!this.has(n64)) return !1;
+            var r52 = this[Q];
+            return u7(r52), e27(r52), k(r52), r52.t.has(n64) ? r52.D.set(n64, !1) : r52.D.delete(n64), r52.o.delete(n64), !0;
+        }, o19.clear = function() {
+            var n65 = this[Q];
+            u7(n65), p(n65).size && (e27(n65), k(n65), n65.D = new Map, i(n65.t, function(r53) {
+                n65.D.set(r53, !1);
+            }), n65.o.clear());
+        }, o19.forEach = function(n66, r54) {
+            var t34 = this;
+            p(this[Q]).forEach(function(e, i15) {
+                n66.call(r54, t34.get(i15), i15, t34);
+            });
+        }, o19.get = function(n67) {
+            var r55 = this[Q];
+            u7(r55);
+            var i16 = p(r55).get(n67);
+            if (r55.I || !t(i16)) return i16;
+            if (i16 !== r55.t.get(n67)) return i16;
+            var o20 = R(r55.A.h, i16, r55);
+            return e27(r55), r55.o.set(n67, o20), o20;
+        }, o19.keys = function() {
+            return p(this[Q]).keys();
+        }, o19.values = function() {
+            var n68, r56 = this, t35 = this.keys();
+            return (n68 = {
+            })[V] = function() {
+                return r56.values();
+            }, n68.next = function() {
+                var n69 = t35.next();
+                return n69.done ? n69 : {
+                    done: !1,
+                    value: r56.get(n69.value)
+                };
+            }, n68;
+        }, o19.entries = function() {
+            var n70, r57 = this, t36 = this.keys();
+            return (n70 = {
+            })[V] = function() {
+                return r57.entries();
+            }, n70.next = function() {
+                var n71 = t36.next();
+                if (n71.done) return n71;
+                var e29 = r57.get(n71.value);
+                return {
+                    done: !1,
+                    value: [
+                        n71.value,
+                        e29
+                    ]
+                };
+            }, n70;
+        }, o19[V] = function() {
+            return this.entries();
+        }, n60;
+    }(), c5 = function() {
+        function n72(n73, r58) {
+            return this[Q] = {
+                i: 3,
+                l: r58,
+                A: r58 ? r58.A : _(),
+                P: !1,
+                I: !1,
+                o: void 0,
+                t: n73,
+                k: this,
+                p: new Map,
+                O: !1,
+                C: !1
+            }, this;
+        }
+        r43(n72, Set);
+        var t37 = n72.prototype;
+        return Object.defineProperty(t37, "size", {
+            get: function() {
+                return p(this[Q]).size;
+            }
+        }), t37.has = function(n74) {
+            var r59 = this[Q];
+            return u7(r59), r59.o ? !!r59.o.has(n74) || !(!r59.p.has(n74) || !r59.o.has(r59.p.get(n74))) : r59.t.has(n74);
+        }, t37.add = function(n75) {
+            var r60 = this[Q];
+            return u7(r60), this.has(n75) || (o18(r60), k(r60), r60.o.add(n75)), this;
+        }, t37.delete = function(n76) {
+            if (!this.has(n76)) return !1;
+            var r61 = this[Q];
+            return u7(r61), o18(r61), k(r61), r61.o.delete(n76) || !!r61.p.has(n76) && r61.o.delete(r61.p.get(n76));
+        }, t37.clear = function() {
+            var n77 = this[Q];
+            u7(n77), p(n77).size && (o18(n77), k(n77), n77.o.clear());
+        }, t37.values = function() {
+            var n78 = this[Q];
+            return u7(n78), o18(n78), n78.o.values();
+        }, t37.entries = function() {
+            var n79 = this[Q];
+            return u7(n79), o18(n79), n79.o.entries();
+        }, t37.keys = function() {
+            return this.values();
+        }, t37[V] = function() {
+            return this.values();
+        }, t37.forEach = function(n80, r62) {
+            for(var t38 = this.values(), e30 = t38.next(); !e30.done;)n80.call(r62, e30.value, e30.value, this), e30 = t38.next();
+        }, n72;
+    }();
+    m("MapSet", {
+        N: function(n81, r63) {
+            return new f8(n81, r63);
+        },
+        T: function(n82, r64) {
+            return new c5(n82, r64);
+        }
+    });
+}
+function J() {
+    N(), C(), T();
+}
+function K(n83) {
+    return n83;
+}
+function $(n84) {
+    return n84;
+}
+var G, U, W = "undefined" != typeof Symbol && "symbol" == typeof Symbol("x"), X = "undefined" != typeof Map, q = "undefined" != typeof Set, B = "undefined" != typeof Proxy && void 0 !== Proxy.revocable && "undefined" != typeof Reflect, H = W ? Symbol.for("immer-nothing") : ((G = {
+})["immer-nothing"] = !0, G), L = W ? Symbol.for("immer-draftable") : "__$immer_draftable", Q = W ? Symbol.for("immer-state") : "__$immer_state", V = "undefined" != typeof Symbol && Symbol.iterator || "@@iterator", Y = {
+    0: "Illegal state",
+    1: "Immer drafts cannot have computed properties",
+    2: "This object has been frozen and should not be mutated",
+    3: function(n85) {
+        return "Cannot use a proxy that has been revoked. Did you pass an object from inside an immer function to an async process? " + n85;
+    },
+    4: "An immer producer returned a new value *and* modified its draft. Either return a new value *or* modify the draft.",
+    5: "Immer forbids circular references",
+    6: "The first or second argument to `produce` must be a function",
+    7: "The third argument to `produce` must be a function or undefined",
+    8: "First argument to `createDraft` must be a plain object, an array, or an immerable object",
+    9: "First argument to `finishDraft` must be a draft returned by `createDraft`",
+    10: "The given draft is already finalized",
+    11: "Object.defineProperty() cannot be used on an Immer draft",
+    12: "Object.setPrototypeOf() cannot be used on an Immer draft",
+    13: "Immer only supports deleting array indices",
+    14: "Immer only supports setting array indices and the 'length' property",
+    15: function(n86) {
+        return "Cannot apply patch, path doesn't resolve: " + n86;
+    },
+    16: 'Sets cannot have "replace" patches.',
+    17: function(n87) {
+        return "Unsupported patch operation: " + n87;
+    },
+    18: function(n88) {
+        return "The plugin for '" + n88 + "' has not been loaded into Immer. To enable the plugin, import and call `enable" + n88 + "()` when initializing your application.";
+    },
+    20: "Cannot use proxies if Proxy, Proxy.revocable or Reflect are not available",
+    21: function(n89) {
+        return "produce can only be called on things that are draftable: plain objects, arrays, Map, Set or classes that are marked with '[immerable]: true'. Got '" + n89 + "'";
+    },
+    22: function(n90) {
+        return "'current' expects a draft, got: " + n90;
+    },
+    23: function(n91) {
+        return "'original' expects a draft, got: " + n91;
+    },
+    24: "Patching reserved attributes like __proto__, prototype and constructor is not allowed"
+}, Z = "" + Object.prototype.constructor, nn = "undefined" != typeof Reflect && Reflect.ownKeys ? Reflect.ownKeys : void 0 !== Object.getOwnPropertySymbols ? function(n92) {
+    return Object.getOwnPropertyNames(n92).concat(Object.getOwnPropertySymbols(n92));
+} : Object.getOwnPropertyNames, rn = Object.getOwnPropertyDescriptors || function(n93) {
+    var r65 = {
+    };
+    return nn(n93).forEach(function(t39) {
+        r65[t39] = Object.getOwnPropertyDescriptor(n93, t39);
+    }), r65;
+}, tn = {
+}, en = {
+    get: function(n94, r66) {
+        if (r66 === Q) return n94;
+        var e31 = p(n94);
+        if (!u(e31, r66)) return (function(n95, r67, t40) {
+            var e32, i18 = I(r67, t40);
+            return i18 ? "value" in i18 ? i18.value : null === (e32 = i18.get) || void 0 === e32 ? void 0 : e32.call(n95.k) : void 0;
+        })(n94, e31, r66);
+        var i17 = e31[r66];
+        return n94.I || !t(i17) ? i17 : i17 === z(n94.t, r66) ? (E(n94), n94.o[r66] = R(n94.A.h, i17, n94)) : i17;
+    },
+    has: function(n96, r68) {
+        return r68 in p(n96);
+    },
+    ownKeys: function(n97) {
+        return Reflect.ownKeys(p(n97));
+    },
+    set: function(n98, r69, t41) {
+        var e33 = I(p(n98), r69);
+        if (null == e33 ? void 0 : e33.set) return e33.set.call(n98.k, t41), !0;
+        if (!n98.P) {
+            var i19 = z(p(n98), r69), o21 = null == i19 ? void 0 : i19[Q];
+            if (o21 && o21.t === t41) return n98.o[r69] = t41, n98.D[r69] = !1, !0;
+            if (c(t41, i19) && (void 0 !== t41 || u(n98.t, r69))) return !0;
+            E(n98), k(n98);
+        }
+        return n98.o[r69] === t41 && "number" != typeof t41 && (void 0 !== t41 || r69 in n98.o) || (n98.o[r69] = t41, n98.D[r69] = !0, !0);
+    },
+    deleteProperty: function(n99, r70) {
+        return void 0 !== z(n99.t, r70) || r70 in n99.t ? (n99.D[r70] = !1, E(n99), k(n99)) : delete n99.D[r70], n99.o && delete n99.o[r70], !0;
+    },
+    getOwnPropertyDescriptor: function(n100, r71) {
+        var t42 = p(n100), e34 = Reflect.getOwnPropertyDescriptor(t42, r71);
+        return e34 ? {
+            writable: !0,
+            configurable: 1 !== n100.i || "length" !== r71,
+            enumerable: e34.enumerable,
+            value: t42[r71]
+        } : e34;
+    },
+    defineProperty: function() {
+        n(11);
+    },
+    getPrototypeOf: function(n101) {
+        return Object.getPrototypeOf(n101.t);
+    },
+    setPrototypeOf: function() {
+        n(12);
+    }
+}, on = {
+};
+i(en, function(n, r72) {
+    on[n] = function() {
+        return arguments[0] = arguments[0][0], r72.apply(this, arguments);
+    };
+}), on.deleteProperty = function(r73, t43) {
+    return isNaN(parseInt(t43)) && n(13), on.set.call(this, r73, t43, void 0);
+}, on.set = function(r74, t44, e35) {
+    return "length" !== t44 && isNaN(parseInt(t44)) && n(14), en.set.call(this, r74[0], t44, e35, r74[0]);
+};
+var un = function() {
+    function e36(r75) {
+        var e37 = this;
+        this.g = B, this.F = !0, this.produce = function(r76, i21, o22) {
+            if ("function" == typeof r76 && "function" != typeof i21) {
+                var u8 = i21;
+                i21 = r76;
+                var a8 = e37;
+                return function(n102) {
+                    var r77 = this;
+                    void 0 === n102 && (n102 = u8);
+                    for(var t45 = arguments.length, e38 = Array(t45 > 1 ? t45 - 1 : 0), o23 = 1; o23 < t45; o23++)e38[o23 - 1] = arguments[o23];
+                    return a8.produce(n102, function(n103) {
+                        var t46;
+                        return (t46 = i21).call.apply(t46, [
+                            r77,
+                            n103
+                        ].concat(e38));
+                    });
+                };
+            }
+            var f9;
+            if ("function" != typeof i21 && n(6), void 0 !== o22 && "function" != typeof o22 && n(7), t(r76)) {
+                var c6 = w(e37), s8 = R(e37, r76, void 0), v7 = !0;
+                try {
+                    f9 = i21(s8), v7 = !1;
+                } finally{
+                    v7 ? O(c6) : g(c6);
+                }
+                return "undefined" != typeof Promise && f9 instanceof Promise ? f9.then(function(n104) {
+                    return j(c6, o22), P(n104, c6);
+                }, function(n105) {
+                    throw O(c6), n105;
+                }) : (j(c6, o22), P(f9, c6));
+            }
+            if (!r76 || "object" != typeof r76) {
+                if (void 0 === (f9 = i21(r76)) && (f9 = r76), f9 === H && (f9 = void 0), e37.F && d(f9, !0), o22) {
+                    var p5 = [], l5 = [];
+                    b("Patches").M(r76, f9, p5, l5), o22(p5, l5);
+                }
+                return f9;
+            }
+            n(21, r76);
+        }, this.produceWithPatches = function(n106, r78) {
+            if ("function" == typeof n106) return function(r79) {
+                for(var t48 = arguments.length, i23 = Array(t48 > 1 ? t48 - 1 : 0), o25 = 1; o25 < t48; o25++)i23[o25 - 1] = arguments[o25];
+                return e37.produceWithPatches(r79, function(r80) {
+                    return n106.apply(void 0, [
+                        r80
+                    ].concat(i23));
+                });
+            };
+            var t47, i22, o24 = e37.produce(n106, r78, function(n107, r81) {
+                t47 = n107, i22 = r81;
+            });
+            return "undefined" != typeof Promise && o24 instanceof Promise ? o24.then(function(n108) {
+                return [
+                    n108,
+                    t47,
+                    i22
+                ];
+            }) : [
+                o24,
+                t47,
+                i22
+            ];
+        }, "boolean" == typeof (null == r75 ? void 0 : r75.useProxies) && this.setUseProxies(r75.useProxies), "boolean" == typeof (null == r75 ? void 0 : r75.autoFreeze) && this.setAutoFreeze(r75.autoFreeze);
+    }
+    var i20 = e36.prototype;
+    return i20.createDraft = function(e39) {
+        t(e39) || n(8), r(e39) && (e39 = D(e39));
+        var i24 = w(this), o26 = R(this, e39, void 0);
+        return o26[Q].C = !0, g(i24), o26;
+    }, i20.finishDraft = function(r82, t49) {
+        var e40 = r82 && r82[Q];
+        e40 && e40.C || n(9), e40.I && n(10);
+        var i25 = e40.A;
+        return j(i25, t49), P(void 0, i25);
+    }, i20.setAutoFreeze = function(n109) {
+        this.F = n109;
+    }, i20.setUseProxies = function(r83) {
+        r83 && !B && n(20), this.g = r83;
+    }, i20.applyPatches = function(n110, t50) {
+        var e41;
+        for(e41 = t50.length - 1; e41 >= 0; e41--){
+            var i26 = t50[e41];
+            if (0 === i26.path.length && "replace" === i26.op) {
+                n110 = i26.value;
+                break;
+            }
+        }
+        e41 > -1 && (t50 = t50.slice(e41 + 1));
+        var o27 = b("Patches").$;
+        return r(n110) ? o27(n110, t50) : this.produce(n110, function(n111) {
+            return o27(n111, t50);
+        });
+    }, e36;
+}(), an = new un, fn = an.produce, cn = an.produceWithPatches.bind(an), sn = an.setAutoFreeze.bind(an), vn = an.setUseProxies.bind(an), pn = an.applyPatches.bind(an), ln = an.createDraft.bind(an), dn = an.finishDraft.bind(an);
+exports.default = fn;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA"}],"isIsC":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "defaultMemoize", ()=>_defaultMemoize.defaultMemoize
+);
+parcelHelpers.export(exports, "defaultEqualityCheck", ()=>_defaultMemoize.defaultEqualityCheck
+);
+parcelHelpers.export(exports, "createSelectorCreator", ()=>createSelectorCreator
+);
+parcelHelpers.export(exports, "createSelector", ()=>createSelector
+);
+parcelHelpers.export(exports, "createStructuredSelector", ()=>createStructuredSelector
+);
+var _defaultMemoize = require("./defaultMemoize");
+function getDependencies(funcs) {
+    var dependencies = Array.isArray(funcs[0]) ? funcs[0] : funcs;
+    if (!dependencies.every(function(dep) {
+        return typeof dep === 'function';
+    })) {
+        var dependencyTypes = dependencies.map(function(dep) {
+            return typeof dep === 'function' ? "function " + (dep.name || 'unnamed') + "()" : typeof dep;
+        }).join(', ');
+        throw new Error("createSelector expects all input-selectors to be functions, but received the following types: [" + dependencyTypes + "]");
+    }
+    return dependencies;
+}
+function createSelectorCreator(memoize) {
+    for(var _len = arguments.length, memoizeOptionsFromArgs = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++)memoizeOptionsFromArgs[_key - 1] = arguments[_key];
+    var createSelector1 = function createSelector() {
+        for(var _len2 = arguments.length, funcs = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++)funcs[_key2] = arguments[_key2];
+        var _recomputations = 0;
+        var _lastResult; // Due to the intricacies of rest params, we can't do an optional arg after `...funcs`.
+        // So, start by declaring the default value here.
+        // (And yes, the words 'memoize' and 'options' appear too many times in this next sequence.)
+        var directlyPassedOptions = {
+            memoizeOptions: undefined
+        }; // Normally, the result func or "output selector" is the last arg
+        var resultFunc = funcs.pop(); // If the result func is actually an _object_, assume it's our options object
+        if (typeof resultFunc === 'object') {
+            directlyPassedOptions = resultFunc; // and pop the real result func off
+            resultFunc = funcs.pop();
+        }
+        if (typeof resultFunc !== 'function') throw new Error("createSelector expects an output function after the inputs, but received: [" + typeof resultFunc + "]");
+         // Determine which set of options we're using. Prefer options passed directly,
+        // but fall back to options given to createSelectorCreator.
+        var _directlyPassedOption = directlyPassedOptions, _directlyPassedOption2 = _directlyPassedOption.memoizeOptions, memoizeOptions = _directlyPassedOption2 === void 0 ? memoizeOptionsFromArgs : _directlyPassedOption2; // Simplifying assumption: it's unlikely that the first options arg of the provided memoizer
+        // is an array. In most libs I've looked at, it's an equality function or options object.
+        // Based on that, if `memoizeOptions` _is_ an array, we assume it's a full
+        // user-provided array of options. Otherwise, it must be just the _first_ arg, and so
+        // we wrap it in an array so we can apply it.
+        var finalMemoizeOptions = Array.isArray(memoizeOptions) ? memoizeOptions : [
+            memoizeOptions
+        ];
+        var dependencies = getDependencies(funcs);
+        var memoizedResultFunc = memoize.apply(void 0, [
+            function() {
+                _recomputations++; // apply arguments instead of spreading for performance.
+                return resultFunc.apply(null, arguments);
+            }
+        ].concat(finalMemoizeOptions)); // If a selector is called with the exact same arguments we don't need to traverse our dependencies again.
+        var selector = memoize(function() {
+            var params = [];
+            var length = dependencies.length;
+            for(var i = 0; i < length; i++)// apply arguments instead of spreading and mutate a local list of params for performance.
+            // @ts-ignore
+            params.push(dependencies[i].apply(null, arguments));
+             // apply arguments instead of spreading for performance.
+            _lastResult = memoizedResultFunc.apply(null, params);
+            return _lastResult;
+        });
+        Object.assign(selector, {
+            resultFunc: resultFunc,
+            memoizedResultFunc: memoizedResultFunc,
+            dependencies: dependencies,
+            lastResult: function lastResult() {
+                return _lastResult;
+            },
+            recomputations: function recomputations() {
+                return _recomputations;
+            },
+            resetRecomputations: function resetRecomputations() {
+                return _recomputations = 0;
+            }
+        });
+        return selector;
+    }; // @ts-ignore
+    return createSelector1;
+}
+var createSelector = /* #__PURE__ */ createSelectorCreator(_defaultMemoize.defaultMemoize);
+var createStructuredSelector = function createStructuredSelector(selectors, selectorCreator) {
+    if (selectorCreator === void 0) selectorCreator = createSelector;
+    if (typeof selectors !== 'object') throw new Error('createStructuredSelector expects first argument to be an object ' + ("where each property is a selector, instead received a " + typeof selectors));
+    var objectKeys = Object.keys(selectors);
+    var resultSelector = selectorCreator(objectKeys.map(function(key) {
+        return selectors[key];
+    }), function() {
+        for(var _len3 = arguments.length, values = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++)values[_key3] = arguments[_key3];
+        return values.reduce(function(composition, value, index) {
+            composition[objectKeys[index]] = value;
+            return composition;
+        }, {
+        });
+    });
+    return resultSelector;
+};
+
+},{"./defaultMemoize":"gK721","@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA"}],"gK721":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "defaultEqualityCheck", ()=>defaultEqualityCheck
+);
+parcelHelpers.export(exports, "createCacheKeyComparator", ()=>createCacheKeyComparator
+);
+// defaultMemoize now supports a configurable cache size with LRU behavior,
+// and optional comparison of the result value with existing values
+parcelHelpers.export(exports, "defaultMemoize", ()=>defaultMemoize
+);
+// Cache implementation based on Erik Rasmussen's `lru-memoize`:
+// https://github.com/erikras/lru-memoize
+var NOT_FOUND = 'NOT_FOUND';
+function createSingletonCache(equals) {
+    var entry;
+    return {
+        get: function get(key) {
+            if (entry && equals(entry.key, key)) return entry.value;
+            return NOT_FOUND;
+        },
+        put: function put(key, value) {
+            entry = {
+                key: key,
+                value: value
+            };
+        },
+        getEntries: function getEntries() {
+            return entry ? [
+                entry
+            ] : [];
+        },
+        clear: function clear() {
+            entry = undefined;
+        }
+    };
+}
+function createLruCache(maxSize, equals) {
+    var entries = [];
+    function get(key) {
+        var cacheIndex = entries.findIndex(function(entry) {
+            return equals(key, entry.key);
+        }); // We found a cached entry
+        if (cacheIndex > -1) {
+            var entry1 = entries[cacheIndex]; // Cached entry not at top of cache, move it to the top
+            if (cacheIndex > 0) {
+                entries.splice(cacheIndex, 1);
+                entries.unshift(entry1);
+            }
+            return entry1.value;
+        } // No entry found in cache, return sentinel
+        return NOT_FOUND;
+    }
+    function put(key, value) {
+        if (get(key) === NOT_FOUND) {
+            // TODO Is unshift slow?
+            entries.unshift({
+                key: key,
+                value: value
+            });
+            if (entries.length > maxSize) entries.pop();
+        }
+    }
+    function getEntries() {
+        return entries;
+    }
+    function clear() {
+        entries = [];
+    }
+    return {
+        get: get,
+        put: put,
+        getEntries: getEntries,
+        clear: clear
+    };
+}
+var defaultEqualityCheck = function defaultEqualityCheck(a, b) {
+    return a === b;
+};
+function createCacheKeyComparator(equalityCheck) {
+    return function areArgumentsShallowlyEqual(prev, next) {
+        if (prev === null || next === null || prev.length !== next.length) return false;
+         // Do this in a for loop (and not a `forEach` or an `every`) so we can determine equality as fast as possible.
+        var length = prev.length;
+        for(var i = 0; i < length; i++){
+            if (!equalityCheck(prev[i], next[i])) return false;
+        }
+        return true;
+    };
+}
+function defaultMemoize(func, equalityCheckOrOptions) {
+    var providedOptions = typeof equalityCheckOrOptions === 'object' ? equalityCheckOrOptions : {
+        equalityCheck: equalityCheckOrOptions
+    };
+    var _providedOptions$equa = providedOptions.equalityCheck, equalityCheck = _providedOptions$equa === void 0 ? defaultEqualityCheck : _providedOptions$equa, _providedOptions$maxS = providedOptions.maxSize, maxSize = _providedOptions$maxS === void 0 ? 1 : _providedOptions$maxS, resultEqualityCheck = providedOptions.resultEqualityCheck;
+    var comparator = createCacheKeyComparator(equalityCheck);
+    var cache = maxSize === 1 ? createSingletonCache(comparator) : createLruCache(maxSize, comparator); // we reference arguments instead of spreading them for performance reasons
+    function memoized() {
+        var value = cache.get(arguments);
+        if (value === NOT_FOUND) {
+            // @ts-ignore
+            value = func.apply(null, arguments);
+            if (resultEqualityCheck) {
+                var entries = cache.getEntries();
+                var matchingEntry = entries.find(function(entry) {
+                    return resultEqualityCheck(entry.value, value);
+                });
+                if (matchingEntry) value = matchingEntry.value;
+            }
+            cache.put(arguments, value);
+        }
+        return value;
+    }
+    memoized.clearCache = function() {
+        return cache.clear();
+    };
+    return memoized;
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA"}],"cDNB3":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "__DO_NOT_USE__ActionTypes", ()=>ActionTypes
+);
+parcelHelpers.export(exports, "applyMiddleware", ()=>applyMiddleware
+);
+parcelHelpers.export(exports, "bindActionCreators", ()=>bindActionCreators
+);
+parcelHelpers.export(exports, "combineReducers", ()=>combineReducers
+);
+parcelHelpers.export(exports, "compose", ()=>compose
+);
+parcelHelpers.export(exports, "createStore", ()=>createStore
+);
+var _objectSpread2 = require("@babel/runtime/helpers/esm/objectSpread2");
+var _objectSpread2Default = parcelHelpers.interopDefault(_objectSpread2);
+/**
+ * Adapted from React: https://github.com/facebook/react/blob/master/packages/shared/formatProdErrorMessage.js
+ *
+ * Do not require this module directly! Use normal throw error calls. These messages will be replaced with error codes
+ * during build.
+ * @param {number} code
+ */ function formatProdErrorMessage(code) {
+    return "Minified Redux error #" + code + "; visit https://redux.js.org/Errors?code=" + code + " for the full message or " + 'use the non-minified dev environment for full errors. ';
+}
+// Inlined version of the `symbol-observable` polyfill
+var $$observable = function() {
+    return typeof Symbol === 'function' && Symbol.observable || '@@observable';
+}();
+/**
+ * These are private action types reserved by Redux.
+ * For any unknown actions, you must return the current state.
+ * If the current state is undefined, you must return the initial state.
+ * Do not reference these action types directly in your code.
+ */ var randomString = function randomString() {
+    return Math.random().toString(36).substring(7).split('').join('.');
+};
+var ActionTypes = {
+    INIT: "@@redux/INIT" + randomString(),
+    REPLACE: "@@redux/REPLACE" + randomString(),
+    PROBE_UNKNOWN_ACTION: function PROBE_UNKNOWN_ACTION() {
+        return "@@redux/PROBE_UNKNOWN_ACTION" + randomString();
+    }
+};
+/**
+ * @param {any} obj The object to inspect.
+ * @returns {boolean} True if the argument appears to be a plain object.
+ */ function isPlainObject(obj) {
+    if (typeof obj !== 'object' || obj === null) return false;
+    var proto = obj;
+    while(Object.getPrototypeOf(proto) !== null)proto = Object.getPrototypeOf(proto);
+    return Object.getPrototypeOf(obj) === proto;
+}
+// Inlined / shortened version of `kindOf` from https://github.com/jonschlinkert/kind-of
+function miniKindOf(val) {
+    if (val === void 0) return 'undefined';
+    if (val === null) return 'null';
+    var type = typeof val;
+    switch(type){
+        case 'boolean':
+        case 'string':
+        case 'number':
+        case 'symbol':
+        case 'function':
+            return type;
+    }
+    if (Array.isArray(val)) return 'array';
+    if (isDate(val)) return 'date';
+    if (isError(val)) return 'error';
+    var constructorName = ctorName(val);
+    switch(constructorName){
+        case 'Symbol':
+        case 'Promise':
+        case 'WeakMap':
+        case 'WeakSet':
+        case 'Map':
+        case 'Set':
+            return constructorName;
+    } // other
+    return type.slice(8, -1).toLowerCase().replace(/\s/g, '');
+}
+function ctorName(val) {
+    return typeof val.constructor === 'function' ? val.constructor.name : null;
+}
+function isError(val) {
+    return val instanceof Error || typeof val.message === 'string' && val.constructor && typeof val.constructor.stackTraceLimit === 'number';
+}
+function isDate(val) {
+    if (val instanceof Date) return true;
+    return typeof val.toDateString === 'function' && typeof val.getDate === 'function' && typeof val.setDate === 'function';
+}
+function kindOf(val) {
+    var typeOfVal = typeof val;
+    typeOfVal = miniKindOf(val);
+    return typeOfVal;
+}
+/**
+ * Creates a Redux store that holds the state tree.
+ * The only way to change the data in the store is to call `dispatch()` on it.
+ *
+ * There should only be a single store in your app. To specify how different
+ * parts of the state tree respond to actions, you may combine several reducers
+ * into a single reducer function by using `combineReducers`.
+ *
+ * @param {Function} reducer A function that returns the next state tree, given
+ * the current state tree and the action to handle.
+ *
+ * @param {any} [preloadedState] The initial state. You may optionally specify it
+ * to hydrate the state from the server in universal apps, or to restore a
+ * previously serialized user session.
+ * If you use `combineReducers` to produce the root reducer function, this must be
+ * an object with the same shape as `combineReducers` keys.
+ *
+ * @param {Function} [enhancer] The store enhancer. You may optionally specify it
+ * to enhance the store with third-party capabilities such as middleware,
+ * time travel, persistence, etc. The only store enhancer that ships with Redux
+ * is `applyMiddleware()`.
+ *
+ * @returns {Store} A Redux store that lets you read the state, dispatch actions
+ * and subscribe to changes.
+ */ function createStore(reducer, preloadedState, enhancer) {
+    var _ref2;
+    if (typeof preloadedState === 'function' && typeof enhancer === 'function' || typeof enhancer === 'function' && typeof arguments[3] === 'function') throw new Error("It looks like you are passing several store enhancers to createStore(). This is not supported. Instead, compose them together to a single function. See https://redux.js.org/tutorials/fundamentals/part-4-store#creating-a-store-with-enhancers for an example.");
+    if (typeof preloadedState === 'function' && typeof enhancer === 'undefined') {
+        enhancer = preloadedState;
+        preloadedState = undefined;
+    }
+    if (typeof enhancer !== 'undefined') {
+        if (typeof enhancer !== 'function') throw new Error("Expected the enhancer to be a function. Instead, received: '" + kindOf(enhancer) + "'");
+        return enhancer(createStore)(reducer, preloadedState);
+    }
+    if (typeof reducer !== 'function') throw new Error("Expected the root reducer to be a function. Instead, received: '" + kindOf(reducer) + "'");
+    var currentReducer = reducer;
+    var currentState = preloadedState;
+    var currentListeners = [];
+    var nextListeners = currentListeners;
+    var isDispatching = false;
+    /**
+   * This makes a shallow copy of currentListeners so we can use
+   * nextListeners as a temporary list while dispatching.
+   *
+   * This prevents any bugs around consumers calling
+   * subscribe/unsubscribe in the middle of a dispatch.
+   */ function ensureCanMutateNextListeners() {
+        if (nextListeners === currentListeners) nextListeners = currentListeners.slice();
+    }
+    /**
+   * Reads the state tree managed by the store.
+   *
+   * @returns {any} The current state tree of your application.
+   */ function getState() {
+        if (isDispatching) throw new Error("You may not call store.getState() while the reducer is executing. The reducer has already received the state as an argument. Pass it down from the top reducer instead of reading it from the store.");
+        return currentState;
+    }
+    /**
+   * Adds a change listener. It will be called any time an action is dispatched,
+   * and some part of the state tree may potentially have changed. You may then
+   * call `getState()` to read the current state tree inside the callback.
+   *
+   * You may call `dispatch()` from a change listener, with the following
+   * caveats:
+   *
+   * 1. The subscriptions are snapshotted just before every `dispatch()` call.
+   * If you subscribe or unsubscribe while the listeners are being invoked, this
+   * will not have any effect on the `dispatch()` that is currently in progress.
+   * However, the next `dispatch()` call, whether nested or not, will use a more
+   * recent snapshot of the subscription list.
+   *
+   * 2. The listener should not expect to see all state changes, as the state
+   * might have been updated multiple times during a nested `dispatch()` before
+   * the listener is called. It is, however, guaranteed that all subscribers
+   * registered before the `dispatch()` started will be called with the latest
+   * state by the time it exits.
+   *
+   * @param {Function} listener A callback to be invoked on every dispatch.
+   * @returns {Function} A function to remove this change listener.
+   */ function subscribe(listener) {
+        if (typeof listener !== 'function') throw new Error("Expected the listener to be a function. Instead, received: '" + kindOf(listener) + "'");
+        if (isDispatching) throw new Error("You may not call store.subscribe() while the reducer is executing. If you would like to be notified after the store has been updated, subscribe from a component and invoke store.getState() in the callback to access the latest state. See https://redux.js.org/api/store#subscribelistener for more details.");
+        var isSubscribed = true;
+        ensureCanMutateNextListeners();
+        nextListeners.push(listener);
+        return function unsubscribe() {
+            if (!isSubscribed) return;
+            if (isDispatching) throw new Error("You may not unsubscribe from a store listener while the reducer is executing. See https://redux.js.org/api/store#subscribelistener for more details.");
+            isSubscribed = false;
+            ensureCanMutateNextListeners();
+            var index = nextListeners.indexOf(listener);
+            nextListeners.splice(index, 1);
+            currentListeners = null;
+        };
+    }
+    /**
+   * Dispatches an action. It is the only way to trigger a state change.
+   *
+   * The `reducer` function, used to create the store, will be called with the
+   * current state tree and the given `action`. Its return value will
+   * be considered the **next** state of the tree, and the change listeners
+   * will be notified.
+   *
+   * The base implementation only supports plain object actions. If you want to
+   * dispatch a Promise, an Observable, a thunk, or something else, you need to
+   * wrap your store creating function into the corresponding middleware. For
+   * example, see the documentation for the `redux-thunk` package. Even the
+   * middleware will eventually dispatch plain object actions using this method.
+   *
+   * @param {Object} action A plain object representing “what changed”. It is
+   * a good idea to keep actions serializable so you can record and replay user
+   * sessions, or use the time travelling `redux-devtools`. An action must have
+   * a `type` property which may not be `undefined`. It is a good idea to use
+   * string constants for action types.
+   *
+   * @returns {Object} For convenience, the same action object you dispatched.
+   *
+   * Note that, if you use a custom middleware, it may wrap `dispatch()` to
+   * return something else (for example, a Promise you can await).
+   */ function dispatch(action) {
+        if (!isPlainObject(action)) throw new Error("Actions must be plain objects. Instead, the actual type was: '" + kindOf(action) + "'. You may need to add middleware to your store setup to handle dispatching other values, such as 'redux-thunk' to handle dispatching functions. See https://redux.js.org/tutorials/fundamentals/part-4-store#middleware and https://redux.js.org/tutorials/fundamentals/part-6-async-logic#using-the-redux-thunk-middleware for examples.");
+        if (typeof action.type === 'undefined') throw new Error('Actions may not have an undefined "type" property. You may have misspelled an action type string constant.');
+        if (isDispatching) throw new Error('Reducers may not dispatch actions.');
+        try {
+            isDispatching = true;
+            currentState = currentReducer(currentState, action);
+        } finally{
+            isDispatching = false;
+        }
+        var listeners = currentListeners = nextListeners;
+        for(var i = 0; i < listeners.length; i++){
+            var listener = listeners[i];
+            listener();
+        }
+        return action;
+    }
+    /**
+   * Replaces the reducer currently used by the store to calculate the state.
+   *
+   * You might need this if your app implements code splitting and you want to
+   * load some of the reducers dynamically. You might also need this if you
+   * implement a hot reloading mechanism for Redux.
+   *
+   * @param {Function} nextReducer The reducer for the store to use instead.
+   * @returns {void}
+   */ function replaceReducer(nextReducer) {
+        if (typeof nextReducer !== 'function') throw new Error("Expected the nextReducer to be a function. Instead, received: '" + kindOf(nextReducer));
+        currentReducer = nextReducer; // This action has a similiar effect to ActionTypes.INIT.
+        // Any reducers that existed in both the new and old rootReducer
+        // will receive the previous state. This effectively populates
+        // the new state tree with any relevant data from the old one.
+        dispatch({
+            type: ActionTypes.REPLACE
+        });
+    }
+    /**
+   * Interoperability point for observable/reactive libraries.
+   * @returns {observable} A minimal observable of state changes.
+   * For more information, see the observable proposal:
+   * https://github.com/tc39/proposal-observable
+   */ function observable() {
+        var _ref;
+        var outerSubscribe = subscribe;
+        return _ref = {
+            /**
+       * The minimal observable subscription method.
+       * @param {Object} observer Any object that can be used as an observer.
+       * The observer object should have a `next` method.
+       * @returns {subscription} An object with an `unsubscribe` method that can
+       * be used to unsubscribe the observable from the store, and prevent further
+       * emission of values from the observable.
+       */ subscribe: function subscribe(observer) {
+                if (typeof observer !== 'object' || observer === null) throw new Error("Expected the observer to be an object. Instead, received: '" + kindOf(observer) + "'");
+                function observeState() {
+                    if (observer.next) observer.next(getState());
+                }
+                observeState();
+                var unsubscribe = outerSubscribe(observeState);
+                return {
+                    unsubscribe: unsubscribe
+                };
+            }
+        }, _ref[$$observable] = function() {
+            return this;
+        }, _ref;
+    } // When a store is created, an "INIT" action is dispatched so that every
+    // reducer returns their initial state. This effectively populates
+    // the initial state tree.
+    dispatch({
+        type: ActionTypes.INIT
+    });
+    return _ref2 = {
+        dispatch: dispatch,
+        subscribe: subscribe,
+        getState: getState,
+        replaceReducer: replaceReducer
+    }, _ref2[$$observable] = observable, _ref2;
+}
+/**
+ * Prints a warning in the console if it exists.
+ *
+ * @param {String} message The warning message.
+ * @returns {void}
+ */ function warning(message) {
+    /* eslint-disable no-console */ if (typeof console !== 'undefined' && typeof console.error === 'function') console.error(message);
+    /* eslint-enable no-console */ try {
+        // This error was thrown as a convenience so that if you enable
+        // "break on all exceptions" in your console,
+        // it would pause the execution at this line.
+        throw new Error(message);
+    } catch (e) {
+    } // eslint-disable-line no-empty
+}
+function getUnexpectedStateShapeWarningMessage(inputState, reducers, action, unexpectedKeyCache) {
+    var reducerKeys = Object.keys(reducers);
+    var argumentName = action && action.type === ActionTypes.INIT ? 'preloadedState argument passed to createStore' : 'previous state received by the reducer';
+    if (reducerKeys.length === 0) return "Store does not have a valid reducer. Make sure the argument passed to combineReducers is an object whose values are reducers.";
+    if (!isPlainObject(inputState)) return "The " + argumentName + " has unexpected type of \"" + kindOf(inputState) + "\". Expected argument to be an object with the following " + ("keys: \"" + reducerKeys.join('", "') + "\"");
+    var unexpectedKeys = Object.keys(inputState).filter(function(key) {
+        return !reducers.hasOwnProperty(key) && !unexpectedKeyCache[key];
+    });
+    unexpectedKeys.forEach(function(key) {
+        unexpectedKeyCache[key] = true;
+    });
+    if (action && action.type === ActionTypes.REPLACE) return;
+    if (unexpectedKeys.length > 0) return "Unexpected " + (unexpectedKeys.length > 1 ? 'keys' : 'key') + " " + ("\"" + unexpectedKeys.join('", "') + "\" found in " + argumentName + ". ") + "Expected to find one of the known reducer keys instead: " + ("\"" + reducerKeys.join('", "') + "\". Unexpected keys will be ignored.");
+}
+function assertReducerShape(reducers) {
+    Object.keys(reducers).forEach(function(key) {
+        var reducer = reducers[key];
+        var initialState = reducer(undefined, {
+            type: ActionTypes.INIT
+        });
+        if (typeof initialState === 'undefined') throw new Error("The slice reducer for key \"" + key + "\" returned undefined during initialization. " + "If the state passed to the reducer is undefined, you must " + "explicitly return the initial state. The initial state may " + "not be undefined. If you don't want to set a value for this reducer, " + "you can use null instead of undefined.");
+        if (typeof reducer(undefined, {
+            type: ActionTypes.PROBE_UNKNOWN_ACTION()
+        }) === 'undefined') throw new Error("The slice reducer for key \"" + key + "\" returned undefined when probed with a random type. " + ("Don't try to handle '" + ActionTypes.INIT + "' or other actions in \"redux/*\" ") + "namespace. They are considered private. Instead, you must return the " + "current state for any unknown actions, unless it is undefined, " + "in which case you must return the initial state, regardless of the " + "action type. The initial state may not be undefined, but can be null.");
+    });
+}
+/**
+ * Turns an object whose values are different reducer functions, into a single
+ * reducer function. It will call every child reducer, and gather their results
+ * into a single state object, whose keys correspond to the keys of the passed
+ * reducer functions.
+ *
+ * @param {Object} reducers An object whose values correspond to different
+ * reducer functions that need to be combined into one. One handy way to obtain
+ * it is to use ES6 `import * as reducers` syntax. The reducers may never return
+ * undefined for any action. Instead, they should return their initial state
+ * if the state passed to them was undefined, and the current state for any
+ * unrecognized action.
+ *
+ * @returns {Function} A reducer function that invokes every reducer inside the
+ * passed object, and builds a state object with the same shape.
+ */ function combineReducers(reducers) {
+    var reducerKeys = Object.keys(reducers);
+    var finalReducers = {
+    };
+    for(var i = 0; i < reducerKeys.length; i++){
+        var key = reducerKeys[i];
+        if (typeof reducers[key] === 'undefined') warning("No reducer provided for key \"" + key + "\"");
+        if (typeof reducers[key] === 'function') finalReducers[key] = reducers[key];
+    }
+    var finalReducerKeys = Object.keys(finalReducers); // This is used to make sure we don't warn about the same
+    // keys multiple times.
+    var unexpectedKeyCache;
+    unexpectedKeyCache = {
+    };
+    var shapeAssertionError;
+    try {
+        assertReducerShape(finalReducers);
+    } catch (e) {
+        shapeAssertionError = e;
+    }
+    return function combination(state, action) {
+        if (state === void 0) state = {
+        };
+        if (shapeAssertionError) throw shapeAssertionError;
+        var warningMessage = getUnexpectedStateShapeWarningMessage(state, finalReducers, action, unexpectedKeyCache);
+        if (warningMessage) warning(warningMessage);
+        var hasChanged = false;
+        var nextState = {
+        };
+        for(var _i = 0; _i < finalReducerKeys.length; _i++){
+            var _key = finalReducerKeys[_i];
+            var reducer = finalReducers[_key];
+            var previousStateForKey = state[_key];
+            var nextStateForKey = reducer(previousStateForKey, action);
+            if (typeof nextStateForKey === 'undefined') {
+                var actionType = action && action.type;
+                throw new Error("When called with an action of type " + (actionType ? "\"" + String(actionType) + "\"" : '(unknown type)') + ", the slice reducer for key \"" + _key + "\" returned undefined. " + "To ignore an action, you must explicitly return the previous state. " + "If you want this reducer to hold no value, you can return null instead of undefined.");
+            }
+            nextState[_key] = nextStateForKey;
+            hasChanged = hasChanged || nextStateForKey !== previousStateForKey;
+        }
+        hasChanged = hasChanged || finalReducerKeys.length !== Object.keys(state).length;
+        return hasChanged ? nextState : state;
+    };
+}
+function bindActionCreator(actionCreator, dispatch) {
+    return function() {
+        return dispatch(actionCreator.apply(this, arguments));
+    };
+}
+/**
+ * Turns an object whose values are action creators, into an object with the
+ * same keys, but with every function wrapped into a `dispatch` call so they
+ * may be invoked directly. This is just a convenience method, as you can call
+ * `store.dispatch(MyActionCreators.doSomething())` yourself just fine.
+ *
+ * For convenience, you can also pass an action creator as the first argument,
+ * and get a dispatch wrapped function in return.
+ *
+ * @param {Function|Object} actionCreators An object whose values are action
+ * creator functions. One handy way to obtain it is to use ES6 `import * as`
+ * syntax. You may also pass a single function.
+ *
+ * @param {Function} dispatch The `dispatch` function available on your Redux
+ * store.
+ *
+ * @returns {Function|Object} The object mimicking the original object, but with
+ * every action creator wrapped into the `dispatch` call. If you passed a
+ * function as `actionCreators`, the return value will also be a single
+ * function.
+ */ function bindActionCreators(actionCreators, dispatch) {
+    if (typeof actionCreators === 'function') return bindActionCreator(actionCreators, dispatch);
+    if (typeof actionCreators !== 'object' || actionCreators === null) throw new Error("bindActionCreators expected an object or a function, but instead received: '" + kindOf(actionCreators) + "'. " + "Did you write \"import ActionCreators from\" instead of \"import * as ActionCreators from\"?");
+    var boundActionCreators = {
+    };
+    for(var key in actionCreators){
+        var actionCreator = actionCreators[key];
+        if (typeof actionCreator === 'function') boundActionCreators[key] = bindActionCreator(actionCreator, dispatch);
+    }
+    return boundActionCreators;
+}
+/**
+ * Composes single-argument functions from right to left. The rightmost
+ * function can take multiple arguments as it provides the signature for
+ * the resulting composite function.
+ *
+ * @param {...Function} funcs The functions to compose.
+ * @returns {Function} A function obtained by composing the argument functions
+ * from right to left. For example, compose(f, g, h) is identical to doing
+ * (...args) => f(g(h(...args))).
+ */ function compose() {
+    for(var _len = arguments.length, funcs = new Array(_len), _key = 0; _key < _len; _key++)funcs[_key] = arguments[_key];
+    if (funcs.length === 0) return function(arg) {
+        return arg;
+    };
+    if (funcs.length === 1) return funcs[0];
+    return funcs.reduce(function(a, b) {
+        return function() {
+            return a(b.apply(void 0, arguments));
+        };
+    });
+}
+/**
+ * Creates a store enhancer that applies middleware to the dispatch method
+ * of the Redux store. This is handy for a variety of tasks, such as expressing
+ * asynchronous actions in a concise manner, or logging every action payload.
+ *
+ * See `redux-thunk` package as an example of the Redux middleware.
+ *
+ * Because middleware is potentially asynchronous, this should be the first
+ * store enhancer in the composition chain.
+ *
+ * Note that each middleware will be given the `dispatch` and `getState` functions
+ * as named arguments.
+ *
+ * @param {...Function} middlewares The middleware chain to be applied.
+ * @returns {Function} A store enhancer applying the middleware.
+ */ function applyMiddleware() {
+    for(var _len = arguments.length, middlewares = new Array(_len), _key = 0; _key < _len; _key++)middlewares[_key] = arguments[_key];
+    return function(createStore1) {
+        return function() {
+            var store = createStore1.apply(void 0, arguments);
+            var _dispatch = function dispatch() {
+                throw new Error("Dispatching while constructing your middleware is not allowed. Other middleware would not be applied to this dispatch.");
+            };
+            var middlewareAPI = {
+                getState: store.getState,
+                dispatch: function dispatch() {
+                    return _dispatch.apply(void 0, arguments);
+                }
+            };
+            var chain = middlewares.map(function(middleware) {
+                return middleware(middlewareAPI);
+            });
+            _dispatch = compose.apply(void 0, chain)(store.dispatch);
+            return _objectSpread2Default.default(_objectSpread2Default.default({
+            }, store), {
+            }, {
+                dispatch: _dispatch
+            });
+        };
+    };
+}
+/*
+ * This is a dummy function to check if the function name has been altered by minification.
+ * If the function has been minified and NODE_ENV !== 'production', warn the user.
+ */ function isCrushed() {
+}
+if (typeof isCrushed.name === 'string' && isCrushed.name !== 'isCrushed') warning("You are currently using minified code outside of NODE_ENV === \"production\". This means that you are running a slower development build of Redux. You can use loose-envify (https://github.com/zertosh/loose-envify) for browserify or setting mode to production in webpack (https://webpack.js.org/concepts/mode/) to ensure you have the correct code for your production build.");
+
+},{"@babel/runtime/helpers/esm/objectSpread2":"bS0uk","@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA"}],"bS0uk":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _definePropertyJs = require("./defineProperty.js");
+var _definePropertyJsDefault = parcelHelpers.interopDefault(_definePropertyJs);
+function ownKeys(object, enumerableOnly) {
+    var keys = Object.keys(object);
+    if (Object.getOwnPropertySymbols) {
+        var symbols = Object.getOwnPropertySymbols(object);
+        enumerableOnly && (symbols = symbols.filter(function(sym) {
+            return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+        })), keys.push.apply(keys, symbols);
+    }
+    return keys;
+}
+function _objectSpread2(target) {
+    for(var i = 1; i < arguments.length; i++){
+        var source = null != arguments[i] ? arguments[i] : {
+        };
+        i % 2 ? ownKeys(Object(source), !0).forEach(function(key) {
+            _definePropertyJsDefault.default(target, key, source[key]);
+        }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function(key) {
+            Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+        });
+    }
+    return target;
+}
+exports.default = _objectSpread2;
+
+},{"./defineProperty.js":"hbmCA","@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA"}],"hbmCA":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function _defineProperty(obj, key, value) {
+    if (key in obj) Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+    });
+    else obj[key] = value;
+    return obj;
+}
+exports.default = _defineProperty;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA"}],"iFVTZ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/** A function that accepts a potential "extra argument" value to be injected later,
+ * and returns an instance of the thunk middleware that uses that value
+ */ function createThunkMiddleware(extraArgument) {
+    // Standard Redux middleware definition pattern:
+    // See: https://redux.js.org/tutorials/fundamentals/part-4-store#writing-custom-middleware
+    var middleware = function middleware(_ref) {
+        var dispatch = _ref.dispatch, getState = _ref.getState;
+        return function(next) {
+            return function(action) {
+                // The thunk middleware looks for any functions that were passed to `store.dispatch`.
+                // If this "action" is really a function, call it and return the result.
+                if (typeof action === 'function') // Inject the store's `dispatch` and `getState` methods, as well as any "extra arg"
+                return action(dispatch, getState, extraArgument);
+                 // Otherwise, pass the action down the middleware chain as usual
+                return next(action);
+            };
+        };
+    };
+    return middleware;
+}
+var thunk = createThunkMiddleware(); // Attach the factory function so users can create a customized version
+// with whatever "extra arg" they want to inject into their thunks
+thunk.withExtraArgument = createThunkMiddleware;
+exports.default = thunk;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA"}],"fGRvi":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$8667 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -26539,11 +31790,31 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactRouterDom = require("react-router-dom");
 var _buttonJs = require("./Button.js");
 var _buttonJsDefault = parcelHelpers.interopDefault(_buttonJs);
+var _reactRedux = require("react-redux");
+var _store = require("./store");
+var _s = $RefreshSig$();
 function Product(props) {
-    const { details  } = props;
-    const productFromCart = props.cart.find((product)=>product.id === details.id
+    _s();
+    /* Code without Redux
+  const { details } = props;
+
+  const productFromCart = props.cart.find(
+    (product) => product.id === details.id
+  );
+  const quantity = productFromCart ? productFromCart.quantity : 0;
+  */ const { details  } = props;
+    const dispatch = _reactRedux.useDispatch();
+    const cart = _reactRedux.useSelector((state)=>state.cart
+    );
+    const productFromCart = cart.find((product)=>product.id === details.id
     );
     const quantity = productFromCart ? productFromCart.quantity : 0;
+    const onProductAdd = ()=>{
+        dispatch(_store.addProduct(details));
+    };
+    const onProductDelete = ()=>{
+        dispatch(_store.removeProduct(details));
+    };
     return(/*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
         className: "product",
         children: [
@@ -26560,13 +31831,13 @@ function Product(props) {
                             alt: details.name
                         }, void 0, false, {
                             fileName: "src/Product.js",
-                            lineNumber: 17,
-                            columnNumber: 11
+                            lineNumber: 38,
+                            columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "src/Product.js",
-                        lineNumber: 16,
-                        columnNumber: 9
+                        lineNumber: 37,
+                        columnNumber: 11
                     }, this),
                     quantity > 0 && /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
                         className: "product-quantity-container",
@@ -26575,19 +31846,19 @@ function Product(props) {
                             children: quantity
                         }, void 0, false, {
                             fileName: "src/Product.js",
-                            lineNumber: 27,
-                            columnNumber: 13
+                            lineNumber: 48,
+                            columnNumber: 15
                         }, this)
                     }, void 0, false, {
                         fileName: "src/Product.js",
-                        lineNumber: 26,
-                        columnNumber: 11
+                        lineNumber: 47,
+                        columnNumber: 13
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/Product.js",
-                lineNumber: 15,
-                columnNumber: 7
+                lineNumber: 36,
+                columnNumber: 9
             }, this),
             /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
                 className: "product-info",
@@ -26596,21 +31867,21 @@ function Product(props) {
                         children: details.name
                     }, void 0, false, {
                         fileName: "src/Product.js",
-                        lineNumber: 32,
-                        columnNumber: 9
+                        lineNumber: 53,
+                        columnNumber: 11
                     }, this),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV("p", {
                         children: details.description
                     }, void 0, false, {
                         fileName: "src/Product.js",
-                        lineNumber: 33,
-                        columnNumber: 9
+                        lineNumber: 54,
+                        columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/Product.js",
-                lineNumber: 31,
-                columnNumber: 7
+                lineNumber: 52,
+                columnNumber: 9
             }, this),
             /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
                 className: "product-checkout",
@@ -26618,23 +31889,23 @@ function Product(props) {
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
                         children: quantity > 0 && /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_buttonJsDefault.default, {
                             outline: true,
-                            onClick: ()=>props.onProductDelete(details.id)
+                            onClick: ()=>onProductDelete(details.id)
                             ,
                             className: "product-delete",
                             children: "x"
                         }, void 0, false, {
                             fileName: "src/Product.js",
-                            lineNumber: 38,
-                            columnNumber: 13
+                            lineNumber: 59,
+                            columnNumber: 15
                         }, this)
                     }, void 0, false, {
                         fileName: "src/Product.js",
-                        lineNumber: 36,
-                        columnNumber: 9
+                        lineNumber: 57,
+                        columnNumber: 11
                     }, this),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_buttonJsDefault.default, {
                         outline: true,
-                        onClick: ()=>props.onProductAdd(details)
+                        onClick: ()=>onProductAdd(details)
                         ,
                         children: [
                             "$",
@@ -26642,23 +31913,72 @@ function Product(props) {
                         ]
                     }, void 0, true, {
                         fileName: "src/Product.js",
-                        lineNumber: 47,
-                        columnNumber: 9
+                        lineNumber: 68,
+                        columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/Product.js",
-                lineNumber: 35,
-                columnNumber: 7
+                lineNumber: 56,
+                columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/Product.js",
-        lineNumber: 14,
-        columnNumber: 5
+        lineNumber: 35,
+        columnNumber: 11
     }, this));
-}
+} /* 
+
+      return (
+    <div className="product">
+      <div className="product-image-container">
+        <Link to={`/products/${details.id}`}>
+          <img
+            src={details.image}
+            width="100"
+            height="100"
+            className="product-image"
+            alt={details.name}
+          />
+        </Link>
+        {quantity > 0 && (
+          <div className="product-quantity-container">
+            <div className="product-quantity">{quantity}</div>
+          </div>
+        )}
+      </div>
+      <div className="product-info">
+        <h3>{details.name}</h3>
+        <p>{details.description}</p>
+      </div>
+      <div className="product-checkout">
+        <div>
+          {quantity > 0 && (
+            <Button
+              outline
+              onClick={() => props.onProductDelete(details.id)}
+              className="product-delete"
+            >
+              x
+            </Button>
+          )}
+        </div>
+        <Button outline onClick={() => props.onProductAdd(details)}>
+          ${details.price}
+        </Button>
+      </div>
+    </div>
+  );
+
+*/ 
 exports.default = Product;
+_s(Product, "aiyLQC3w2loFGIOtPgvi9u4lMcI=", false, function() {
+    return [
+        _reactRedux.useDispatch,
+        _reactRedux.useSelector
+    ];
+});
 _c = Product;
 var _c;
 $RefreshReg$(_c, "Product");
@@ -26668,7 +31988,7 @@ $RefreshReg$(_c, "Product");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"cHIiW","./Button.js":"FW9Fb","@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Yg1A"}],"FW9Fb":[function(require,module,exports) {
+},{"react":"21dqq","react-router-dom":"cHIiW","./Button.js":"FW9Fb","@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Yg1A","react-redux":"bdVon","./store":"d8qyu","react/jsx-dev-runtime":"iTorj"}],"FW9Fb":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$eb01 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -27085,7 +32405,16 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _buttonJs = require("./Button.js");
 var _buttonJsDefault = parcelHelpers.interopDefault(_buttonJs);
+var _reactRedux = require("react-redux");
+var _storeJs = require("./store.js");
+var _s = $RefreshSig$();
 function ProductDetailInfo({ product , onProductAdd  }) {
+    _s();
+    const { product  } = props;
+    const dispatch = _reactRedux.useDispatch();
+    const onProductAdd = ()=>{
+        dispatch(_storeJs.addProduct(product));
+    };
     return(/*#__PURE__*/ _jsxDevRuntime.jsxDEV(_jsxDevRuntime.Fragment, {
         children: [
             /*#__PURE__*/ _jsxDevRuntime.jsxDEV("p", {
@@ -27099,14 +32428,14 @@ function ProductDetailInfo({ product , onProductAdd  }) {
                         ]
                     }, void 0, true, {
                         fileName: "src/ProductDetailInfo.js",
-                        lineNumber: 8,
+                        lineNumber: 19,
                         columnNumber: 39
                     }, this),
                     " per piece."
                 ]
             }, void 0, true, {
                 fileName: "src/ProductDetailInfo.js",
-                lineNumber: 7,
+                lineNumber: 18,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_buttonJsDefault.default, {
@@ -27118,13 +32447,18 @@ function ProductDetailInfo({ product , onProductAdd  }) {
                 ]
             }, void 0, true, {
                 fileName: "src/ProductDetailInfo.js",
-                lineNumber: 11,
+                lineNumber: 22,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true));
 }
 exports.default = ProductDetailInfo;
+_s(ProductDetailInfo, "rgTLoBID190wEKCp9+G8W6F7A5M=", false, function() {
+    return [
+        _reactRedux.useDispatch
+    ];
+});
 _c = ProductDetailInfo;
 var _c;
 $RefreshReg$(_c, "ProductDetailInfo");
@@ -27134,7 +32468,7 @@ $RefreshReg$(_c, "ProductDetailInfo");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./Button.js":"FW9Fb","@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Yg1A"}],"4okec":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./Button.js":"FW9Fb","@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Yg1A","react-redux":"bdVon","./store.js":"d8qyu"}],"4okec":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$f984 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -27361,38 +32695,16 @@ var _inputJs = require("./Input.js");
 var _inputJsDefault = parcelHelpers.interopDefault(_inputJs);
 var _buttonJs = require("./Button.js");
 var _buttonJsDefault = parcelHelpers.interopDefault(_buttonJs);
+var _reactRedux = require("react-redux");
+var _storeJs = require("./store.js");
 var _s = $RefreshSig$();
 // TODO: Replace with your own publishable key
 const stripeLoadedPromise = _stripeJs.loadStripe("PK_REPLACE_WITH_YOUR_PUBLISHABLE_KEY");
-function Cart({ cart  }) {
+function Cart() {
     _s();
-    const totalPrice = cart.reduce((total, product)=>total + product.price * product.quantity
-    , 0);
-    const [email, setEmail] = _react.useState("");
-    function handleFormSubmit(event) {
-        event.preventDefault();
-        const lineItems = cart.map((product)=>{
-            return {
-                price: product.price_id,
-                quantity: product.quantity
-            };
-        });
-        stripeLoadedPromise.then((stripe)=>{
-            stripe.redirectToCheckout({
-                lineItems: lineItems,
-                mode: "payment",
-                successUrl: "https://superm.react-tutorial.app/",
-                cancelUrl: "https://superm.react-tutorial.app/",
-                customerEmail: email
-            }).then((response)=>{
-                // this will only log if the redirect did not work
-                console.log(response.error);
-            }).catch((error)=>{
-                // wrong API key? you will see the error message here
-                console.log(error);
-            });
-        });
-    }
+    const cart = _reactRedux.useSelector((state)=>state.cart
+    );
+    const totalPrice = _reactRedux.useSelector(_storeJs.cartValueSelector);
     return(/*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
         className: "cart-layout",
         children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
@@ -27401,251 +32713,315 @@ function Cart({ cart  }) {
                     children: "Your Cart"
                 }, void 0, false, {
                     fileName: "src/Cart.js",
-                    lineNumber: 47,
+                    lineNumber: 20,
                     columnNumber: 9
                 }, this),
                 cart.length === 0 && /*#__PURE__*/ _jsxDevRuntime.jsxDEV("p", {
                     children: "You have not added any product to your cart yet."
                 }, void 0, false, {
                     fileName: "src/Cart.js",
-                    lineNumber: 49,
+                    lineNumber: 22,
                     columnNumber: 11
                 }, this),
                 cart.length > 0 && /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_jsxDevRuntime.Fragment, {
-                    children: [
-                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV("table", {
-                            className: "table table-cart",
-                            children: [
-                                /*#__PURE__*/ _jsxDevRuntime.jsxDEV("thead", {
-                                    children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV("tr", {
-                                        children: [
-                                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("th", {
-                                                width: "25%",
-                                                className: "th-product",
-                                                children: "Product"
-                                            }, void 0, false, {
-                                                fileName: "src/Cart.js",
-                                                lineNumber: 56,
-                                                columnNumber: 19
-                                            }, this),
-                                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("th", {
-                                                width: "20%",
-                                                children: "Unit price"
-                                            }, void 0, false, {
-                                                fileName: "src/Cart.js",
-                                                lineNumber: 59,
-                                                columnNumber: 19
-                                            }, this),
-                                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("th", {
-                                                width: "10%",
-                                                children: "Quanity"
-                                            }, void 0, false, {
-                                                fileName: "src/Cart.js",
-                                                lineNumber: 60,
-                                                columnNumber: 19
-                                            }, this),
-                                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("th", {
-                                                width: "25%",
-                                                children: "Total"
-                                            }, void 0, false, {
-                                                fileName: "src/Cart.js",
-                                                lineNumber: 61,
-                                                columnNumber: 19
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "src/Cart.js",
-                                        lineNumber: 55,
-                                        columnNumber: 17
-                                    }, this)
-                                }, void 0, false, {
-                                    fileName: "src/Cart.js",
-                                    lineNumber: 54,
-                                    columnNumber: 15
-                                }, this),
-                                /*#__PURE__*/ _jsxDevRuntime.jsxDEV("tbody", {
-                                    children: cart.map((product)=>{
-                                        return(/*#__PURE__*/ _jsxDevRuntime.jsxDEV("tr", {
-                                            children: [
-                                                /*#__PURE__*/ _jsxDevRuntime.jsxDEV("td", {
-                                                    children: [
-                                                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV("img", {
-                                                            src: product.image,
-                                                            width: "30",
-                                                            height: "30",
-                                                            alt: ""
-                                                        }, void 0, false, {
-                                                            fileName: "src/Cart.js",
-                                                            lineNumber: 69,
-                                                            columnNumber: 25
-                                                        }, this),
-                                                        " ",
-                                                        product.name
-                                                    ]
-                                                }, void 0, true, {
-                                                    fileName: "src/Cart.js",
-                                                    lineNumber: 68,
-                                                    columnNumber: 23
-                                                }, this),
-                                                /*#__PURE__*/ _jsxDevRuntime.jsxDEV("td", {
-                                                    children: [
-                                                        "$",
-                                                        product.price
-                                                    ]
-                                                }, void 0, true, {
-                                                    fileName: "src/Cart.js",
-                                                    lineNumber: 77,
-                                                    columnNumber: 23
-                                                }, this),
-                                                /*#__PURE__*/ _jsxDevRuntime.jsxDEV("td", {
-                                                    children: product.quantity
-                                                }, void 0, false, {
-                                                    fileName: "src/Cart.js",
-                                                    lineNumber: 78,
-                                                    columnNumber: 23
-                                                }, this),
-                                                /*#__PURE__*/ _jsxDevRuntime.jsxDEV("td", {
-                                                    children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV("strong", {
-                                                        children: [
-                                                            "$",
-                                                            product.price * product.quantity
-                                                        ]
-                                                    }, void 0, true, {
-                                                        fileName: "src/Cart.js",
-                                                        lineNumber: 80,
-                                                        columnNumber: 25
-                                                    }, this)
-                                                }, void 0, false, {
-                                                    fileName: "src/Cart.js",
-                                                    lineNumber: 79,
-                                                    columnNumber: 23
-                                                }, this)
-                                            ]
-                                        }, product.id, true, {
-                                            fileName: "src/Cart.js",
-                                            lineNumber: 67,
-                                            columnNumber: 21
-                                        }, this));
-                                    })
-                                }, void 0, false, {
-                                    fileName: "src/Cart.js",
-                                    lineNumber: 64,
-                                    columnNumber: 15
-                                }, this),
-                                /*#__PURE__*/ _jsxDevRuntime.jsxDEV("tfoot", {
-                                    children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV("tr", {
-                                        children: [
-                                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("th", {
-                                                colSpan: "2"
-                                            }, void 0, false, {
-                                                fileName: "src/Cart.js",
-                                                lineNumber: 88,
-                                                columnNumber: 19
-                                            }, this),
-                                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("th", {
-                                                className: "cart-highlight",
-                                                children: "Total"
-                                            }, void 0, false, {
-                                                fileName: "src/Cart.js",
-                                                lineNumber: 89,
-                                                columnNumber: 19
-                                            }, this),
-                                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("th", {
-                                                className: "cart-highlight",
-                                                children: [
-                                                    "$",
-                                                    totalPrice
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "src/Cart.js",
-                                                lineNumber: 90,
-                                                columnNumber: 19
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "src/Cart.js",
-                                        lineNumber: 87,
-                                        columnNumber: 17
-                                    }, this)
-                                }, void 0, false, {
-                                    fileName: "src/Cart.js",
-                                    lineNumber: 86,
-                                    columnNumber: 15
-                                }, this)
-                            ]
-                        }, void 0, true, {
-                            fileName: "src/Cart.js",
-                            lineNumber: 53,
-                            columnNumber: 13
-                        }, this),
-                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV("form", {
-                            className: "pay-form",
-                            onSubmit: handleFormSubmit,
-                            children: [
-                                /*#__PURE__*/ _jsxDevRuntime.jsxDEV("p", {
+                    children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV("table", {
+                        className: "table table-cart",
+                        children: [
+                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("thead", {
+                                children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV("tr", {
                                     children: [
-                                        "Enter your email and then click on pay and your products will be delivered to you on the same day!",
-                                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV("br", {
+                                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV("th", {
+                                            width: "25%",
+                                            className: "th-product",
+                                            children: "Product"
                                         }, void 0, false, {
                                             fileName: "src/Cart.js",
-                                            lineNumber: 98,
-                                            columnNumber: 17
+                                            lineNumber: 29,
+                                            columnNumber: 19
                                         }, this),
-                                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV("em", {
-                                            children: "Enter your own Stripe Publishable Key in Cart.js for the checkout to work"
+                                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV("th", {
+                                            width: "20%",
+                                            children: "Unit price"
                                         }, void 0, false, {
                                             fileName: "src/Cart.js",
-                                            lineNumber: 99,
-                                            columnNumber: 17
+                                            lineNumber: 32,
+                                            columnNumber: 19
+                                        }, this),
+                                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV("th", {
+                                            width: "10%",
+                                            children: "Quanity"
+                                        }, void 0, false, {
+                                            fileName: "src/Cart.js",
+                                            lineNumber: 33,
+                                            columnNumber: 19
+                                        }, this),
+                                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV("th", {
+                                            width: "25%",
+                                            children: "Total"
+                                        }, void 0, false, {
+                                            fileName: "src/Cart.js",
+                                            lineNumber: 34,
+                                            columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "src/Cart.js",
-                                    lineNumber: 95,
-                                    columnNumber: 15
-                                }, this),
-                                /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_inputJsDefault.default, {
-                                    placeholder: "Email",
-                                    onChange: (event)=>setEmail(event.target.value)
-                                    ,
-                                    value: email,
-                                    type: "email",
-                                    required: true
-                                }, void 0, false, {
-                                    fileName: "src/Cart.js",
-                                    lineNumber: 104,
-                                    columnNumber: 15
-                                }, this),
-                                /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_buttonJsDefault.default, {
-                                    type: "submit",
-                                    children: "Pay"
-                                }, void 0, false, {
-                                    fileName: "src/Cart.js",
-                                    lineNumber: 111,
-                                    columnNumber: 15
+                                    lineNumber: 28,
+                                    columnNumber: 17
                                 }, this)
-                            ]
-                        }, void 0, true, {
-                            fileName: "src/Cart.js",
-                            lineNumber: 94,
-                            columnNumber: 13
-                        }, this)
-                    ]
-                }, void 0, true)
+                            }, void 0, false, {
+                                fileName: "src/Cart.js",
+                                lineNumber: 27,
+                                columnNumber: 15
+                            }, this),
+                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("tbody", {
+                                children: cart.map((product)=>{
+                                    return(/*#__PURE__*/ _jsxDevRuntime.jsxDEV("tr", {
+                                        children: [
+                                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("td", {
+                                                children: [
+                                                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV("img", {
+                                                        src: product.image,
+                                                        width: "30",
+                                                        height: "30",
+                                                        alt: ""
+                                                    }, void 0, false, {
+                                                        fileName: "src/Cart.js",
+                                                        lineNumber: 42,
+                                                        columnNumber: 25
+                                                    }, this),
+                                                    " ",
+                                                    product.name
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "src/Cart.js",
+                                                lineNumber: 41,
+                                                columnNumber: 23
+                                            }, this),
+                                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("td", {
+                                                children: [
+                                                    "$",
+                                                    product.price
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "src/Cart.js",
+                                                lineNumber: 50,
+                                                columnNumber: 23
+                                            }, this),
+                                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("td", {
+                                                children: product.quantity
+                                            }, void 0, false, {
+                                                fileName: "src/Cart.js",
+                                                lineNumber: 51,
+                                                columnNumber: 23
+                                            }, this),
+                                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("td", {
+                                                children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV("strong", {
+                                                    children: [
+                                                        "$",
+                                                        product.price * product.quantity
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "src/Cart.js",
+                                                    lineNumber: 53,
+                                                    columnNumber: 25
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "src/Cart.js",
+                                                lineNumber: 52,
+                                                columnNumber: 23
+                                            }, this)
+                                        ]
+                                    }, product.id, true, {
+                                        fileName: "src/Cart.js",
+                                        lineNumber: 40,
+                                        columnNumber: 21
+                                    }, this));
+                                })
+                            }, void 0, false, {
+                                fileName: "src/Cart.js",
+                                lineNumber: 37,
+                                columnNumber: 15
+                            }, this),
+                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("tfoot", {
+                                children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV("tr", {
+                                    children: [
+                                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV("th", {
+                                            colSpan: "2"
+                                        }, void 0, false, {
+                                            fileName: "src/Cart.js",
+                                            lineNumber: 61,
+                                            columnNumber: 19
+                                        }, this),
+                                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV("th", {
+                                            className: "cart-highlight",
+                                            children: "Total"
+                                        }, void 0, false, {
+                                            fileName: "src/Cart.js",
+                                            lineNumber: 62,
+                                            columnNumber: 19
+                                        }, this),
+                                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV("th", {
+                                            className: "cart-highlight",
+                                            children: [
+                                                "$",
+                                                totalPrice
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "src/Cart.js",
+                                            lineNumber: 63,
+                                            columnNumber: 19
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "src/Cart.js",
+                                    lineNumber: 60,
+                                    columnNumber: 17
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "src/Cart.js",
+                                lineNumber: 59,
+                                columnNumber: 15
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/Cart.js",
+                        lineNumber: 26,
+                        columnNumber: 13
+                    }, this)
+                }, void 0, false)
             ]
         }, void 0, true, {
             fileName: "src/Cart.js",
-            lineNumber: 46,
+            lineNumber: 19,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "src/Cart.js",
-        lineNumber: 45,
+        lineNumber: 18,
         columnNumber: 5
     }, this));
+} /* without Redux
+
+export default function Cart({ cart }) {
+  const totalPrice = cart.reduce(
+    (total, product) => total + product.price * product.quantity,
+    0
+  );
+
+  const [email, setEmail] = useState("");
+
+  function handleFormSubmit(event) {
+    event.preventDefault();
+
+    const lineItems = cart.map((product) => {
+      return { price: product.price_id, quantity: product.quantity };
+    });
+
+    stripeLoadedPromise.then((stripe) => {
+      stripe
+        .redirectToCheckout({
+          lineItems: lineItems,
+          mode: "payment",
+          successUrl: "https://superm.react-tutorial.app/",
+          cancelUrl: "https://superm.react-tutorial.app/",
+          customerEmail: email,
+        })
+        .then((response) => {
+          // this will only log if the redirect did not work
+          console.log(response.error);
+        })
+        .catch((error) => {
+          // wrong API key? you will see the error message here
+          console.log(error);
+        });
+    });
+  }
+
+  return (
+    <div className="cart-layout">
+      <div>
+        <h1>Your Cart</h1>
+        {cart.length === 0 && (
+          <p>You have not added any product to your cart yet.</p>
+        )}
+        {cart.length > 0 && (
+          <>
+            <table className="table table-cart">
+              <thead>
+                <tr>
+                  <th width="25%" className="th-product">
+                    Product
+                  </th>
+                  <th width="20%">Unit price</th>
+                  <th width="10%">Quanity</th>
+                  <th width="25%">Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                {cart.map((product) => {
+                  return (
+                    <tr key={product.id}>
+                      <td>
+                        <img
+                          src={product.image}
+                          width="30"
+                          height="30"
+                          alt=""
+                        />{" "}
+                        {product.name}
+                      </td>
+                      <td>${product.price}</td>
+                      <td>{product.quantity}</td>
+                      <td>
+                        <strong>${product.price * product.quantity}</strong>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th colSpan="2"></th>
+                  <th className="cart-highlight">Total</th>
+                  <th className="cart-highlight">${totalPrice}</th>
+                </tr>
+              </tfoot>
+            </table>
+            <form className="pay-form" onSubmit={handleFormSubmit}>
+              <p>
+                Enter your email and then click on pay and your products will be
+                delivered to you on the same day!
+                <br />
+                <em>
+                  Enter your own Stripe Publishable Key in Cart.js for the
+                  checkout to work
+                </em>
+              </p>
+              <Input
+                placeholder="Email"
+                onChange={(event) => setEmail(event.target.value)}
+                value={email}
+                type="email"
+                required
+              />
+              <Button type="submit">Pay</Button>
+            </form>
+          </>
+        )}
+      </div>
+    </div>
+  );
 }
+
+*/ 
 exports.default = Cart;
-_s(Cart, "Pe1zWWKcsJK82m3WyFiCTurRPxo=");
+_s(Cart, "uJ5VgCiAeW7IG5t53h/45UhX6sM=", false, function() {
+    return [
+        _reactRedux.useSelector,
+        _reactRedux.useSelector
+    ];
+});
 _c = Cart;
 var _c;
 $RefreshReg$(_c, "Cart");
@@ -27655,7 +33031,7 @@ $RefreshReg$(_c, "Cart");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@stripe/stripe-js":"e9NTD","./Input.js":"8hyda","./Button.js":"FW9Fb","@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Yg1A"}],"e9NTD":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@stripe/stripe-js":"e9NTD","./Input.js":"8hyda","./Button.js":"FW9Fb","@parcel/transformer-js/src/esmodule-helpers.js":"ffSIA","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Yg1A","react-redux":"bdVon","./store.js":"d8qyu"}],"e9NTD":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "loadStripe", ()=>loadStripe

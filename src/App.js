@@ -6,8 +6,45 @@ import About from "./About.js";
 import Products from "./Products.js";
 import ProductDetails from "./ProductDetails.js";
 import Cart from "./Cart.js";
+import { Provider } from "react-redux";
+import { store } from "./store.js";
 
 function App() {
+
+  return (
+    <Provider store={store}>
+    <BrowserRouter>
+      <Navbar />
+      <div className="container">
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/about">
+            <About />
+          </Route>
+          <Route exact path="/products">
+            <Products />
+          </Route>
+          <Route path="/products/:id">
+            <ProductDetails />
+          </Route>
+          <Route exact path="/cart">
+            <Cart />
+          </Route>
+        </Switch>
+      </div>
+    </BrowserRouter>
+    </Provider>
+  );
+}
+
+export default App;
+
+
+
+/* Code before Redux
+
   const [cart, setCart] = useState(function () {
     const savedString = localStorage.getItem("cart");
     let savedCart = [];
@@ -87,6 +124,4 @@ function App() {
       </div>
     </BrowserRouter>
   );
-}
-
-export default App;
+  */
